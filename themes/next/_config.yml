@@ -429,7 +429,7 @@ font:
 
   # Font settings for Headlines (H1, H2, H3, H4, H5, H6).
   # Fallback to `global` font settings.
-  headings: Come on,angel
+  headings:
     external: true
     family:
     size:
@@ -460,7 +460,7 @@ font:
 
 # Math Equations Render Support
 math:
-  enable: false
+  enable: true
 
   # Default (true) will load mathjax / katex script on demand.
   # That is it only render those page which has `mathjax: true` in Front Matter.
