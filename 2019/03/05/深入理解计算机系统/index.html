@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+  <meta name="description" content="一直想拥有一个自己的博客，但是却一拖再拖，始终没有推送一篇博文，仅以此篇--哈尔滨工业大学计算机系统的复习提纲，仅为期末复习所准备，慰藉以往无bolg的时光。">
+<meta name="keywords" content="计算机系统,期末复习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哈尔滨工业大学计算机系统2018年秋期末复习">
+<meta property="og:url" content="http://yoursite.com/2019/03/05/深入理解计算机系统/index.html">
+<meta property="og:site_name" content="Jiaoyue&#39;s Blog">
+<meta property="og:description" content="一直想拥有一个自己的博客，但是却一拖再拖，始终没有推送一篇博文，仅以此篇--哈尔滨工业大学计算机系统的复习提纲，仅为期末复习所准备，慰藉以往无bolg的时光。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/浮点数标准分类.PNG">
+<meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/浮点数规格化的值.PNG">
+<meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/浮点数规格化的值.PNG">
+<meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/浮点数舍入.PNG">
+<meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/算术和逻辑操作指令.PNG">
+<meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/特殊的操作指令.PNG">
+<meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/set指令.PNG">
+<meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/栈结构.PNG">
+<meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/SRAM和DRAM对比.PNG">
+<meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/6.1.1内存地址取值.PNG">
+<meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/磁盘读取时间计算.PNG">
+<meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/存储器层次结构.PNG">
+<meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/8.1事件处理.PNG">
+<meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/异常分类.PNG">
+<meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/异常分类2.PNG">
+<meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/进程地址空间.PNG">
+<meta property="og:updated_time" content="2019-03-06T00:16:19.616Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="哈尔滨工业大学计算机系统2018年秋期末复习">
+<meta name="twitter:description" content="一直想拥有一个自己的博客，但是却一拖再拖，始终没有推送一篇博文，仅以此篇--哈尔滨工业大学计算机系统的复习提纲，仅为期末复习所准备，慰藉以往无bolg的时光。">
+<meta name="twitter:image" content="http://yoursite.com/img/深入理解计算机系统/浮点数标准分类.PNG">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/05/深入理解计算机系统/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>哈尔滨工业大学计算机系统2018年秋期末复习 | Jiaoyue's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jiaoyue's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Angel, come on!</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/深入理解计算机系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiaoyue's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">哈尔滨工业大学计算机系统2018年秋期末复习
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2019-03-05 14:00:00" itemprop="dateCreated datePublished" datetime="2019-03-05T14:00:00+08:00">2019-03-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2019-03-06 08:16:19" itemprop="dateModified" datetime="2019-03-06T08:16:19+08:00">2019-03-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">一直想拥有一个自己的博客，但是却一拖再拖，始终没有推送一篇博文，仅以此篇--哈尔滨工业大学计算机系统的复习提纲，仅为期末复习所准备，慰藉以往无bolg的时光。</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><p>计算机的字长，是指针数据的位长，表明了虚拟地址空间的大小</p>
+</li>
+<li><p>ASCII字符构成的文件成为文本文件，其他所有文件都称为二进制文件</p>
+</li>
+<li><p>核心PC模型由指令集架构决定，操作围绕主存、寄存器文件、算术/逻辑单元ALU进行，进行加载、存储、操作、跳转等操作。</p>
+</li>
+<li><p>存储器层次结构的基本思想：上一层的存储器作为第一层存储器的高速缓存</p>
+</li>
+<li><p>操作系统的基本功能：1：防止硬件被失控 的应用程序滥用；2：向应用程序提供简单一致的机制来控制复杂而通常大而不同的低级硬件设备。 </p>
+</li>
+</ul>
+<h3 id="信息的表示和处理"><a href="#信息的表示和处理" class="headerlink" title="信息的表示和处理"></a>信息的表示和处理</h3><h4 id="信息存储"><a href="#信息存储" class="headerlink" title="信息存储"></a>信息存储</h4><ul>
+<li>信息：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">数值：值   小数点  符号（三要素）</span><br><span class="line"></span><br><span class="line">非数值：文字 图像 视频 语言</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>软件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">系统软件：（用来管理整个计算机系统）</span><br><span class="line"></span><br><span class="line">语言处理程序  操作系统  服务型程序 数据																库管理系统 网络软件</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>计算机系统的层次结构：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>高级语言</th>
+<th>虚拟机器M3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>汇编语言</td>
+<td>虚拟机器M2</td>
+</tr>
+<tr>
+<td>操作系统</td>
+<td>虚拟机器</td>
+</tr>
+<tr>
+<td>机器语言</td>
+<td>实际机器M1</td>
+</tr>
+<tr>
+<td>微指令语言（时间)</td>
+<td>微程序机器M0</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>机器数（码）：原码 反码 移码  补码</p>
+</li>
+<li><p>数的逻辑：逻辑   算术（+ - * /） c语言中的数</p>
+</li>
+<li><p>逻辑运算符&amp;&amp;和||与对应的位级运算符&amp;和|第二个区别：</p>
+<p>如果对第一个参数求值就能确定表达式的结果，那么逻辑运算符就不会对第二个参数求值。例如：a&amp;&amp;5/a不会造成被零除，p&amp;&amp;*p++不会导致间接引用空指针 </p>
+</li>
+<li><p>集合的表示与运算</p>
+<ul>
+<li>表示：位向量表示有限集合</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eg：<span class="number">10100110</span>   从右到左表示 该集合=&#123;<span class="number">1</span>，<span class="number">2</span>，<span class="number">5</span>，<span class="number">7</span>&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>运算：&amp; 交集     |  并集    ^  对称差集    ~  补集                  </p>
+</li>
+<li><p>左移补0，但右移分为逻辑右移和算术右移，逻辑右移左端补0，算术右移左端补最高有效位的值。c语言对此没有区分，但大多数编译器对有符号数使用算术右移；无符号数右移必须是逻辑的 。Java对右移有明确的规定，x&gt;&gt;k表示x算术右移k个位置，x&gt;&gt;&gt;k表示逻辑右移</p>
+</li>
+</ul>
+<h4 id="整数表示"><a href="#整数表示" class="headerlink" title="整数表示"></a>整数表示</h4><h5 id="整数编码"><a href="#整数编码" class="headerlink" title="整数编码"></a>整数编码</h5><p>有符号数：补码</p>
+<p>B2T(X) = $-X_{w-1}2^{w-1}+\sum_{i=0}^{w-2}X_i2_i$</p>
+<p>例：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>10进制</th>
+<th>16进制</th>
+<th>2进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X</td>
+<td>15213</td>
+<td>3B 6D</td>
+<td>0011011 01101101</td>
+</tr>
+<tr>
+<td>Y</td>
+<td>-15213</td>
+<td>C4 93</td>
+<td>1100100 10010011(最高位1表示负数)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>原码</th>
+<th>反码</th>
+<th>补码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11</td>
+<td>0000 1011</td>
+<td>0000 1011</td>
+<td>0000 1011</td>
+</tr>
+<tr>
+<td>-11</td>
+<td>1000  1011</td>
+<td>1111 0100</td>
+<td>1111 0101</td>
+</tr>
+</tbody>
+</table>
+<p>注:负数的补码为反码加1,  正数的 原码、反码、补码都相同</p>
+<h5 id="知识细节"><a href="#知识细节" class="headerlink" title="知识细节"></a>知识细节</h5><ul>
+<li><p>有符号数同一表示形式下，负数的表示范围 比正数的范围大1  </p>
+<p>同一位数：补码的范围不对称，|TMin|=|TMax|+1；                                                                                                                                  同一位数：最大的无符号数比有符号数的两倍多1，即：UMax = 2TMax + 1​                </p>
+</li>
+<li><p>对于大多数C语言，处理同样字长的有符号数和无符号数规则：数值可能改变，但位模式不变</p>
+</li>
+</ul>
+<p>​    eg：short v = -12345;    unsigned short  uv = (unsigned short) v;     uv=53191  这里-12345的16位补码和53191的16位编码相同</p>
+<p>​    无符号数和有符号数之间的转换规则：T–&gt;U:补码转化为无符号数       U–&gt;T:无符号数转化为补码</p>
+<p>​    参与运算时，如果有无符号数出现在同一表达式，则有符号数强制转化为无符号数​                                                      </p>
+<ul>
+<li><p>扩展一个数字的位表示：无符号数零扩展，补码数(有符号数)符号扩展​                                                        </p>
+</li>
+<li><p>截断无符号数：丢弃高位取地位；  截断有符号数：截断后将最高位转化为符号位​                                                    </p>
+</li>
+</ul>
+<h4 id="整数运算"><a href="#整数运算" class="headerlink" title="整数运算"></a>整数运算</h4><h5 id="有符号数和无符号数转换的基本原则："><a href="#有符号数和无符号数转换的基本原则：" class="headerlink" title="有符号数和无符号数转换的基本原则："></a>有符号数和无符号数转换的基本原则：</h5><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">位模式不变</span></span><br><span class="line"><span class="ruby"></span></span><br><span class="line"><span class="ruby">-重新解读（按目标编码类型的规则解读）</span></span><br><span class="line"><span class="ruby"></span></span><br><span class="line"><span class="ruby">-会有意外的副作用：数值被 + 或 -$2^w$</span></span><br><span class="line"><span class="ruby"></span></span><br><span class="line"><span class="ruby">-当表达式中有符号数和无符号数混合时，有符号数转化为无符号数</span></span><br></pre></td></tr></table></figure>
+<p>加法:    无/有符号数的加法：正常加法后再截断，位级的运算相同</p>
+<p>​        无符号数：加后对$2^w$求模</p>
+<h5 id="符号位扩展"><a href="#符号位扩展" class="headerlink" title="符号位扩展"></a>符号位扩展</h5><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-无符号数：填充<span class="number">0</span></span><br><span class="line"></span><br><span class="line">-有符号位：符号扩展</span><br><span class="line"></span><br><span class="line">			eg：<span class="number">-15213</span>    二进制：<span class="number">11000100</span> <span class="number">10010011</span>  ---&gt; <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11000100</span> <span class="number">10010011</span></span><br><span class="line"></span><br><span class="line">-结果都是明确的预期值</span><br></pre></td></tr></table></figure>
+<h5 id="截断"><a href="#截断" class="headerlink" title="截断"></a>截断</h5><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-无论有无符号数，多出的位数都被截断</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-结果重新解读</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-无符号数: 相当于求模运算</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-有符号数：和求模运算相似</span></span><br></pre></td></tr></table></figure>
+<p>​    -对于小整数，结果是明确的预期值</p>
+<h5 id="检测无符号数加法中的溢出："><a href="#检测无符号数加法中的溢出：" class="headerlink" title="检测无符号数加法中的溢出："></a>检测无符号数加法中的溢出：</h5><p>​    s =x+y,当且仅当s &lt; x(或等价的s &lt; y)时发生了溢出</p>
+<p>​    无符号数逆元（求反）：x=0时：-x=0</p>
+<p>​                   x &gt; 0时: -x = $2^w$</p>
+<h5 id="补码加法："><a href="#补码加法：" class="headerlink" title="补码加法："></a>补码加法：</h5><p>对于-$2^{w-1}\le,y\le2^{w-1}$-1的整数x和y，有<br>$$<br>\begin{equation}x+^t_wy=\begin{cases}x+y-2^w&amp; 2^{w-1}\le{x+y} &amp; 正溢出\x+y &amp; -2^{w-1}\le{x+y}&lt;2^{w-1} &amp; 正常\x+y+2^w &amp; x+y&lt;-2^{w-1} &amp; 负溢出\end{cases}\end{equation}<br>$$<br>​     对于满足TMi$n_w\le$x,y$\le$TMax$_w$的和y，令s=x+y,当且仅当x &gt; 0,y &gt; 0但s$\le$0时发生了正溢出；当且仅当x &lt; 0,y &lt; 0但s$\geq$0时发生了正溢出  </p>
+<h5 id="补码的非"><a href="#补码的非" class="headerlink" title="补码的非"></a>补码的非</h5><p>对满足$TMin_w\le x\le TMax_w$    的$x$，其补码的非$-^t_wx$由下式给出：<br>$$<br>\begin{equation}-^t_wx=\begin{cases}TMin_w&amp; x = TMin_w\-x &amp; x&gt;TMin_w\end{cases}\end{equation}<br>$$<br>也就是说，对w位的补码加法来说，$TMin_w$是自己的加法的逆，而对其他的都有$-x$作为其加法的逆</p>
+<h5 id="补码非的位级表示"><a href="#补码非的位级表示" class="headerlink" title="补码非的位级表示"></a>补码非的位级表示</h5><p>​    方法一：对每一位求补，再对结果加1</p>
+<p>​    方法二：找到最右边的第一个1的位置，然后将该位置左边的所有为取反</p>
+<h4 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h4><ul>
+<li>IEEE标准：</li>
+</ul>
+<p><img src="/img/深入理解计算机系统/浮点数标准分类.PNG" alt="浮点数标准分类"></p>
+<ul>
+<li>浮点数规格化的值（frac、exp）</li>
+</ul>
+<p><img src="/img/深入理解计算机系统/浮点数规格化的值.PNG" alt="浮点数规格化的值"></p>
+<ul>
+<li><p>对于非规格化值：E=1-Bisas，M=f，不包括隐含的开头的1 <img src="/img/深入理解计算机系统/浮点数规格化的值.PNG" alt="浮点数规格化的值"> </p>
+</li>
+<li><p>舍入</p>
+</li>
+</ul>
+<p><img src="/img/深入理解计算机系统/浮点数舍入.PNG" alt="浮点数舍入"></p>
+<p>​    将float或double转化成int，值将向零舍入                    </p>
+<h3 id="程序的机器级表示"><a href="#程序的机器级表示" class="headerlink" title="程序的机器级表示"></a>程序的机器级表示</h3><h4 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h4><p>c数据类型的宽度</p>
+<table>
+<thead>
+<tr>
+<th>c数据类型</th>
+<th>32位</th>
+<th>64位</th>
+<th>x86-64</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>short</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>long</td>
+<td>4</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>float</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>long double</td>
+<td>-</td>
+<td>-</td>
+<td>10/16</td>
+</tr>
+<tr>
+<td>pointer</td>
+<td>4</td>
+<td>8</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<h4 id="访问信息"><a href="#访问信息" class="headerlink" title="访问信息"></a>访问信息</h4><ul>
+<li><p>常规的movq指令只能以表示为32位补码数字的立即数作为源操作数，然后把这个值符号扩展到64位的值放大目的位置；</p>
+</li>
+<li><p>MOVZ类中的指令把目的中剩余的字节填充为0，而MOVS类中的指令通过符号扩展来填充，把源操作数的最高位进行复制。</p>
+</li>
+</ul>
+<p>​    MOVZ类（零扩展）的指令：以寄存器或地址内存作为源，以寄存器作为目的；</p>
+<p>​    MOVS类（符号扩展）的指令：以寄存器或地址内存作为源，以寄存器作为目的；cltq指令无操作数：只作用于%eax和%rax</p>
+<h4 id="算术和逻辑操作"><a href="#算术和逻辑操作" class="headerlink" title="算术和逻辑操作"></a>算术和逻辑操作</h4><p><img src="/img/深入理解计算机系统/算术和逻辑操作指令.PNG" alt="算术和逻辑操作指令"></p>
+<p>（1）leap指令目的操作数必须是寄存器</p>
+<p>（2）左移指令有两个：SAL和SHL，两者效果一样，都是右边补0；右移指令不同，SAR执行算术移位，补充符号位，而SHR执行逻辑移位，补充0</p>
+<p>（3）特殊的算术操作</p>
+<p><img src="/img/深入理解计算机系统/特殊的操作指令.PNG" alt="特殊的操作指令"></p>
+<p>有符号除法指令 idivl 将%rdx高64位和%rax低64位中的128位作为被除数，而除数作为指令的操作数给出。指令将商存储在%rax，余数存储在%rdx</p>
+<p>cqto指令可以不需要操作数，隐含读出%rax的符号位并将其复制到%rdx的每一位</p>
+<h4 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h4><p>（1）leaq指令不改变条件码</p>
+<p>（2）CMP指令和TEST指令只改变条件码，前者基于sub，后者基于and</p>
+<p>（3）条件码通常不会直接读取，常用使用方法：</p>
+<p>​    a、根据条件码的某种组合将一个字节设置为0或1（即set指令）</p>
+<p>​    b、条件跳转到程序的某个其他部分</p>
+<p>​    c、有条件的传送数据</p>
+<p>（4）set指令：</p>
+<p><img src="/img/深入理解计算机系统/set指令.PNG" alt="set指令"></p>
+<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><p> （1）传递控制、传递数据、分配和释放内存</p>
+<p><img src="/img/深入理解计算机系统/栈结构.PNG" alt="栈结构"></p>
+<p>（2）调用函数前，把所有的参数都先存储，包括形参，存储完毕才开始调用函数</p>
+<p>（3）栈上的局部变量（局部数据必须用主存的情况)</p>
+<p>​    1）寄存器不足够存放所有的本地数据</p>
+<p>​    2）对一个局部变量使用取址符&amp;，因此必须为其产生一个地址</p>
+<p>​    3）某些局部变量是数组或结构，因此必须通过数组或结构引用访问到。</p>
+<p>注：寄存器是唯一被所有过程共享的资源</p>
+<h4 id="对抗缓冲区溢出"><a href="#对抗缓冲区溢出" class="headerlink" title="对抗缓冲区溢出"></a>对抗缓冲区溢出</h4><p>方法：1、栈随机化 ；2、栈破坏检测 ；3、限制可执行代码区域</p>
+<h4 id="过程中的浮点代码"><a href="#过程中的浮点代码" class="headerlink" title="过程中的浮点代码"></a>过程中的浮点代码</h4><ul>
+<li><p>XMM寄存器8xmn0~ 8xmm7最多可以传递8个浮点参数。按照参数列出的顺序使用这些寄存器。可以通过栈传递额外的浮点参数。</p>
+</li>
+<li><p>函数使用寄存器%xmm0来返回浮点值。</p>
+</li>
+<li><p>所有的XMM寄存器都是调用者保存的。被调用者可以不用保存就覆盖这些寄存器<br>中任意一个。</p>
+<p>| 单精度 | 双精度 | 效果   | 描述                    |<br>| —— | —— | —— | ———————– |<br>| vxorps | vorpd  | D&lt;-x*y | 位级异或（EXCLUSIVE-OR) |<br>| vandps | andpd  | D&lt;-x&amp;y | 位级与（AND）           |</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>基于</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ucomiss x,y</td>
+<td>y-x</td>
+<td>比较单精度值</td>
+</tr>
+<tr>
+<td>ucomisd x,y</td>
+<td>y-x</td>
+<td>比较双精度值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="处理器体系结构"><a href="#处理器体系结构" class="headerlink" title="处理器体系结构"></a>处理器体系结构</h3><p>1、程序计数器PC保存当前正在执行指令的地址</p>
+<p>2、内存从概念上来说就是一个很大的字节数组，保存着程序和数据。Y86-64程序用虚拟地址来引用内存位置。硬件和操作系统软件联合起来将虚拟地址翻译成实际或物理地址</p>
+<p>3、Y86-64每条指令需要1~10个字节不等，每条指令的第一个字节表明指令的类型，这个字节分为两部分，每部分4位：高四位是代码部分，低四位是指令部分。功能值只有在一组相关指令共用一个代码时才有用。</p>
+<p>4、指令集的一个重要性质就是每个字节编码必须有唯一的解释</p>
+<p>5、时钟寄存器：存储单个字：PC、条件代码和程序状态Stat                                                                                                                  随机访问存储器：存储多个字</p>
+<p>6、指令处理：</p>
+<p>取指、译码、执行、访存、写回、更新PC</p>
+<p>7、SEQ的实现包括组合逻辑和两种存储设备：时钟寄存器和随机访问寄存器。四个硬件单元对时序控制：程序计数器、条件码寄存器、数据内存和寄存器文件，通过时钟信号控制。</p>
+<p>8、组织原则：从不读回，即处理器从来不需要为了完成一条指令的执行而去读由该指令更新了的状态。</p>
+<p>9、每个周期开始前，状态单元（PC、条件码、数据内存、寄存器文件）是根据前一条指令设置的。信号传播通过组合逻辑，创建出新的状态单元的值。</p>
+<h3 id="优化程序性能"><a href="#优化程序性能" class="headerlink" title="优化程序性能"></a>优化程序性能</h3><ul>
+<li><p>程序性能标准：每元素的周期数CPE</p>
+</li>
+<li><p>优化方法：</p>
+<p>1、消除循环低效率：代码移动：</p>
+<p>2、减少过程调用</p>
+<p>3、消除不必要的内存引用</p>
+<p>4、循环展开：减少迭代次数</p>
+<p>5、提高并行性：多个累计变量并行求、重新结合变换</p>
+</li>
+<li><p>课本总结：</p>
+<p>1）高级设计：算法和数据结构</p>
+<p>2）基本编码原则：</p>
+<ul>
+<li><p>消除连续的函数调用：将计算移动到循环外</p>
+</li>
+<li><p>消除不必要的内存引用：引用临时变量保存中间结果，最后结果得出才放入数组或全局变量</p>
+</li>
+</ul>
+<p>3）低级优化：</p>
+<ul>
+<li><p>展开循环，降低开销，并且使进一步优化成为可能</p>
+</li>
+<li><p>通过使用例如多个累积变量和重新结合等技术，提高指令集并行</p>
+</li>
+<li><p>用功能性的风格重写条件操作，使得编译采用条件数据传送</p>
+</li>
+</ul>
+</li>
+<li><p>限制因素：</p>
+<p>1、寄存器溢出</p>
+<p>2、分支预测错误和预测错误处罚：不过分关心可预测的分支、书写适合条件传送的代码</p>
+</li>
+</ul>
+<h3 id="存储器层次结构"><a href="#存储器层次结构" class="headerlink" title="存储器层次结构"></a>存储器层次结构</h3><h4 id="存储技术"><a href="#存储技术" class="headerlink" title="存储技术"></a>存储技术</h4><h5 id="随机访问存储器"><a href="#随机访问存储器" class="headerlink" title="随机访问存储器"></a>随机访问存储器</h5><p>随机访问存储器分（RAM）为两类：静态SRAM（更快）和动态DRAM</p>
+<p>（1）静态（SRAM）</p>
+<p>SRAM将每个位存储在一个双稳态的存储器单元，每个单元由一个六晶体管电路实现，可无限期保持在两个不同的电压配置或状态之一</p>
+<p>（2）动态（DRAM）</p>
+<p>DRAM将每个位存储为对一个电容的充电，对干扰敏感且不能恢复</p>
+<p>对比：</p>
+<p><img src="/img/深入理解计算机系统/SRAM和DRAM对比.PNG" alt="SRAM和DRAM对比"></p>
+<p>（3）传统的DRAM</p>
+<p>DRAM芯片中的单元（位）被分成d个超单元，每个超单元由w个DRAM单元组成，一个d*w的DRAM存储了dw位信息。超单元被组织成r行c列的矩阵，rc=d。</p>
+<p>每个超单元存储一个字节</p>
+<p>(4)内存模块</p>
+<p>–DRAM芯片封装在内存模块中，插到主板的扩展槽上</p>
+<p>–内存地址A取值过程：</p>
+<p><img src="/img/深入理解计算机系统/6.1.1内存地址取值.PNG" alt="6.1.1内存地址取值"></p>
+<p>（5）增强的DRAM</p>
+<p>快页模式DRAM、扩展数据输出DRAM、同步DRAM、双倍数据速率同步DRAM、视频RAM</p>
+<p>（6）非易失性存储器</p>
+<p>ROM</p>
+<p>（7）访问主存</p>
+<p>总线：能够携带地址、数据和控制信号，分为：系统总线和内存总线</p>
+<h5 id="磁盘存储"><a href="#磁盘存储" class="headerlink" title="磁盘存储"></a>磁盘存储</h5><p>磁盘读取时间计算：</p>
+<p><img src="/img/深入理解计算机系统/磁盘读取时间计算.PNG" alt="磁盘读取时间计算"></p>
+<h4 id="局部性"><a href="#局部性" class="headerlink" title="局部性"></a>局部性</h4><p>   (1)重复引用相同局部变量的程序具有良好的时间局部性</p>
+<p>（2）步长越小，空间局部性越好</p>
+<p>（3）对于取值指令，循环具有良好的时间和空间局部性，循环体越小，循环迭代次数越多，局部性越好</p>
+<h4 id="存储器层次结构-1"><a href="#存储器层次结构-1" class="headerlink" title="存储器层次结构"></a>存储器层次结构</h4><p>存储器层次结构</p>
+<p><img src="/img/深入理解计算机系统/存储器层次结构.PNG" alt="存储器层次结构"></p>
+<h4 id="高速缓存存储器"><a href="#高速缓存存储器" class="headerlink" title="高速缓存存储器"></a>高速缓存存储器</h4><p>缓存不命中：</p>
+<ul>
+<li><p>冷不命中（强制性不命中）：</p>
+<p>k层缓存有空行，程序最开始运行时均为冷不命中</p>
+</li>
+<li><p>冲突不命中</p>
+<p>k层中没有空行 </p>
+</li>
+<li><p>容量不命中</p>
+</li>
+</ul>
+<p>组相连高速缓存、组相连高速缓存、全相连高速缓存</p>
+<h4 id="编写高速缓存存储器"><a href="#编写高速缓存存储器" class="headerlink" title="编写高速缓存存储器"></a>编写高速缓存存储器</h4><p>写命中：</p>
+<p>直写：高速缓存中更新的数据立即写回到低一层中</p>
+<p>写回：尽可能推迟更新，当替换算法要驱逐这个更新过的块时，才把它写到紧接着的低一层中</p>
+<p>写不命中：</p>
+<p>写分配：加载相应的低一层的块到高速缓存中，然后更新这个高速缓存块</p>
+<p>非写分配：避开高速缓存，直接把这个字写到低一层中</p>
+<p>**直写高速缓存通常时写分配的，写回高速缓存通常是非写分配的</p>
+<h4 id="综合：高速缓存对程序性能的影响"><a href="#综合：高速缓存对程序性能的影响" class="headerlink" title="综合：高速缓存对程序性能的影响"></a>综合：高速缓存对程序性能的影响</h4><p>如果一个高速缓存的块大小为B字节，那么一个步长为k（字）的引用模式平均每次循环迭代会有min（1，（wordsize*k)/k））次缓存不命中</p>
+<h3 id="异常控制流"><a href="#异常控制流" class="headerlink" title="异常控制流"></a>异常控制流</h3><h4 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h4><p>（1）异常是控制流中的突变，用来响应处理器状态中的变化。是异常控制流的一种形式，一部分由硬件实现，一部分由操作系统实现</p>
+<p>（2）事件处理：</p>
+<p><img src="/img/深入理解计算机系统/8.1事件处理.PNG" alt="8.1事件处理"></p>
+<p>（3）异常分类</p>
+<p><img src="/img/深入理解计算机系统/异常分类.PNG" alt="异常分类"></p>
+<p><img src="/img/深入理解计算机系统/异常分类2.PNG" alt="异常分类2"></p>
+<h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h4><p>进程：一个执行中程序的实例。系统中每个程序都运行在某个进程的上下文中。上下文是由程序正确运行所需的状态组成</p>
+<p>进程提供的关键抽象：</p>
+<p>一个独立的逻辑控制流、一个私有的地址空间</p>
+<ul>
+<li><p>并发流：一个逻辑流的执行在时间上与另一个流重叠，称为并发流，这两个流被称为并发的运行。多个流并发地执行一般现象被称为并发。一个进程和其他进程轮流运行的概念称为多任务。一个进程执行它的控制流的一部分的每一时间段叫做时间片，因此，多任务也叫时间分片。</p>
+</li>
+<li><p>如果两个流并发的运行在不同的处理器核或计算机上，那么我们称它们为并行流，它们并行地运行，且并行地执行</p>
+</li>
+<li><p>进程地址空间</p>
+<p><img src="/img/深入理解计算机系统/进程地址空间.PNG" alt="进程地址空间"></p>
+</li>
+<li><p>用户模式和内核模式：进程从用户模式切换到内核模式的唯一方式是异常</p>
+</li>
+<li><p>上下文切换：</p>
+<p>1）保存当前进程的上下文；  2）恢复某个先前被抢占的进程被保存的上下文； 3）将控制传递给这个新恢复的进程</p>
+</li>
+</ul>
+<h4 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h4><ul>
+<li>进程的三种状态：</li>
+</ul>
+<p>运行：进程要么被执行，要么等待被执行且被内核调度</p>
+<p>停止：进程的执行被挂起，且不会被调度。当收到SIGSTOP 、SIGTSTP、SIGTTIN、SIGTOUT信号时，进程停止，并且保持到收到SIGCOUT信号</p>
+<p>终止：1）收到一个信号，该信号的默认行为是终止；2）从主程序返回；3）调用exit函数</p>
+<ul>
+<li>父进程和子进程最大的区别是PID不同。</li>
+</ul>
+<p>fork被调用一次，返回两次。一次是在父进程中，fork返回子进程的PID，一次是在新建的子进程中，返回0；</p>
+<ul>
+<li><p>子进程和父进程：</p>
+<p>1）fork函数调用一次，返回两次；2）子进程和父进程并发运行；3）相同但是独立的地址空间；4）共享文件</p>
+</li>
+<li><p>pid_t wait_pid(int *statusp) : 如果成功，返回子进程的PID；如果WNOHANG，返回0；如果其他错误，返回-1</p>
+</li>
+<li><p>unsigned int sleep(unsigned int secs)：返回还要休眠的秒数</p>
+</li>
+<li><p>int pause(void)：总是返回-1，让函数休眠，直到该进程接收到另一个信号</p>
+</li>
+<li><p>execve:在当前进程的上下文中加载并运行一个新程序，从不返回，（如果找不到filename，才会返回到调用程序）。</p>
+</li>
+</ul>
+<h4 id="编写信号处理程序"><a href="#编写信号处理程序" class="headerlink" title="编写信号处理程序"></a>编写信号处理程序</h4><p>1、安全的信号处理</p>
+<p>（1）处理程序要尽可能的简单</p>
+<p>（2）在处理程序中只调用异步信号安全的函数</p>
+<p>（3）保存和恢复errno</p>
+<p>（4）阻塞所有信号，保护对共享数据结构的访问</p>
+<p>（5）用volatile声明全局变量</p>
+<p>（6）用sig_atomic_t声明标志</p>
+<p>2、正确的信号处理：未处理的信号不排队</p>
+<p>3、可移植的信号处理</p>
+<p>由于本人有一丢丢懒~，漏掉的一些内容懒得更新，排版也只是凑合，还请大家原谅啦啦—–</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机系统/" rel="tag"># 计算机系统</a>
+          
+            <a href="/tags/期末复习/" rel="tag"># 期末复习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/05/数据结构与算法/" rel="next" title="哈尔滨工业大学数据结构2018年秋期末复习">
+                <i class="fa fa-chevron-left"></i> 哈尔滨工业大学数据结构2018年秋期末复习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zhang Yue</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">schlagwörter</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/CN-ZhangYue" title="GitHub &rarr; https://github.com/CN-ZhangYue" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/zhangyue3040@gmail.com" title="E-Mail &rarr; zhangyue3040@gmail.com"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#信息的表示和处理"><span class="nav-number">1.</span> <span class="nav-text">信息的表示和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#信息存储"><span class="nav-number">1.1.</span> <span class="nav-text">信息存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#整数表示"><span class="nav-number">1.2.</span> <span class="nav-text">整数表示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#整数编码"><span class="nav-number">1.2.1.</span> <span class="nav-text">整数编码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#知识细节"><span class="nav-number">1.2.2.</span> <span class="nav-text">知识细节</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#整数运算"><span class="nav-number">1.3.</span> <span class="nav-text">整数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#有符号数和无符号数转换的基本原则："><span class="nav-number">1.3.1.</span> <span class="nav-text">有符号数和无符号数转换的基本原则：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#符号位扩展"><span class="nav-number">1.3.2.</span> <span class="nav-text">符号位扩展</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#截断"><span class="nav-number">1.3.3.</span> <span class="nav-text">截断</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#检测无符号数加法中的溢出："><span class="nav-number">1.3.4.</span> <span class="nav-text">检测无符号数加法中的溢出：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#补码加法："><span class="nav-number">1.3.5.</span> <span class="nav-text">补码加法：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#补码的非"><span class="nav-number">1.3.6.</span> <span class="nav-text">补码的非</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#补码非的位级表示"><span class="nav-number">1.3.7.</span> <span class="nav-text">补码非的位级表示</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浮点数"><span class="nav-number">1.4.</span> <span class="nav-text">浮点数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序的机器级表示"><span class="nav-number">2.</span> <span class="nav-text">程序的机器级表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据格式"><span class="nav-number">2.1.</span> <span class="nav-text">数据格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问信息"><span class="nav-number">2.2.</span> <span class="nav-text">访问信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算术和逻辑操作"><span class="nav-number">2.3.</span> <span class="nav-text">算术和逻辑操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制"><span class="nav-number">2.4.</span> <span class="nav-text">控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过程"><span class="nav-number">2.5.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对抗缓冲区溢出"><span class="nav-number">2.6.</span> <span class="nav-text">对抗缓冲区溢出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过程中的浮点代码"><span class="nav-number">2.7.</span> <span class="nav-text">过程中的浮点代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理器体系结构"><span class="nav-number">3.</span> <span class="nav-text">处理器体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化程序性能"><span class="nav-number">4.</span> <span class="nav-text">优化程序性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储器层次结构"><span class="nav-number">5.</span> <span class="nav-text">存储器层次结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#存储技术"><span class="nav-number">5.1.</span> <span class="nav-text">存储技术</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#随机访问存储器"><span class="nav-number">5.1.1.</span> <span class="nav-text">随机访问存储器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#磁盘存储"><span class="nav-number">5.1.2.</span> <span class="nav-text">磁盘存储</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#局部性"><span class="nav-number">5.2.</span> <span class="nav-text">局部性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储器层次结构-1"><span class="nav-number">5.3.</span> <span class="nav-text">存储器层次结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高速缓存存储器"><span class="nav-number">5.4.</span> <span class="nav-text">高速缓存存储器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写高速缓存存储器"><span class="nav-number">5.5.</span> <span class="nav-text">编写高速缓存存储器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#综合：高速缓存对程序性能的影响"><span class="nav-number">5.6.</span> <span class="nav-text">综合：高速缓存对程序性能的影响</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常控制流"><span class="nav-number">6.</span> <span class="nav-text">异常控制流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#异常"><span class="nav-number">6.1.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进程"><span class="nav-number">6.2.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进程控制"><span class="nav-number">6.3.</span> <span class="nav-text">进程控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写信号处理程序"><span class="nav-number">6.4.</span> <span class="nav-text">编写信号处理程序</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-jiaoyue"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Yue</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
