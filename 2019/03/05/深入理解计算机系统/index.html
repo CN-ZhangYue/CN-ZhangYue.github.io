@@ -119,7 +119,7 @@
 <meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/异常分类.PNG">
 <meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/异常分类2.PNG">
 <meta property="og:image" content="http://yoursite.com/img/深入理解计算机系统/进程地址空间.PNG">
-<meta property="og:updated_time" content="2019-03-06T00:16:19.616Z">
+<meta property="og:updated_time" content="2019-03-07T03:12:11.354Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="哈尔滨工业大学计算机系统2018年秋期末复习">
 <meta name="twitter:description" content="一直想拥有一个自己的博客，但是却一拖再拖，始终没有推送一篇博文，仅以此篇--哈尔滨工业大学计算机系统的复习提纲，仅为期末复习所准备，慰藉以往无bolg的时光。">
@@ -369,7 +369,7 @@
                 
                   <span class="post-meta-item-text">Bearbeitet am</span>
                 
-                <time title="Geändert am: 2019-03-06 08:16:19" itemprop="dateModified" datetime="2019-03-06T08:16:19+08:00">2019-03-06</time>
+                <time title="Geändert am: 2019-03-07 11:12:11" itemprop="dateModified" datetime="2019-03-07T11:12:11+08:00">2019-03-07</time>
               
             
           </span>
@@ -468,7 +468,7 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eg：<span class="number">10100110</span>   从右到左表示 该集合=&#123;<span class="number">1</span>，<span class="number">2</span>，<span class="number">5</span>，<span class="number">7</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eg：10100110   从右到左表示 该集合=&#123;1，2，5，7&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>运算：&amp; 交集     |  并集    ^  对称差集    ~  补集                  </p>
 </li>
@@ -543,11 +543,11 @@
 <li><p>截断无符号数：丢弃高位取地位；  截断有符号数：截断后将最高位转化为符号位​                                                    </p>
 </li>
 </ul>
-<h4 id="整数运算"><a href="#整数运算" class="headerlink" title="整数运算"></a>整数运算</h4><h5 id="有符号数和无符号数转换的基本原则："><a href="#有符号数和无符号数转换的基本原则：" class="headerlink" title="有符号数和无符号数转换的基本原则："></a>有符号数和无符号数转换的基本原则：</h5><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">位模式不变</span></span><br><span class="line"><span class="ruby"></span></span><br><span class="line"><span class="ruby">-重新解读（按目标编码类型的规则解读）</span></span><br><span class="line"><span class="ruby"></span></span><br><span class="line"><span class="ruby">-会有意外的副作用：数值被 + 或 -$2^w$</span></span><br><span class="line"><span class="ruby"></span></span><br><span class="line"><span class="ruby">-当表达式中有符号数和无符号数混合时，有符号数转化为无符号数</span></span><br></pre></td></tr></table></figure>
+<h4 id="整数运算"><a href="#整数运算" class="headerlink" title="整数运算"></a>整数运算</h4><h5 id="有符号数和无符号数转换的基本原则："><a href="#有符号数和无符号数转换的基本原则：" class="headerlink" title="有符号数和无符号数转换的基本原则："></a>有符号数和无符号数转换的基本原则：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-位模式不变</span><br><span class="line"></span><br><span class="line">-重新解读（按目标编码类型的规则解读）</span><br><span class="line"></span><br><span class="line">-会有意外的副作用：数值被 + 或 -$2^w$</span><br><span class="line"></span><br><span class="line">-当表达式中有符号数和无符号数混合时，有符号数转化为无符号数</span><br></pre></td></tr></table></figure>
 <p>加法:    无/有符号数的加法：正常加法后再截断，位级的运算相同</p>
 <p>​        无符号数：加后对$2^w$求模</p>
-<h5 id="符号位扩展"><a href="#符号位扩展" class="headerlink" title="符号位扩展"></a>符号位扩展</h5><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-无符号数：填充<span class="number">0</span></span><br><span class="line"></span><br><span class="line">-有符号位：符号扩展</span><br><span class="line"></span><br><span class="line">			eg：<span class="number">-15213</span>    二进制：<span class="number">11000100</span> <span class="number">10010011</span>  ---&gt; <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11000100</span> <span class="number">10010011</span></span><br><span class="line"></span><br><span class="line">-结果都是明确的预期值</span><br></pre></td></tr></table></figure>
-<h5 id="截断"><a href="#截断" class="headerlink" title="截断"></a>截断</h5><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-无论有无符号数，多出的位数都被截断</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-结果重新解读</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-无符号数: 相当于求模运算</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-有符号数：和求模运算相似</span></span><br></pre></td></tr></table></figure>
+<h5 id="符号位扩展"><a href="#符号位扩展" class="headerlink" title="符号位扩展"></a>符号位扩展</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-无符号数：填充0</span><br><span class="line"></span><br><span class="line">-有符号位：符号扩展</span><br><span class="line"></span><br><span class="line">			eg：-15213    二进制：11000100 10010011  ---&gt; 11111111 11111111 11000100 10010011</span><br><span class="line"></span><br><span class="line">-结果都是明确的预期值</span><br></pre></td></tr></table></figure>
+<h5 id="截断"><a href="#截断" class="headerlink" title="截断"></a>截断</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-无论有无符号数，多出的位数都被截断</span><br><span class="line"></span><br><span class="line">-结果重新解读</span><br><span class="line"></span><br><span class="line">-无符号数: 相当于求模运算</span><br><span class="line"></span><br><span class="line">-有符号数：和求模运算相似</span><br></pre></td></tr></table></figure>
 <p>​    -对于小整数，结果是明确的预期值</p>
 <h5 id="检测无符号数加法中的溢出："><a href="#检测无符号数加法中的溢出：" class="headerlink" title="检测无符号数加法中的溢出："></a>检测无符号数加法中的溢出：</h5><p>​    s =x+y,当且仅当s &lt; x(或等价的s &lt; y)时发生了溢出</p>
 <p>​    无符号数逆元（求反）：x=0时：-x=0</p>
