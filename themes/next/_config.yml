@@ -60,7 +60,7 @@ rss:
 footer:
   # Specify the date when the site was setup.
   # If not defined, current year will be used.
-  #since: 2015
+  since: 2018
 
   # Icon between year and copyright info.
   icon:
@@ -104,14 +104,14 @@ footer:
 # CC licenses are available in 39 languages, where you can find the specific and correct abbreviation you need.
 # Valid values of language: deed.zh, deed.fr, deed.de , etc.
 creative_commons:
-  license: by-nc-sa
-  sidebar: false
-  post: false
-  language: zh-Hans
+  license: by-nc-nd
+  sidebar: true
+  post: true
+  language: zh-CN
 
 # Follow me on GitHub banner in right-top corner.
 github_banner:
-  enable: false
+  enable: true
   permalink: https://github.com/CN-ZhangYue
   title: Follow me on GitHub
 
@@ -149,8 +149,8 @@ exturl: false
 menu:
   home: / || home
   #about: /about/ || user
-  #tags: /tags/ || tags
-  #categories: /categories/ || th
+  tags: /tags/ || tags
+  categories: /categories/ || th
   archives: /archives/ || archive
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
@@ -209,20 +209,20 @@ links_title: Links
 links_layout: block
 #links_layout: inline
 links:
-  #Title: http://example.com
+  猪的博客: https://guoziyang.top
 
 # Sidebar Avatar
 avatar:
   # In theme directory (source/images): /images/avatar.gif
   # In site directory (source/uploads): /uploads/avatar.gif
   # You can also use other linking images.
-  url: #/images/avatar.gif
+  url: /images/avatar.jpg
   # If true, the avatar would be dispalyed in circle.
-  rounded: false
+  rounded: true
   # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.
   opacity: 1
   # If true, the avatar would be rotated with the cursor.
-  rotated: false
+  rotated: true
 
 # Table Of Contents in the Sidebar
 toc:
@@ -249,7 +249,7 @@ sidebar:
   #  - always  expand for all pages automatically.
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  totally remove sidebar including sidebar toggle.
-  display: post
+  display: always
 
   # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).
   offset: 12
@@ -390,7 +390,7 @@ cheers: true
 
 tagcloud:
   # If true, font size and color can be customized
-  enable: false
+  enable: true
 
   # All values below are same as default, change them by yourself
   min: 12 # min font size in px
