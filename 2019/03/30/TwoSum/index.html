@@ -95,20 +95,25 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Jiaoyue&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="闲置许久，终于开始写Leetcode啦，兴奋o(*￣▽￣*)ブ，希望能借助Leetcode学习一些算法相关的知识~~">
+<meta name="keywords" content="LeetCode,Two sum">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Two sum">
+<meta property="og:url" content="http://yoursite.com/2019/03/30/TwoSum/index.html">
 <meta property="og:site_name" content="Jiaoyue&#39;s Blog">
+<meta property="og:description" content="闲置许久，终于开始写Leetcode啦，兴奋o(*￣▽￣*)ブ，希望能借助Leetcode学习一些算法相关的知识~~">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-30T15:55:48.359Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jiaoyue&#39;s Blog">
+<meta name="twitter:title" content="Two sum">
+<meta name="twitter:description" content="闲置许久，终于开始写Leetcode啦，兴奋o(*￣▽￣*)ブ，希望能借助Leetcode学习一些算法相关的知识~~">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/30/TwoSum/">
 
 
 
@@ -118,7 +123,7 @@
   };
 </script>
 
-  <title>Jiaoyue's Blog</title>
+  <title>Two sum | Jiaoyue's Blog</title>
   
 
 
@@ -166,8 +171,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -209,7 +213,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -314,9 +318,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -348,10 +352,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/30/TwoSum/" class="post-title-link" itemprop="url">Two sum</a>
+          <h1 class="post-title" itemprop="name headline">Two sum
+
               
             
           </h1>
@@ -419,6 +421,8 @@
           
 
           
+            <div class="post-description">闲置许久，终于开始写Leetcode啦，兴奋o(*￣▽￣*)ブ，希望能借助Leetcode学习一些算法相关的知识~~</div>
+          
 
         </div>
       </header>
@@ -433,18 +437,44 @@
       
 
       
-        
-          闲置许久，终于开始写Leetcode啦，兴奋o(*￣▽￣*)ブ，希望能借助Leetcode学习一些算法相关的知识~~
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/30/TwoSum/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
+        <p>闲置许久，终于开始写Leetcode啦，兴奋o(<em>￣▽￣</em>)ブ，希望能借助Leetcode学习一些算法相关的知识~~</p>
+<h5 id="LeetCode第一题："><a href="#LeetCode第一题：" class="headerlink" title="LeetCode第一题："></a>LeetCode第一题：</h5><p>难度：Easy</p>
+<p>​                                Two sum</p>
+<p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
+<p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+<p>Example:</p>
+<p>Given nums = [2, 7, 11, 15], target = 9,</p>
+<p>Because nums[0] + nums[1] = 2 + 7 = 9,</p>
+<p>return [0, 1].</p>
+<p>译文：</p>
+<p>​                                                            两数之和</p>
+<p>给定一个整数数组和一个目标值，找出数组中和为目标值的 两个 数。</p>
+<p>你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。</p>
+<p>示例:</p>
+<p>给定 nums = [2, 7, 11, 15], target = 9</p>
+<p>因为 nums[0] + nums[1] = 2 + 7 = 9</p>
+<p>所以返回 [0, 1]</p>
+<p>将时间复杂度缩短至O(n),只能以空间换时间，这里利用HashMap（查找时间复杂度为O(1)）</p>
+<pre><code>public Vector&lt;Integer&gt; twoSum(Vector&lt;Integer&gt; nums, int target) {
+    Vector&lt;Integer&gt; resultVector = new Vector&lt;Integer&gt;();
+     Map&lt;Integer,Integer&gt; map = new HashMap&lt;Integer, Integer&gt;();
+     int length = nums.size();
+
+     for(int i = 0; i&lt;length; i++) {
+         int complementation = target - nums.get(i);
+         if(map.containsKey(complementation)) {
+             resultVector.add(map.get(complementation));
+             resultVector.add(i);
+             return resultVector;
+         }
+         map.put(nums.get(i),i);
+     }
+     return resultVector;
+   }
+</code></pre><p>在网上还看到了一份大佬的优质解法，但一时找不到网址了，暂时无法分享，但后续会更新呦</p>
+<p>附：LeetCode代码仓库链接</p>
+<p><a href="https://github.com/CN-ZhangYue/LeetCode" target="_blank" rel="noopener">https://github.com/CN-ZhangYue/LeetCode</a></p>
+
       
     </div>
 
@@ -462,375 +492,65 @@
     
 
     
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Zhang Yue</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://yoursite.com/2019/03/30/TwoSum/" title="Two sum">http://yoursite.com/2019/03/30/TwoSum/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/23/矩阵连乘——动态规划和贪心/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yue">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiaoyue's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/23/矩阵连乘——动态规划和贪心/" class="post-title-link" itemprop="url">矩阵连乘——动态规划和贪心</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-23 16:05:48" itemprop="dateCreated datePublished" datetime="2019-03-23T16:05:48+08:00">2019-03-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-30 23:55:48" itemprop="dateModified" datetime="2019-03-30T23:55:48+08:00">2019-03-30</time>
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
           
-
+            <a href="/tags/Two-sum/" rel="tag"># Two sum</a>
           
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          男朋友决定每天写进blog一个算法课上的示例，我不想落后，决定一起开始这个工程啦(#^.^#)。第一个当然是我比较感兴趣的矩阵连乘求最优的算法了。
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/23/矩阵连乘——动态规划和贪心/">
-                阅读全文 &raquo;
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/23/矩阵连乘——动态规划和贪心/" rel="next" title="矩阵连乘——动态规划和贪心">
+                <i class="fa fa-chevron-left"></i> 矩阵连乘——动态规划和贪心
               </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/深入理解计算机系统/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yue">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiaoyue's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/05/深入理解计算机系统/" class="post-title-link" itemprop="url">哈尔滨工业大学计算机系统2018年秋期末复习</a>
-              
             
-          </h1>
-        
+          </div>
 
-        <div class="post-meta">
-          <span class="post-time">
+          <span class="post-nav-divider"></span>
 
+          <div class="post-nav-prev post-nav-item">
             
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-05 14:00:00" itemprop="dateCreated datePublished" datetime="2019-03-05T14:00:00+08:00">2019-03-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-30 23:55:48" itemprop="dateModified" datetime="2019-03-30T23:55:48+08:00">2019-03-30</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机系统/" itemprop="url" rel="index"><span itemprop="name">计算机系统</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          一直想拥有一个自己的博客，但是却一拖再拖，始终没有推送一篇博文，仅以此篇--哈尔滨工业大学计算机系统的复习提纲，仅为期末复习所准备，慰藉以往无bolg的时光。
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/05/深入理解计算机系统/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -840,193 +560,15 @@
   </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/数据结构与算法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yue">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiaoyue's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/05/数据结构与算法/" class="post-title-link" itemprop="url">哈尔滨工业大学数据结构2018年秋期末复习</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-05 14:00:00" itemprop="dateCreated datePublished" datetime="2019-03-05T14:00:00+08:00">2019-03-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-30 23:55:48" itemprop="dateModified" datetime="2019-03-30T23:55:48+08:00">2019-03-30</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          这里尽可能详细的记录了数据结构的知识点，如果能完全掌握这些知识点，期末考试基本哦了\(^o^)/~
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/05/数据结构与算法/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -1046,8 +588,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1200,6 +751,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode第一题："><span class="nav-number">1.</span> <span class="nav-text">LeetCode第一题：</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -1328,6 +896,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
 
   
 
@@ -1339,6 +911,8 @@
   
 
 
+  
+
 
   
 
@@ -1353,18 +927,6 @@
   
 
   
-  
-    
-      
-        
-      
-    
-      
-    
-      
-    
-      
-    
   
 
   
