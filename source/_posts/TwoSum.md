@@ -17,6 +17,8 @@ date: 2019-03-30 23:43:00
 
 **LeetCode第一题**：
 
+#### question
+
 难度：Easy
 
 ​						        Two sum
@@ -37,6 +39,8 @@ return [0, 1].
 所以返回 [0, 1]
 
 
+
+#### solution
 
 将时间复杂度缩短至O(n),只能以空间换时间，这里利用HashMap（查找时间复杂度为O(1)）
 
