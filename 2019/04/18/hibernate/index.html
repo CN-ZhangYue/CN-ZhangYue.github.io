@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+  <meta name="description" content="hibernate是我学习JavaEE framework的开始，分享学习的笔记给大家~">
+<meta name="keywords" content="hibernate,javaEE framework">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javaEE-framework开篇——hibernate">
+<meta property="og:url" content="http://yoursite.com/2019/04/18/hibernate/index.html">
+<meta property="og:site_name" content="Jiaoyue&#39;s Blog">
+<meta property="og:description" content="hibernate是我学习JavaEE framework的开始，分享学习的笔记给大家~">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-18T06:47:37.795Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javaEE-framework开篇——hibernate">
+<meta name="twitter:description" content="hibernate是我学习JavaEE framework的开始，分享学习的笔记给大家~">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/18/hibernate/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>javaEE-framework开篇——hibernate | Jiaoyue's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jiaoyue's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Angel, come on!</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/CN-ZhangYue" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/18/hibernate/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiaoyue's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">javaEE-framework开篇——hibernate
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-18 14:05:48 / 修改时间：14:47:37" itemprop="dateCreated datePublished" datetime="2019-04-18T14:05:48+08:00">2019-04-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/javaEE-framework/" itemprop="url" rel="index"><span itemprop="name">javaEE framework</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">hibernate是我学习JavaEE framework的开始，分享学习的笔记给大家~</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>​    hibernate是我学习JavaEE framework的开始，分享学习的笔记给大家~</p>
+<h4 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h4><p>1）导包</p>
+<p>2）创建数据库</p>
+<p>3）书写Orm元数据(对象与表的映射配置文件)</p>
+<p>导入约束、实体、orm元数据</p>
+<p>4）书写主配置文件</p>
+<p>hibernate.cfg.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE hibernate-configuration PUBLIC</span></span><br><span class="line"><span class="meta">	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"</span></span><br><span class="line"><span class="meta">	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"&gt;</span></span><br><span class="line">	</span><br><span class="line"><span class="tag">&lt;<span class="name">hibernate-configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">session-factory</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.connection.dirver_class"</span>&gt;</span>com.mysql.cj.jdbc.Driver<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.connection.url"</span>&gt;</span>jdbc:mysql:///hibernate?useSSL=false&amp;amp;serverTimezone=GMT%2b8&amp;amp;allowPublicKeyRetrieval=true<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.connection.username"</span>&gt;</span>root<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.connection.password"</span>&gt;</span>yue18800422369<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.dialect"</span>&gt;</span>org.hibernate.dialect.MySQL5Dialect<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.show_sql"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.format_sql"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.hbm2ddl.auto"</span>&gt;</span>update<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		<span class="tag">&lt;<span class="name">mapping</span> <span class="attr">resource</span>=<span class="string">"domain/Customer.hbm.xml"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">session-factory</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">hibernate-configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>5）书写代码测试</p>
+<p>映射文件:Customer.hbm.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE hibernate-mapping PUBLIC</span></span><br><span class="line"><span class="meta">	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span></span><br><span class="line"><span class="meta">	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置表与实体对象的关系 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hibernate-mapping</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">"domain.Customer"</span> <span class="attr">table</span>=<span class="string">"cst_customer"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">"cust_id"</span> <span class="attr">column</span>=<span class="string">"cust_id"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">generator</span> <span class="attr">class</span>=<span class="string">"native"</span>&gt;</span><span class="tag">&lt;/<span class="name">generator</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cust_name"</span> <span class="attr">column</span>=<span class="string">"cust_name"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cust_source"</span> <span class="attr">column</span>=<span class="string">"cust_source"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cust_industry"</span> <span class="attr">column</span>=<span class="string">"cust_industry"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cust_level"</span> <span class="attr">column</span>=<span class="string">"cust_level"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cust_linkman"</span> <span class="attr">column</span>=<span class="string">"cust_linkman"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cust_phone"</span> <span class="attr">column</span>=<span class="string">"cust_phone"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cust_mobile"</span> <span class="attr">column</span>=<span class="string">"cust_mobile"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">hibernate-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="hibernateAPI详解"><a href="#hibernateAPI详解" class="headerlink" title="hibernateAPI详解"></a>hibernateAPI详解</h4><h5 id="configuration"><a href="#configuration" class="headerlink" title="configuration"></a>configuration</h5><p>读取配置文件：主配置和orm元数据</p>
+<h5 id="SessionFactory"><a href="#SessionFactory" class="headerlink" title="SessionFactory"></a>SessionFactory</h5><p>用于创建操作数据库核心对象session对象的工厂<br>注：1、sessionFactory负责保存和使用所有配置信息，消耗内存资源非常大<br>​    2、sessionFactory属于线程安全的对象设计<br>结论：保证在web项目中，只创建一个sessionFactory</p>
+<h5 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h5><p>表达hibernate框架与数据库之间的连接（会话），类似于JDBC的connection对象，可实现数据库的增删改查</p>
+<h5 id="Transaction"><a href="#Transaction" class="headerlink" title="Transaction"></a>Transaction</h5><p>封装了事务的操作：打开事务、提交事务、回滚事务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1、创建</span></span><br><span class="line">		Configuration conf = <span class="keyword">new</span> Configuration().configure();</span><br><span class="line">		<span class="comment">//2、读取主配置文件,无参读取：hibernate.cfg.xml</span></span><br><span class="line">		conf.configure();</span><br><span class="line">		</span><br><span class="line"><span class="comment">//		//读取指定orm元数据(old)</span></span><br><span class="line"><span class="comment">//		conf.addResource(resourceName);</span></span><br><span class="line"><span class="comment">//		conf.addClass(persistentClass);</span></span><br><span class="line">		<span class="comment">//4、根据配置信息，创建sessionFactory对象</span></span><br><span class="line">		SessionFactory sessionFactory = conf.buildSessionFactory();</span><br><span class="line">	</span><br><span class="line">		<span class="comment">//5、获得session</span></span><br><span class="line">		Session session = sessionFactory.openSession();</span><br><span class="line">		<span class="comment">//打开一个新的session对象</span></span><br><span class="line">		<span class="comment">//sessionFactory.openSession();</span></span><br><span class="line">		<span class="comment">//获得一个与线程绑定的session对象</span></span><br><span class="line">		<span class="comment">//sessionFactory.getCurrentSession();</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//6、session获得操作事务的Transaction对象</span></span><br><span class="line">		<span class="comment">//获得操作事务的tx对象</span></span><br><span class="line">		<span class="comment">//Transaction tx = session.getTransaction();</span></span><br><span class="line">		<span class="comment">//tx.begin();</span></span><br><span class="line">		<span class="comment">//开启事务并获得操作事务的tx对象（建议使用）</span></span><br><span class="line">		Transaction tx2 = session.beginTransaction();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//...................</span></span><br><span class="line">		<span class="comment">//增</span></span><br><span class="line">		Customer customer = <span class="keyword">new</span> Customer();</span><br><span class="line">		customer.setCust_name(<span class="string">"best"</span>);</span><br><span class="line">		session.save(customer);	</span><br><span class="line">		<span class="comment">//查询</span></span><br><span class="line">		Customer customer2 = session.get(Customer.class, <span class="number">1l</span>);	</span><br><span class="line">		<span class="comment">//修改</span></span><br><span class="line">		Customer customer3  = session.get(Customer.class,<span class="number">1L</span>);</span><br><span class="line">		customer3.setCust_name(<span class="string">"angle"</span>);</span><br><span class="line">		session.update(customer3);</span><br><span class="line">		<span class="comment">//删除</span></span><br><span class="line">		Customer customer4 = session.get(Customer.class, <span class="number">1l</span>);</span><br><span class="line">		session.delete(customer4);</span><br><span class="line">		<span class="comment">//...............</span></span><br><span class="line">		</span><br><span class="line">		tx2.commit();</span><br><span class="line">		session.close();</span><br><span class="line">		sessionFactory.close();</span><br></pre></td></tr></table></figure>
+<h4 id="实体规则"><a href="#实体规则" class="headerlink" title="实体规则"></a>实体规则</h4><h5 id="创建规则"><a href="#创建规则" class="headerlink" title="创建规则"></a>创建规则</h5><ul>
+<li><p>持久化类提供无参构造(通过反射创建对象)</p>
+</li>
+<li><p>成员变量私有，需提供get/set（属性）</p>
+</li>
+<li><p>持久化类中的属性，应尽量使用包装类型</p>
+</li>
+<li><p>持久化类需要oid与数据库中的主键列对应</p>
+</li>
+<li>不要用final修饰class（hibernate使用cglib代理生成代理对象，代理对象继承被代理对象，如果被final修饰，将无法代理）</li>
+</ul>
+<h5 id="主键类型"><a href="#主键类型" class="headerlink" title="主键类型"></a>主键类型</h5><h6 id="自然主键"><a href="#自然主键" class="headerlink" title="自然主键"></a>自然主键</h6><p>表的业务列中，其中必须有且不可重复的列可作为主键使用</p>
+<h6 id="代理主键"><a href="#代理主键" class="headerlink" title="代理主键"></a>代理主键</h6><p>表的业务列中，没有可作为主键的列，则创建一个没有业务的列作为主键</p>
+<h5 id="主键生成策略"><a href="#主键生成策略" class="headerlink" title="主键生成策略"></a>主键生成策略</h5><p>每条记录生成时，主键的生成规则（7个）</p>
+<ul>
+<li>identity：主键自增，由数据库来维护主键值，录入时不需指定主键</li>
+<li>sequence：Oracle中的主键生成策略</li>
+<li><p>increment（了解）：主键自增，由hibernate来维护，每次插入前，会先查询表中id最大值，然后加1作为主键值（线程不安全）</p>
+</li>
+<li><p>hilo（了解）：高低位算法，由hibernate维护</p>
+</li>
+<li>native：hilo+sequence+identity，自动三选一</li>
+<li>uuid： 产生随机字符串作为主串</li>
+<li>assigned：自然主键生成，由用户录入生成</li>
+</ul>
+<h4 id="hibernate的对象状态"><a href="#hibernate的对象状态" class="headerlink" title="hibernate的对象状态"></a>hibernate的对象状态</h4><p>对象分为三种状态：</p>
+<ul>
+<li><p>瞬时状态：没有id，没有与session关联</p>
+</li>
+<li><p>持久化状态：有id，与session关联</p>
+<p>持久化状态的对象的任何变化都会自动同步到数据库中，不需要执行update方法</p>
+</li>
+<li><p>游离/托管状态：有id，没有与session关联</p>
+</li>
+</ul>
+<p>注：有id指的是有和数据库中对应的id</p>
+<p>状态转化：</p>
+<p>起点$\rightarrow$瞬时（new）</p>
+<p>起点$\rightarrow$持久化（get）</p>
+<p>瞬时 $\rightarrow $持久化(save) $\rightarrow $游离/托管状态(close)</p>
+<p>瞬时 $\leftarrow $持久化(delete) $\leftarrow $游离/托管状态(update)</p>
+<p>saveOrUpdate:将所有对象转化为持久化状态</p>
+<p>（持久化对象就是放入session缓存的对象）</p>
+<h4 id="hibernate的进阶–缓存"><a href="#hibernate的进阶–缓存" class="headerlink" title="hibernate的进阶–缓存"></a>hibernate的进阶–缓存</h4><p>提高效率的方式：</p>
+<ul>
+<li>提高查询效率（缓冲区）</li>
+<li>减少不必要的修改语句发送（利用快照）</li>
+</ul>
+<h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4><ul>
+<li><p>性质：</p>
+<ul>
+<li><p>原子性</p>
+</li>
+<li><p>一致性：数据在提交前和提交后总量保持一致</p>
+</li>
+<li><p>隔离性</p>
+</li>
+<li><p>持久性：数据提交之后必须要被持久化保存</p>
+</li>
+</ul>
+</li>
+<li><p>并发问题：</p>
+<ul>
+<li><p>脏读：读取到了正在操作并未保存的数据；B事务读取了A事务没有提交的数据</p>
+</li>
+<li><p>不可重复读：在一个事务中，两次读取的事务不一致</p>
+</li>
+<li><p>幻/虚读：一般针对整表的操作；一个事务中，两次读取的数据的数量不一致</p>
+</li>
+</ul>
+</li>
+<li><p>事务的隔离级别：</p>
+<ul>
+<li><p>读未提交 1*：脏读、不可重复读、幻读（可产生问题）</p>
+</li>
+<li><p>读已提交 2*：不可重复读、幻读</p>
+</li>
+<li><p>可重复读 4*（MySQL默认级别）：幻读</p>
+</li>
+<li><p>串行化 8*</p>
+</li>
+</ul>
+</li>
+<li><p>在hibernate指定隔离级别：1 2 4 8</p>
+</li>
+<li><p>在项目中管理项目</p>
+<p>dao层数据操作和service层控制事务都需要session对象，要确保使用的是同一个session对象：</p>
+<p>1）在hibernate中调用getCurrentSession方法获得与线程绑定的session对象，调用该方法时，必须在主配置中主配置中说明：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.current_session_context_class"</span>&gt;</span>thread<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>2）通过getCurrentSession方法获得session对象，当事务提交时session会自动关闭，不许手动。</p>
+</li>
+</ul>
+<h4 id="批量查询"><a href="#批量查询" class="headerlink" title="批量查询"></a>批量查询</h4><h5 id="HQL查询"><a href="#HQL查询" class="headerlink" title="HQL查询"></a>HQL查询</h5><p>多表查询，但不复杂时使用</p>
+<p>hibernate独家查询语言，面向对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1、书写HQL语句</span></span><br><span class="line">		<span class="comment">//String hql = "from 对象的完整类名";</span></span><br><span class="line">		<span class="comment">//String hql = "from Customer where cust_id = 1";//cust_id是属性</span></span><br><span class="line">		<span class="comment">//String hql = "from Customer";//查询所有Customer对象</span></span><br><span class="line">		<span class="comment">//String hql = "from Customer where cust_id = ?";//问号占位符</span></span><br><span class="line">		<span class="built_in">String</span> hql = <span class="string">"from Customer where cust_id ：id"</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//2、根据HQL语句创建查询对象</span></span><br><span class="line">		Query&lt;Customer&gt; query = session.createQuery(hql);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//分页查询</span></span><br><span class="line">		<span class="comment">//设置分页信息</span></span><br><span class="line">		query.setFirstResult(<span class="number">0</span>);<span class="comment">//第0条开始查询</span></span><br><span class="line">		query.setMaxResults(<span class="number">2</span>);<span class="comment">//最多查询两条</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//设置参数(占位符）</span></span><br><span class="line">		query.setLong(<span class="number">0</span>, <span class="number">1</span>);<span class="comment">//问号占位符</span></span><br><span class="line">		query.setParameter(<span class="number">0</span>, <span class="number">1</span>);<span class="comment">//类型通用</span></span><br><span class="line">		query.setParameter(<span class="string">"id"</span>, <span class="number">1</span>);<span class="comment">//命名占位符</span></span><br><span class="line">		<span class="comment">//3、根据查询对象获得查询结果</span></span><br><span class="line">		List list = (List) query.list();</span><br><span class="line">		<span class="comment">//query.uniqueResult();//接收唯一的查询对象</span></span><br></pre></td></tr></table></figure>
+<h5 id="Criteria查询"><a href="#Criteria查询" class="headerlink" title="Criteria查询"></a>Criteria查询</h5><p>单表查询</p>
+<p>hibernate自创的无语句面向对象查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//Criteria查询</span><br><span class="line">//查询所有Customer对象</span><br><span class="line">Criteria criteria = session.createCriteria(Customer.class);</span><br><span class="line">//普通查询</span><br><span class="line">List&lt;Customer&gt; list2  = criteria.list();</span><br><span class="line">//条件查询</span><br><span class="line">criteria.add(Restrictions.eq(&quot;cust_id&quot;,1));</span><br><span class="line">//criteria.add(Restrictions.IdEq(1));</span><br><span class="line">Customer c = (Customer) criteria.uniqueResult();</span><br><span class="line">//分页</span><br><span class="line">criteria.setFirstResult(1);</span><br><span class="line">criteria.setMaxResults(1);</span><br><span class="line">//查询总记录</span><br><span class="line">//设置查询的聚合函数=》总行数</span><br><span class="line">criteria.setProjection(Projections.rowCount());</span><br><span class="line">Long count = (Long) criteria.uniqueResult();</span><br></pre></td></tr></table></figure>
+<p>常见查询条件:</p>
+<table>
+<thead>
+<tr>
+<th>&gt;</th>
+<th>gt</th>
+<th>between and</th>
+<th>between</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&gt;=</td>
+<td>lt</td>
+<td>like</td>
+<td>like</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>lt</td>
+<td>is not null</td>
+<td>isNotNull</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>le</td>
+<td>is null</td>
+<td>isNull</td>
+</tr>
+<tr>
+<td>==</td>
+<td>eq</td>
+<td>or</td>
+<td>or</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>in</td>
+<td>and</td>
+<td>and</td>
+</tr>
+</tbody>
+</table>
+<h5 id="原生SQL查询"><a href="#原生SQL查询" class="headerlink" title="原生SQL查询"></a>原生SQL查询</h5><p>复杂的业务查询</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原生SQL查询</span></span><br><span class="line">	<span class="comment">//String sql = "select * from cst_customer";</span></span><br><span class="line">	<span class="comment">//条件查询与分页</span></span><br><span class="line">	<span class="built_in">String</span> sqlString  = <span class="string">"select * from csy_customer limit ?,?"</span>;</span><br><span class="line">	</span><br><span class="line">	SQLQuery&lt;<span class="built_in">Object</span>[]&gt; query2 = session.createSQLQuery(sql);</span><br><span class="line">	</span><br><span class="line">	query2.setParameter(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">	query2.setParameter(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//查询到的每行结果放到一个object数组</span></span><br><span class="line">	<span class="comment">//List&lt;Object[]&gt; list3 = query2.list();</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//封装结果</span></span><br><span class="line">	query2.addEntity(Customer.class);</span><br><span class="line">	List&lt;Customer&gt; list3 = query2.list();</span><br></pre></td></tr></table></figure>
+<h3 id="多对多"><a href="#多对多" class="headerlink" title="多对多"></a>多对多</h3><h4 id="一对多、多对一"><a href="#一对多、多对一" class="headerlink" title="一对多、多对一"></a>一对多、多对一</h4><h5 id="关系的表达"><a href="#关系的表达" class="headerlink" title="关系的表达"></a>关系的表达</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 集合，一对多关系的配置 --&gt;</span><br><span class="line">		&lt;!--</span><br><span class="line">		 name:集合属性名</span><br><span class="line">		 column:外键列名</span><br><span class="line">		 class：关联的对象的完整类名</span><br><span class="line">		 --&gt;</span><br><span class="line">		&lt;set name=&quot;LinkMen&quot; cascade：save-update&gt;</span><br><span class="line">			&lt;key column=&quot;lkm_cust_id&quot;&gt;&lt;/key&gt;</span><br><span class="line">			&lt;one-to-many class=&quot;LinkMan&quot;/&gt;</span><br><span class="line">		&lt;/set&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;!-- 多对一的配置 --&gt;</span><br><span class="line">		&lt;many-to-one name=&quot;customer&quot; column=&quot;lkm_cust_id&quot; class=&quot;Customer&quot;&gt;&lt;/many-to-one&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//保存客户以及客户下的联系人</span><br><span class="line">	Customer customer = new Customer();</span><br><span class="line">	customer.setCust_name(&quot;blog&quot;);</span><br><span class="line">	</span><br><span class="line">	LinkMan lMan1 = new LinkMan();</span><br><span class="line">	lMan1.setLkm_name(&quot;man1&quot;);</span><br><span class="line">	LinkMan lMan2 = new LinkMan();</span><br><span class="line">	lMan2.setLkm_name(&quot;man2&quot;);</span><br><span class="line">	LinkMan lMan3 = new LinkMan();</span><br><span class="line">	lMan3.setLkm_name(&quot;man3&quot;);</span><br><span class="line">	//表达一对多，一个客户有多个联系人</span><br><span class="line">	customer.getLinkmen().add(lMan1);</span><br><span class="line">	customer.getLinkmen().add(lMan2);</span><br><span class="line">	//表达多对一，联系人属于哪个客户</span><br><span class="line">	lMan1.setCustomer(customer);</span><br><span class="line">	lMan2.setCustomer(customer);</span><br><span class="line">	</span><br><span class="line">	session.save(customer);</span><br><span class="line">	session.save(lMan1);</span><br><span class="line">	session.save(lMan2);</span><br></pre></td></tr></table></figure>
+<h5 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h5><h6 id="级联操作"><a href="#级联操作" class="headerlink" title="级联操作"></a>级联操作</h6><p>cascade（配置文件配置）</p>
+<p>​    save-update:级联保存更新</p>
+<p>​    delete：级联删除</p>
+<p>​    all：save-update+delete</p>
+<h6 id="关系维护"><a href="#关系维护" class="headerlink" title="关系维护"></a>关系维护</h6><p>在保存时，两方都会维护关系，冗余</p>
+<p>inverse属性：配置关系是否维护，默认是false(维护），但是多的一方不能放弃维护</p>
+<h4 id="多对多-1"><a href="#多对多-1" class="headerlink" title="多对多"></a>多对多</h4><p>配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;set name=&quot;set集合名&quot; table=&quot;中间表名&quot;&gt;</span><br><span class="line"></span><br><span class="line">	&lt;key column=&quot;对方引用的自己的外键名&gt;&quot;</span><br><span class="line"></span><br><span class="line">	&lt;many-to-many class=&quot;与哪个别的类多对多&quot; column=&quot;引用的别人的外键&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/set&gt;</span><br></pre></td></tr></table></figure>
+<p>注：开发中利用inverse属性，根据业务方向选择一方放弃维护关系</p>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><h6 id="一对多-多对一"><a href="#一对多-多对一" class="headerlink" title="一对多/多对一"></a>一对多/多对一</h6><ul>
+<li><p>O：对象  </p>
+<p>  一的一方使用集合，多的一方直接引用一的一方</p>
+</li>
+<li><p>R：关系型数据库      </p>
+<p>多的一方使用外键引用一的一方主键</p>
+</li>
+<li><p>M：映射文件  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">一：&lt;set name=&quot;&quot;&gt;</span><br><span class="line"></span><br><span class="line">		&lt;key column = &quot;&quot;/&gt;</span><br><span class="line"></span><br><span class="line">		&lt;one-to-many name=&quot;&quot; column=&quot;&quot; class=&quot;&quot;/&gt;</span><br><span class="line"></span><br><span class="line">	&lt;/set&gt;</span><br><span class="line"></span><br><span class="line">多：&lt;many-to-one name=&quot;&quot; column=&quot;&quot; class=&quot;&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>关系操作：级别属性</p>
+<p>进阶：</p>
+<p>​    inverse：反转关系维护,性能优化（true：放弃，默认false维护），一对多中，一的一方可放弃维护关系</p>
+<p>​    casecade：级联操作，减少代码（nono(默认)：不级联save-update、delete、all)</p>
+</li>
+</ul>
+<h6 id="多对多-2"><a href="#多对多-2" class="headerlink" title="多对多"></a>多对多</h6><ul>
+<li><p>O：对象</p>
+<p>两方都使用集合</p>
+</li>
+<li><p>R：使用中间表，至少两列，作为外键引用两张表的主键</p>
+</li>
+<li><p>M：映射文件</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">多：</span><br><span class="line">&lt;set name=&quot;&quot; table=&quot;中间表名&quot;&gt;</span><br><span class="line">	&lt;key column=&quot;别人引用的自己的外键&quot;&gt;</span><br><span class="line">	&lt;many-to-many class=&quot;&quot; column=&quot;引用别人的外键名&quot;/&gt;</span><br><span class="line">&lt;/set&gt;</span><br></pre></td></tr></table></figure>
+<p>操作：操作管理级别属性</p>
+<ul>
+<li>casede:级联属性，减少代码书写</li>
+</ul>
+<p>​    nono(默认)：不级联</p>
+<p>​    save-update、delete、all</p>
+<ul>
+<li>inverse:反转关系维护，属于性能优化，必须根据业务关系选择一方放弃维护主键关系</li>
+</ul>
+<h4 id="检索"><a href="#检索" class="headerlink" title="检索"></a>检索</h4><h5 id="查询小结"><a href="#查询小结" class="headerlink" title="查询小结"></a>查询小结</h5><h6 id="oid查询-get"><a href="#oid查询-get" class="headerlink" title="oid查询-get"></a>oid查询-get</h6><h6 id="对象属性导航查询"><a href="#对象属性导航查询" class="headerlink" title="对象属性导航查询"></a>对象属性导航查询</h6><h6 id="HQL"><a href="#HQL" class="headerlink" title="HQL"></a>HQL</h6><h6 id="Criteria"><a href="#Criteria" class="headerlink" title="Criteria"></a>Criteria</h6><h6 id="原生SQL"><a href="#原生SQL" class="headerlink" title="原生SQL"></a>原生SQL</h6><h5 id="HQL查询-1"><a href="#HQL查询-1" class="headerlink" title="HQL查询"></a>HQL查询</h5><h6 id="基本语法："><a href="#基本语法：" class="headerlink" title="基本语法："></a>基本语法：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String hql = “from java.lang.Object&quot;//查询所有Object及其子类</span><br></pre></td></tr></table></figure>
+<h6 id="排序语法"><a href="#排序语法" class="headerlink" title="排序语法"></a>排序语法</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String hql = &quot;from Customer order by id asc&quot;//asc：升序</span><br><span class="line"></span><br><span class="line">String hql = &quot;from Customer order by id desc，xxxx  desc/asc</span><br><span class="line"></span><br><span class="line">&quot;//desc：降序,如果相同，可根据别的列按照desc/asc再排序</span><br></pre></td></tr></table></figure>
+<h6 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String hql = &quot;from Customer where id =？&quot;</span><br><span class="line"></span><br><span class="line">String hql = &quot;from Customer where id: id&quot;</span><br></pre></td></tr></table></figure>
+<h6 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String hql = &quot;from con.itcast.domain.Customer&quot;;</span><br><span class="line"></span><br><span class="line">query query = session.creatQuery(hql);</span><br><span class="line"></span><br><span class="line">//limit ?， ?</span><br><span class="line"></span><br><span class="line">query.setFirstResult(0);//从第0条开始查询</span><br><span class="line"></span><br><span class="line">query.setFirstResult(2);//每页查询两条</span><br></pre></td></tr></table></figure>
+<h6 id="统计查询"><a href="#统计查询" class="headerlink" title="统计查询"></a>统计查询</h6><p>聚合函数：count（计数）、sum(求和）、avg（平均数）、max、min</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String hql = &quot;select count(*) from Customer&quot;//总记录数 </span><br><span class="line">//String hq2 = &quot;select sum(id) from Customer&quot;</span><br><span class="line">//String hql = &quot;select avg(id) from Customer&quot;</span><br><span class="line">//String hql = &quot;select max(id) from Customer&quot;</span><br><span class="line">//String hql = &quot;select min(id) from Customer&quot;</span><br><span class="line">Query query = session.creatQuery(hql);</span><br><span class="line"></span><br><span class="line">Number number = (Number) query.uniqueResult();</span><br></pre></td></tr></table></figure>
+<h6 id="投影查询"><a href="#投影查询" class="headerlink" title="投影查询"></a>投影查询</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String hql = &quot;select cust_name from Customer&quot;//查询name</span><br><span class="line">String hql = &quot;select cust_name,cust_id from Customer&quot;;//查询name和id两列，返回数组</span><br><span class="line">String hql = &quot;select newCustomer(cust_name,cust_id) from Customer&quot;;//将查询的每个name和id封装到对应Customer对象中</span><br><span class="line">//注：必须在Customerclass类中添加参数为name和id的构造方法以及无参构造方法</span><br></pre></td></tr></table></figure>
+<h6 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h6><ul>
+<li><p>原生SQL：</p>
+<p>交叉连接：笛卡尔积selecte * from A,B</p>
+<p>内连接：</p>
+<p>​    隐式内连接：selecte * from A,B where 条件</p>
+<p>​    显式外连接：selecte * from A inner join B on  条件</p>
+<p>外连接：</p>
+<p>​    左外连接：selecte * from A left [outer] join B on 条件</p>
+<p>​    右外连接:selecte * from A right [outer] join B on 条件</p>
+</li>
+<li><p>HQL查询：</p>
+<ul>
+<li>内连接：</li>
+</ul>
+<p>​    String hql = “from Customer c inner join c.LinkMen”;//将对应的两个对象分别封装到数组</p>
+<p>​    迫切：String hql = “from Customer c inner join fetch c.LinkMen”;//把第二个表的东西封装到第一个对象中</p>
+<ul>
+<li><p>左外连接：String hql = “from Customer c left join c.LinkMen”</p>
+</li>
+<li><p>右外连接：String hql = “from Customer c right join c.LinkMen”</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="Criterla查询（QBC）"><a href="#Criterla查询（QBC）" class="headerlink" title="Criterla查询（QBC）"></a>Criterla查询（QBC）</h5><h6 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//Criteria查询</span><br><span class="line">	//查询所有Customer对象</span><br><span class="line">	Criteria criteria = session.createCriteria(Customer.class);</span><br><span class="line">	</span><br><span class="line">	//普通查询</span><br><span class="line">	List&lt;Customer&gt; list2  = criteria.list();</span><br><span class="line">	</span><br><span class="line">	//条件查询</span><br><span class="line">	criteria.add(Restrictions.eq(&quot;cust_id&quot;,1));</span><br><span class="line">	//criteria.add(Restrictions.IdEq(1));</span><br><span class="line">	Customer c = (Customer) criteria.uniqueResult();</span><br><span class="line">	</span><br><span class="line">	//分页</span><br><span class="line">	criteria.setFirstResult(1);</span><br><span class="line">	criteria.setMaxResults(1);</span><br><span class="line">	</span><br><span class="line">	//查询总记录</span><br><span class="line">	//设置查询的聚合函数=》总行数</span><br><span class="line">	criteria.setProjection(Projections.rowCount());</span><br><span class="line">	Long count = (Long) criteria.uniqueResult();</span><br></pre></td></tr></table></figure>
+<h6 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Criteria c = session.creatCriteria(Customer.class);</span><br><span class="line">criteria.add(Restrictions.eq(&quot;cust_id&quot;,1));</span><br><span class="line">//criteria.add(Restrictions.IdEq(1));</span><br><span class="line">Customer c = (Customer) criteria.uniqueResult();</span><br></pre></td></tr></table></figure>
+<h6 id="分页："><a href="#分页：" class="headerlink" title="分页："></a>分页：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Criteria c = session.creatCriteria(Customer.class);</span><br><span class="line">c.setFirstResult(0);</span><br><span class="line">c.setMaxResult(2);</span><br><span class="line">List&lt;Customer&gt; list = c.list;</span><br></pre></td></tr></table></figure>
+<h6 id="排序："><a href="#排序：" class="headerlink" title="排序："></a>排序：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Criteria c = session.creatCriteria(Customer.class);</span><br><span class="line">c.addOrder(Order.asc(&quot;cust_id&quot;));</span><br><span class="line">List&lt;Customer&gt; list = c.list;</span><br></pre></td></tr></table></figure>
+<h6 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Criteria c = session.creatCriteria(Customer.class);</span><br><span class="line">c.setProject(Projections.rowCount());</span><br><span class="line">List&lt;Long&gt; list = c.list;</span><br></pre></td></tr></table></figure>
+<h6 id="离线查询"><a href="#离线查询" class="headerlink" title="离线查询"></a>离线查询</h6><p>传统的criteria依赖于session创建（dao层）</p>
+<p>离线的criteria，可脱离session，在任意层均可凭空创建（扩大session的作用范围）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//web或service层</span><br><span class="line">DetachedCriteria dc = DetachedCriteria.forClass(Customer.class);</span><br><span class="line">dc.add(Restrictions.idEq(61));//拼装条件与普通一致</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//dao层</span><br><span class="line">Criteria c = dc.getExecutableCriteria(session)</span><br><span class="line">List list = c.list();</span><br></pre></td></tr></table></figure>
+<h5 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h5><h6 id="类级别查询"><a href="#类级别查询" class="headerlink" title="类级别查询"></a>类级别查询</h6><p>懒加载|延迟加载</p>
+<p>get:立即加载，执行方法时立即发送SQL语句查询结果</p>
+<p>load(默认)：结果和get一样，执行时，不发送任何SQL语句，返回一个对象，使用该对象时，才执行查询</p>
+<p>延时加载：仅仅获得不使用，不会查询，使用时才进行查询，（针对load方法），原理是动态代理<br>是否对类进行延迟加载，可通过在class元素上配置lazy属性控制：<br>​    lazy=true：加载时，不查询，使用时才查询<br>​    lazy=false：加载时立刻查询</p>
+<h6 id="关联级别查询"><a href="#关联级别查询" class="headerlink" title="关联级别查询"></a>关联级别查询</h6><p><strong>集合级别的关联</strong></p>
+<p>lazy属性:决定是否延迟加载：</p>
+<p>​    true(默认):延迟加载，懒加载；</p>
+<p>​    false：立即加载</p>
+<p>​    extra：及其懒惰（集合级别）</p>
+<p>fetch属性：决定加载策略，使用什么类型的SQL语句加载集合数据</p>
+<p>​    select(默认)：单表查询加载</p>
+<p>​    join：使用多表查询加载集合</p>
+<p>​    subselect:使用子查询加载集合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;set name=&quot;&quot; lazy=&quot;&quot; fetch=&quot;&quot;&gt;</span><br><span class="line">	&lt;key volumn=&quot;lkm_cust_id&gt;&lt;/key&gt;</span><br><span class="line">	&lt;one_to_many class=&quot;&quot;/&gt;</span><br><span class="line">&lt;/set&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>fetch:select（单表查询） , lazy=true(使用时才加载集合数据)，该组合为默认</li>
+<li><p>fetch:select（/单表查询） , lazy=false(立即加载集合数据）</p>
+</li>
+<li><p>fetch:select（/单表查询） , lazy=extra(与懒加载效果基本一致，但如果只获得集合的size，extra只获得集合的size：‘count语句’）</p>
+</li>
+<li><p>fetch:join , lazy=true/false/extra：多表查询立即加载集合，lazy属性失效</p>
+</li>
+<li><p>fetch:subselect，lazy=true:如果用不到子查询，效果相当于select，先单表查询，集合使用时才立即查询加载</p>
+</li>
+<li><p>fetch:subselect，lazy=false:立即查询加载相关集合数据</p>
+</li>
+<li><p>fetch:subselect，lazy=extra:先单表查询，集合使用时才立即查询加载，如果只获得集合的size，extra只获得集合的size：‘count语句’</p>
+</li>
+</ul>
+<p><strong>属性级别的关联</strong></p>
+<p>根据被关联的对象获得主对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Linkman lm = session.get(Linkman.class,2);</span><br><span class="line">Customer c = lm.getCustomer();</span><br><span class="line">System.out.println(customer);</span><br></pre></td></tr></table></figure>
+<p>配置中属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;many-to-one name=&quot;Customer&quot; column=&quot;&quot; class=&quot;&quot; fetch=&quot;&quot; lazy=&quot;&gt;</span><br><span class="line">&lt;/many-to-one&gt;</span><br></pre></td></tr></table></figure>
+<p>fetch属性：决定加载策略，使用什么类型的SQL语句加载数据</p>
+<p>​    select(默认)：单表查询加载</p>
+<p>​    join：使用多表查询加载集合</p>
+<p>lazy属性:决定是否延迟加载：</p>
+<p>​    false：立即加载</p>
+<p>​    proxy：由主类的类级别策略决定</p>
+<ul>
+<li>fetch:select,lazy=proxy(true),单表查询，懒加载</li>
+<li>fetch:select,lazy=proxy(false，extra),多表立即加载</li>
+<li>fetch:join,lazy属性失效,</li>
+</ul>
+<p><strong>结论</strong>：为了提高效率，fetch的选择应选择select，lazy应选择true（默认）</p>
+<h5 id="批量抓取"><a href="#批量抓取" class="headerlink" title="批量抓取"></a>批量抓取</h5><p>每次抓取几个集合：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;--每次抓取3个客户的集合--&gt;</span><br><span class="line">&lt;set name=&quot;&quot; batch-size=&quot;3&quot;&gt;</span><br><span class="line">	&lt;key volumn=&quot;lkm_cust_id&gt;&lt;/key&gt;</span><br><span class="line">	&lt;one_to_many class=&quot;&quot;/&gt;</span><br><span class="line">&lt;/set&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Zhang Yue</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://yoursite.com/2019/04/18/hibernate/" title="javaEE-framework开篇——hibernate">http://yoursite.com/2019/04/18/hibernate/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hibernate/" rel="tag"># hibernate</a>
+          
+            <a href="/tags/javaEE-framework/" rel="tag"># javaEE framework</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/30/TwoSum/" rel="next" title="Two sum">
+                <i class="fa fa-chevron-left"></i> Two sum
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Zhang Yue">
+            
+              <p class="site-author-name" itemprop="name">Zhang Yue</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/CN-ZhangYue" title="GitHub &rarr; https://github.com/CN-ZhangYue" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/zhangyue3040@gmail.com" title="E-Mail &rarr; zhangyue3040@gmail.com"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://guoziyang.top" title="https://guoziyang.top" rel="noopener" target="_blank">郭子阳</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#搭建"><span class="nav-number">1.</span> <span class="nav-text">搭建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hibernateAPI详解"><span class="nav-number">2.</span> <span class="nav-text">hibernateAPI详解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#configuration"><span class="nav-number">2.1.</span> <span class="nav-text">configuration</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SessionFactory"><span class="nav-number">2.2.</span> <span class="nav-text">SessionFactory</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Session"><span class="nav-number">2.3.</span> <span class="nav-text">Session</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Transaction"><span class="nav-number">2.4.</span> <span class="nav-text">Transaction</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实体规则"><span class="nav-number">3.</span> <span class="nav-text">实体规则</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建规则"><span class="nav-number">3.1.</span> <span class="nav-text">创建规则</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#主键类型"><span class="nav-number">3.2.</span> <span class="nav-text">主键类型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#自然主键"><span class="nav-number">3.2.1.</span> <span class="nav-text">自然主键</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#代理主键"><span class="nav-number">3.2.2.</span> <span class="nav-text">代理主键</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#主键生成策略"><span class="nav-number">3.3.</span> <span class="nav-text">主键生成策略</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hibernate的对象状态"><span class="nav-number">4.</span> <span class="nav-text">hibernate的对象状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hibernate的进阶–缓存"><span class="nav-number">5.</span> <span class="nav-text">hibernate的进阶–缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务"><span class="nav-number">6.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#批量查询"><span class="nav-number">7.</span> <span class="nav-text">批量查询</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HQL查询"><span class="nav-number">7.1.</span> <span class="nav-text">HQL查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Criteria查询"><span class="nav-number">7.2.</span> <span class="nav-text">Criteria查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#原生SQL查询"><span class="nav-number">7.3.</span> <span class="nav-text">原生SQL查询</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#多对多"><span class="nav-number"></span> <span class="nav-text">多对多</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一对多、多对一"><span class="nav-number">1.</span> <span class="nav-text">一对多、多对一</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关系的表达"><span class="nav-number">1.1.</span> <span class="nav-text">关系的表达</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#操作"><span class="nav-number">1.2.</span> <span class="nav-text">操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#进阶"><span class="nav-number">1.3.</span> <span class="nav-text">进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#级联操作"><span class="nav-number">1.3.1.</span> <span class="nav-text">级联操作</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#关系维护"><span class="nav-number">1.3.2.</span> <span class="nav-text">关系维护</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多对多-1"><span class="nav-number">2.</span> <span class="nav-text">多对多</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#小结"><span class="nav-number">2.1.</span> <span class="nav-text">小结</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#一对多-多对一"><span class="nav-number">2.1.1.</span> <span class="nav-text">一对多/多对一</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#多对多-2"><span class="nav-number">2.1.2.</span> <span class="nav-text">多对多</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检索"><span class="nav-number">3.</span> <span class="nav-text">检索</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#查询小结"><span class="nav-number">3.1.</span> <span class="nav-text">查询小结</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#oid查询-get"><span class="nav-number">3.1.1.</span> <span class="nav-text">oid查询-get</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#对象属性导航查询"><span class="nav-number">3.1.2.</span> <span class="nav-text">对象属性导航查询</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#HQL"><span class="nav-number">3.1.3.</span> <span class="nav-text">HQL</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Criteria"><span class="nav-number">3.1.4.</span> <span class="nav-text">Criteria</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#原生SQL"><span class="nav-number">3.1.5.</span> <span class="nav-text">原生SQL</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HQL查询-1"><span class="nav-number">3.2.</span> <span class="nav-text">HQL查询</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#基本语法："><span class="nav-number">3.2.1.</span> <span class="nav-text">基本语法：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#排序语法"><span class="nav-number">3.2.2.</span> <span class="nav-text">排序语法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#条件查询"><span class="nav-number">3.2.3.</span> <span class="nav-text">条件查询</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#分页查询"><span class="nav-number">3.2.4.</span> <span class="nav-text">分页查询</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#统计查询"><span class="nav-number">3.2.5.</span> <span class="nav-text">统计查询</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#投影查询"><span class="nav-number">3.2.6.</span> <span class="nav-text">投影查询</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#多表查询"><span class="nav-number">3.2.7.</span> <span class="nav-text">多表查询</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Criterla查询（QBC）"><span class="nav-number">3.3.</span> <span class="nav-text">Criterla查询（QBC）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#基本"><span class="nav-number">3.3.1.</span> <span class="nav-text">基本</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#条件"><span class="nav-number">3.3.2.</span> <span class="nav-text">条件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#分页："><span class="nav-number">3.3.3.</span> <span class="nav-text">分页：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#排序："><span class="nav-number">3.3.4.</span> <span class="nav-text">排序：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#统计"><span class="nav-number">3.3.5.</span> <span class="nav-text">统计</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#离线查询"><span class="nav-number">3.3.6.</span> <span class="nav-text">离线查询</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查询优化"><span class="nav-number">3.4.</span> <span class="nav-text">查询优化</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#类级别查询"><span class="nav-number">3.4.1.</span> <span class="nav-text">类级别查询</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#关联级别查询"><span class="nav-number">3.4.2.</span> <span class="nav-text">关联级别查询</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#批量抓取"><span class="nav-number">3.5.</span> <span class="nav-text">批量抓取</span></a></li></ol></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-jiaoyue"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Yue</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
