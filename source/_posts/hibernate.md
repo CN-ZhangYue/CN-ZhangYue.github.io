@@ -352,11 +352,11 @@ hibernate自创的无语句面向对象查询
 		List<Customer> list3 = query2.list();
 ```
 
-### 多对多
+#### 多对多关系
 
-#### 一对多、多对一
+##### 一对多、多对一
 
-##### 关系的表达
+###### 关系的表达
 
 ```
 <!-- 集合，一对多关系的配置 -->
@@ -375,7 +375,7 @@ hibernate自创的无语句面向对象查询
 		
 ```
 
-##### 操作
+###### 操作
 
 ```
 	//保存客户以及客户下的联系人
@@ -400,9 +400,9 @@ hibernate自创的无语句面向对象查询
 		session.save(lMan2);
 ```
 
-##### 进阶
+###### 进阶
 
-###### 级联操作
+**联操作**
 
 cascade（配置文件配置）
 
@@ -412,13 +412,13 @@ cascade（配置文件配置）
 
 ​	all：save-update+delete
 
- ###### 关系维护
+**关系维护**
 
 在保存时，两方都会维护关系，冗余
 
 inverse属性：配置关系是否维护，默认是false(维护），但是多的一方不能放弃维护
 
-#### 多对多
+##### 多对多
 
 配置
 
@@ -434,11 +434,9 @@ inverse属性：配置关系是否维护，默认是false(维护），但是多�
 
 注：开发中利用inverse属性，根据业务方向选择一方放弃维护关系
 
+**小结**
 
-
-##### 小结
-
-###### 一对多/多对一
+**一对多/多对一**
 
 - O：对象  
 
@@ -470,7 +468,7 @@ inverse属性：配置关系是否维护，默认是false(维护），但是多�
 
   ​	casecade：级联操作，减少代码（nono(默认)：不级联save-update、delete、all)
 
-###### 多对多
+**多对多**
 
 - O：对象
 
@@ -498,29 +496,29 @@ inverse属性：配置关系是否维护，默认是false(维护），但是多�
 
 - inverse:反转关系维护，属于性能优化，必须根据业务关系选择一方放弃维护主键关系
 
-#### 检索
+##### 检索
 
-##### 查询小结
+###### 查询小结
 
-###### oid查询-get
+oid查询-get
 
-###### 对象属性导航查询
+对象属性导航查询
 
-###### HQL
+HQL
 
-###### Criteria
+Criteria
 
-###### 原生SQL
+原生SQL
 
-##### HQL查询
+###### HQL查询
 
-###### 基本语法：
+**基本语法**
 
 ```
 String hql = “from java.lang.Object"//查询所有Object及其子类
 ```
 
-###### 排序语法
+**排序语法**
 
 ```
 String hql = "from Customer order by id asc"//asc：升序
@@ -530,7 +528,7 @@ String hql = "from Customer order by id desc，xxxx  desc/asc
 "//desc：降序,如果相同，可根据别的列按照desc/asc再排序
 ```
 
-###### 条件查询
+**条件查询**
 
 ```
 String hql = "from Customer where id =？"
@@ -538,7 +536,7 @@ String hql = "from Customer where id =？"
 String hql = "from Customer where id: id"
 ```
 
-###### 分页查询
+**分页查询**
 
 ```
 String hql = "from con.itcast.domain.Customer";
@@ -552,7 +550,7 @@ query.setFirstResult(0);//从第0条开始查询
 query.setFirstResult(2);//每页查询两条
 ```
 
-###### 统计查询
+**统计查询**
 
 聚合函数：count（计数）、sum(求和）、avg（平均数）、max、min
 
@@ -567,7 +565,7 @@ Query query = session.creatQuery(hql);
 Number number = (Number) query.uniqueResult();
 ```
 
-###### 投影查询
+**投影查询**
 
 ```
 String hql = "select cust_name from Customer"//查询name
@@ -576,7 +574,7 @@ String hql = "select newCustomer(cust_name,cust_id) from Customer";//将查询�
 //注：必须在Customerclass类中添加参数为name和id的构造方法以及无参构造方法
 ```
 
-###### 多表查询
+**多表查询**
 
 - 原生SQL：
 
@@ -606,9 +604,9 @@ String hql = "select newCustomer(cust_name,cust_id) from Customer";//将查询�
 
   - 右外连接：String hql = "from Customer c right join c.LinkMen"
 
-##### Criterla查询（QBC）
+###### Criterla查询（QBC）
 
-###### 基本
+**基本**
 
 ```
 //Criteria查询
@@ -633,7 +631,7 @@ String hql = "select newCustomer(cust_name,cust_id) from Customer";//将查询�
 	Long count = (Long) criteria.uniqueResult();
 ```
 
-###### 条件
+**条件**
 
 ```
 Criteria c = session.creatCriteria(Customer.class);
@@ -642,7 +640,7 @@ criteria.add(Restrictions.eq("cust_id",1));
 Customer c = (Customer) criteria.uniqueResult();
 ```
 
-###### 分页：
+**分页**
 
 ```
 Criteria c = session.creatCriteria(Customer.class);
@@ -651,7 +649,7 @@ c.setMaxResult(2);
 List<Customer> list = c.list;
 ```
 
-###### 排序：
+**排序**
 
 ```
 Criteria c = session.creatCriteria(Customer.class);
@@ -659,7 +657,7 @@ c.addOrder(Order.asc("cust_id"));
 List<Customer> list = c.list;
 ```
 
-###### 统计
+**统计**
 
 ```
 Criteria c = session.creatCriteria(Customer.class);
@@ -667,7 +665,7 @@ c.setProject(Projections.rowCount());
 List<Long> list = c.list;
 ```
 
-###### 离线查询
+**离线查询**
 
 传统的criteria依赖于session创建（dao层）
 
