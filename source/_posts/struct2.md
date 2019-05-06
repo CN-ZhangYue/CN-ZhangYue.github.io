@@ -9,21 +9,21 @@ categories: javaEE framework
 ---
 [TOC]
 
-### 一、知识详解
+### 知识详解
 
-#### 1、简介
+#### 简介
 
-##### 1）概念
+##### 概念
 
 运行web层，处理访问服务器的请求，代理Servlet
 
 struct2与struct1区别：struct2前身是webwork框架
 
-##### 2）优势
+##### 优势
 
 自动封装参数、参数校验、结果的处理(转发(重定向))、国际化、显式等待页面、表单防止重复提交
 
-##### 3）搭建
+##### 搭建
 
 - 导包
 - 书写action类
@@ -56,11 +56,11 @@ struct2与struct1区别：struct2前身是webwork框架
   </filter-mapping>
 ```
 
-##### 4）Struts构造原理图
+##### Struts构造原理图
 
-<img src="D:\CN-ZhangYue.github.io\source\img\javaWeb\struts原理.JPG" height=550px>
+<img src="img\javaWeb\struts原理.JPG" height=550px>
 
-##### 5）配置详解
+##### 配置详解
 
 ###### struts.xml配置
 
@@ -204,7 +204,7 @@ adstract:包是否是抽象的，标识性属性，该包不能独立运行，�
 </package>
 ```
 
-##### 6）action类创建方式
+##### action类创建方式
 
 action类：public,返回String，可抛异常
 
@@ -220,7 +220,7 @@ action类：public,返回String，可抛异常
 
 ​	帮助实现了Action、Validateable、ValidationAwre、TextProvider、LocaleProvider
 
-#### 2、结果跳转方式
+#### 结果跳转方式
 
 ##### 转发（默认 ）
 
@@ -244,7 +244,7 @@ action类：public,返回String，可抛异常
 </result>
 ```
 
-#### 3、访问ServletAPI方式
+#### 访问ServletAPI方式
 
 **ActionContext**:数据中心，可获得原生request(HttpServletRequest)、原生response(HttpServletResponse)、原生ServletContext、request域(Map)、session域(Map)、application域(Map)、params(Map)、attr域(Map,三个域合一)、ValueStack、、、
 
@@ -252,7 +252,7 @@ action类：public,返回String，可抛异常
 
 三种方式本质都是从ActionContext获得
 
-##### 1）通过actionContext
+##### 通过actionContext
 
 ```java
 public String hello() {
@@ -272,7 +272,7 @@ public String hello() {
 	}
 ```
 
-##### 2）通过ServletActionContext
+##### 通过ServletActionContext
 
 不推荐
 
@@ -296,7 +296,7 @@ public String hello() {
 		}
 ```
 
-##### 3）实现接口Aware
+##### 实现接口Aware
 
 ```java 
 Public class Demo entends ActioSUpport implments ServletRequestAware{
@@ -314,9 +314,9 @@ Public class Demo entends ActioSUpport implments ServletRequestAware{
 }
 ```
 
-#### 4、获得参数
+#### 获得参数
 
-##### 1)扩展
+##### 扩展
 
 - **Struts MVC**
 
@@ -328,7 +328,7 @@ Result:View
 
 - Action生命周期：每次请求到来时，都会创建一个新的Action实例，不会产生并发现象，线程安全，可使用成员变量来接受参数
 
-##### 2）属性驱动获得参数
+##### 属性驱动获得参数
 
 Action准备与参数键同名属性
 
@@ -365,7 +365,7 @@ public class Demo8Action extends ActionSupport{
 </form>
 ```
 
-##### 3）对象驱动
+##### 对象驱动
 
 Action准备与参数键同名属性    xxx.yyy
 
@@ -399,7 +399,7 @@ public class Demo8Action extends ActionSupport{
 </form>
 ```
 
-##### 4）模型驱动
+##### 模型驱动
 
 实现ModelDrivern接口，实现getModel方法，返回需要封装参数的对象
 
@@ -428,7 +428,7 @@ public class Demo8Action extends ActionSupport implements ModelDriven<Customer>{
 </form>
 ```
 
-##### 5）集合类型封装获得参数：
+##### 集合类型封装获得参数：
 
 ```xml
 <form action="${pageContext.request.contextPath }/Demo8Action">
@@ -441,15 +441,15 @@ public class Demo8Action extends ActionSupport implements ModelDriven<Customer>{
 
 注：封装集合类型参数在前端可直接使用，使用时，map需先给出key
 
-### 二、表达式
+### 表达式
 
-#### 1、OGNL表达式
+#### OGNL表达式
 
 OGNL:对象视图导航语言，例：$(user.addr.name)这种写法就成为对象视图导航
 
 OGNL不仅仅可视图导航，还支持比EL表达式更加丰富的功能
 
-##### 1）准备工作
+##### 准备工作
 
 OGNL从OGNLContext对象取值（复习：EL取值：11大内置对象）
 
@@ -459,7 +459,7 @@ OGNLContext对象分为ROOT和Context两部分：
 
 ​	Context:	只存放Map
 
-##### 2）基本语法
+##### 基本语法
 
 ###### 取值
 
@@ -534,7 +534,7 @@ int age = = Ognl.getValue("{'hello','tom','penny'}.get('age')", context, oc.getR
 
 
 
-#### 2、OGNL与struts2结合
+#### OGNL与struts2结合
 
 OGNlContext-->ValueStack值栈
 
@@ -544,13 +544,13 @@ Context：ActionContext（数据中心）
 
 ##### 结合体现：
 
-###### 1）参数接收
+###### 参数接收
 
 struts2的参数交给OGNL引擎处理
 
-<img src="D:\CN-ZhangYue.github.io\source\img\javaWeb\OGNL_Struts原理.JPG" height=200px>
+<img src="img\javaWeb\OGNL_Struts原理.JPG" height=200px>
 
-<img src="D:\CN-ZhangYue.github.io\source\img\javaWeb\OGNL_Struts原理2.JPG" height=250px>
+<img src="img\javaWeb\OGNL_Struts原理2.JPG" height=250px>
 
 ```java
 //将参数压入栈
@@ -593,7 +593,7 @@ public class DemoAction extends ActionSupport implements ModelDriven<Customer>{
 }
 ```
 
-###### 2）配置文件
+###### 配置文件
 
 ${ognl表达式}
 
@@ -607,11 +607,11 @@ ${ognl表达式}
 </result>
 ```
 
-###### 3）struts2标签
+###### struts2标签
 
 
 
-#### 3、扩展:源码流程
+#### 扩展:源码流程
 
 - request.getAttribute()查找顺序：
   - 原生request域
@@ -622,7 +622,7 @@ ${ognl表达式}
 
   defaultActionInvocation调用interceptor.intercept()，interceptor调用defaultActionInvocation.invoke()
 
-### 三、拦截器
+### 拦截器
 
 准备工作：用户登录
 
@@ -705,7 +705,7 @@ public class UserService {
 
 拦截器生命周期：随项目的启动创建，随项目的关闭而销毁
 
-###### 1）拦截器的创建
+###### 拦截器的创建
 
 方式一：实现接口Interceptor
 
@@ -735,9 +735,9 @@ public class MyInterceptor_2 extends MethodFilterInterceptor{
 }
 ```
 
-###### 2）拦截器配置
+###### 拦截器配置
 
-###### 3)拦截方法指定
+###### 拦截方法指定
 
 不拦截和需要拦截的方法不能同时指定
 
@@ -775,7 +775,7 @@ public class MyInterceptor_2 extends MethodFilterInterceptor{
 
 
 
-### 四、标签
+### 标签
 
 （了解）
 
@@ -789,7 +789,7 @@ struts标签分类：
   - 表单标签(form、textfield、password、file、checkboxlist、redio...)
   - 非表单标签(Actionerror)
 
-##### 普通标签
+#### 普通标签
 
 ```jsp
 <!--普通标签-->
@@ -817,7 +817,7 @@ struts标签分类：
 </body>
 ```
 
-##### 表单标签
+#### 表单标签
 
 ```jsp
 <!-- struts表单标签 -->
@@ -842,7 +842,7 @@ struts标签分类：
 	</s:form>
 ```
 
-##### 非表单标签
+#### 非表单标签
 
 ```jsp
 //action中的方法加入错误提示信息
