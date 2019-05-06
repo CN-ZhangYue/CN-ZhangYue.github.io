@@ -58,7 +58,7 @@ struct2与struct1区别：struct2前身是webwork框架
 
 ##### Struts构造原理图
 
-<img src="img\javaWeb\struts原理.JPG" height=550px>
+<img src="\img\javaWeb\struts原理.JPG" height=550px>
 
 ##### 配置详解
 
@@ -548,9 +548,9 @@ Context：ActionContext（数据中心）
 
 struts2的参数交给OGNL引擎处理
 
-<img src="img\javaWeb\OGNL_Struts原理.JPG" height=200px>
+<img src="\img\javaWeb\OGNL_Struts原理.JPG" height=200px>
 
-<img src="img\javaWeb\OGNL_Struts原理2.JPG" height=250px>
+<img src="\img\javaWeb\OGNL_Struts原理2.JPG" height=250px>
 
 ```java
 //将参数压入栈
@@ -701,11 +701,11 @@ public class UserService {
 <s:debug></s:debug>
 ```
 
-##### 自定义拦截器
+#### 自定义拦截器
 
 拦截器生命周期：随项目的启动创建，随项目的关闭而销毁
 
-###### 拦截器的创建
+##### 拦截器的创建
 
 方式一：实现接口Interceptor
 
@@ -735,9 +735,9 @@ public class MyInterceptor_2 extends MethodFilterInterceptor{
 }
 ```
 
-###### 拦截器配置
+##### 拦截器配置
 
-###### 拦截方法指定
+##### 拦截方法指定
 
 不拦截和需要拦截的方法不能同时指定
 
@@ -772,8 +772,6 @@ public class MyInterceptor_2 extends MethodFilterInterceptor{
 ```
 <global-results></global-results>
 ```
-
-
 
 ### 标签
 
