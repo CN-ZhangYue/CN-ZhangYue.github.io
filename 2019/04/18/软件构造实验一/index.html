@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+  <meta name="description" content="个人觉得软件构造的实验还是挺不错的，非常有锻炼价值">
+<meta name="keywords" content="软件构造">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件构造实验一">
+<meta property="og:url" content="http://yoursite.com/2019/04/18/软件构造实验一/index.html">
+<meta property="og:site_name" content="Jiaoyue&#39;s Blog">
+<meta property="og:description" content="个人觉得软件构造的实验还是挺不错的，非常有锻炼价值">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-17T08:42:58.897Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件构造实验一">
+<meta name="twitter:description" content="个人觉得软件构造的实验还是挺不错的，非常有锻炼价值">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/18/软件构造实验一/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>软件构造实验一 | Jiaoyue's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jiaoyue's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Angel, come on!</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/CN-ZhangYue" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/18/软件构造实验一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiaoyue's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件构造实验一
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-18 14:05:48" itemprop="dateCreated datePublished" datetime="2019-04-18T14:05:48+08:00">2019-04-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-17 16:42:58" itemprop="dateModified" datetime="2019-05-17T16:42:58+08:00">2019-05-17</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/软件构造/" itemprop="url" rel="index"><span itemprop="name">软件构造</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">个人觉得软件构造的实验还是挺不错的，非常有锻炼价值</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="实验目标概述"><a href="#实验目标概述" class="headerlink" title="实验目标概述"></a>实验目标概述</h4><p>本次实验通过求解四个问题（其中一个可选），训练基本Java编程技能，能够利用Java OO开发基本的功能模块，能够阅读理解已有代码框架并根据功能需求补全代码，能够为所开发的代码编写基本的测试程序并完成测试，初步保证所开发代码的正确性。另一方面，利用Git作为代码配置管理的工具，学会Git的基本使用方法。</p>
+<ul>
+<li><p>基本的Java OO编程</p>
+</li>
+<li><p>基于Eclipse IDE进行Java编程</p>
+</li>
+<li><p>基于JUnit的测试</p>
+</li>
+<li><p>基于Git的代码配置管理</p>
+</li>
+</ul>
+<h4 id="实验环境配置"><a href="#实验环境配置" class="headerlink" title="实验环境配置"></a>实验环境配置</h4><p>简要陈述你配置本次实验所需开发、测试、运行环境的过程，必要时可以给出屏幕截图。</p>
+<p>特别是要记录配置过程中遇到的问题和困难，以及如何解决的。</p>
+<p>1）从助教给的压缩包中下载eclipse并安装，在使用Eclipse进行Junit单元测试时先右键项目-&gt;Build Path-&gt;Add Library并选择junit，导入junit4。</p>
+<p>2）重新注册Git账号，并绑定Classroom建立自己的仓库，并将其clone到本地。</p>
+<p>3）P1的MagicSquare.java中的main方法读取txt包下的测试文件时读取不到，使用相对路径读取文件总是找不到文件，使用绝对路径会由于项目提交之后路径发生改变而出错。所以，读取目录即可采用相对项目根目录读取的方式，用new File(“”).getCanonicalPath()获取项目的根目录，然后拼接字符串“/src/P1/txt/1.txt”即可获取src下P1包中 的txt文件夹下的1.txt测试文件。 </p>
+<p>在这里给出你的GitHub Lab1仓库的URL地址（Lab1-学号）。</p>
+<p>​       <a href="https://github.com/ComputerScienceHIT/Lab1-1170300503" target="_blank" rel="noopener">https://github.com/ComputerScienceHIT/Lab1-1170300503</a></p>
+<h4 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h4><p>请仔细对照实验手册，针对四个问题中的每一项任务，在下面各节中记录你的实验过程、阐述你的设计思路和问题求解思路，可辅之以示意图或关键源代码加以说明（但无需把你的源代码全部粘贴过来！）。</p>
+<p>为了条理清晰，可根据需要在各节增加三级标题。</p>
+<h5 id="Magic-Squares"><a href="#Magic-Squares" class="headerlink" title="Magic Squares"></a>Magic Squares</h5><p>在这里简要概述你对该任务的理解。</p>
+<p>该实验是判断一个矩阵是否是由正整数组成的方阵，并且文件中数字存储用“\t”划分，每行、每列及对角线数字之和均相等，如果是，则该矩阵是MagicSquare，否则不是。判断过程中，主要步骤是读取文件并分割字符串，判断输入是否合法，其次是对每行每列及对角线数字之和是否相等进行判断。</p>
+<h6 id="isLegalMagicSquare"><a href="#isLegalMagicSquare" class="headerlink" title="isLegalMagicSquare()"></a>isLegalMagicSquare()</h6><p>按步骤给出你的设计和实现思路/过程/结果。</p>
+<p>1） 根据参数filename判断文件是否存在，如果不存在，返回false，结束；</p>
+<p>2） 按行读取文件，记录读取行数；</p>
+<p>3） 读取的每行数据按照“\t”分割，并判断分割后的每部分是否是数字，如果是数字，接着判断是否正整数，将每一个数字依次存入数组numbers，记录每行读取数字个数即列数并存入数组cols，否则返回false，结束；</p>
+<p>4） 判断是否是方阵，若否，否则返回false，结束；</p>
+<p>5） 记录对角线数字之和，并比较是否相等，若否，否则返回false，结束；</p>
+<p>6） 判断每行每列数字之和是否都相等，若否，否则返回false，结束；</p>
+<p>7） 返回true，结束。</p>
+<p>结果：1.txt和2.txt矩阵以及生成的矩阵是MagicSquare，其余的不是。</p>
+<h6 id="generateMagicSquare"><a href="#generateMagicSquare" class="headerlink" title="generateMagicSquare()"></a>generateMagicSquare()</h6><p>按步骤给出你的设计和实现思路/过程/结果。</p>
+<p>设计思路流程图如下：</p>
+<p>该方法生成MagicSquare，如果输入的参数为偶数，在循环过程中会出现数组下标越界，抛出java.lang.ArrayIndexOutOfBoundsException异常，如果输入参数为父，则开始建立大小为负的数组，会抛出java.lang.NegativeArraySizeException异常。</p>
+<h5 id="Turtle-Graphics"><a href="#Turtle-Graphics" class="headerlink" title="Turtle Graphics"></a>Turtle Graphics</h5><p>在这里简要概述你对该任务的理解。</p>
+<p>通过控制乌龟的转向和划线的距离完成图形的绘制，相当于整个图形由一笔完成，绘图过程中只要控制好划线的方向和转向即可。其中两个坐标间距离的只需要套用公式，但是计算转向还要考虑到当前乌龟的方向。</p>
+<h6 id="Problem-1-Clone-and-import"><a href="#Problem-1-Clone-and-import" class="headerlink" title="Problem 1: Clone and import"></a>Problem 1: Clone and import</h6><p>如何从GitHub获取该任务的代码、在本地创建git仓库、使用git管理本地开发。</p>
+<p>由于无法连接MIT的didit服务器，所以只能从：<a href="https://github.com/rainywang/Spring2019_HITCS_SC_Lab1/tree/master/P2" target="_blank" rel="noopener">https://github.com/rainywang/Spring2019_HITCS_SC_Lab1/tree/master/P2</a>获取代码。</p>
+<p>打开git控制台，使用命令 git clone “<a href="https://github.com/rainywang/Spring2019_HITCS_SC_Lab1/tree/master/P2" target="_blank" rel="noopener">https://github.com/rainywang/Spring2019_HITCS_SC_Lab1</a>.git”</p>
+<h6 id="Problem-3-Turtle-graphics-and-drawSquare"><a href="#Problem-3-Turtle-graphics-and-drawSquare" class="headerlink" title="Problem 3: Turtle graphics and drawSquare"></a>Problem 3: Turtle graphics and drawSquare</h6><p>​    首先，乌龟前行一段距离，即正方形的边长，然后转90，接着再爬行正方形的边长距离，转90度，爬行正方形的边长距离，转90度，最后爬行正方形的边长距离即可得到一个正方形。</p>
+<h6 id="Problem-5-Drawing-polygons"><a href="#Problem-5-Drawing-polygons" class="headerlink" title="Problem 5: Drawing polygons"></a>Problem 5: Drawing polygons</h6><p>​    首先，计算出该多边形的外角，然后乌龟爬行多边形的边长距离，接着进行（n-1）次下列循环（n为多边形边数）：转一个外角的度数，然后爬行一个多边形的边长距离。</p>
+<h6 id="Problem-6-Calculating-Bearings"><a href="#Problem-6-Calculating-Bearings" class="headerlink" title="Problem 6: Calculating Bearings"></a>Problem 6: Calculating Bearings</h6><p>（1）calculateBearingToPoint（）：这个函数相对繁琐，因为需要分情况讨论，针对当前点和目的点的相对位置，分为横坐标相等、大于、小于三种情况，每种情况内又分别讨论纵坐标的相对情况，根据不同的相对位置关系，分别计算需要返回的转角度数。</p>
+<p>（2）calculateBearings（）：循环（n-1）次（n为所有点的个数）：调用calculateBearingToPoint（）方法，计算转角，其中角度为当前乌龟的角度；然后更新当前乌龟的角度，计算方法是：上一次乌龟的角度加上转角度数，如果结果度数大于360度，则减去360度即可。</p>
+<h6 id="Problem-7-Convex-Hulls"><a href="#Problem-7-Convex-Hulls" class="headerlink" title="Problem 7: Convex Hulls"></a>Problem 7: Convex Hulls</h6><p>​       如果点的个数小于4，则所有点都是要找的点，否则：</p>
+<p>1） 找到当前最左下的点为起始点和终结点，并加入结果集</p>
+<p>2） 执行如下循环，直到终结点等于起始点：</p>
+<p>​       计算当前点到其余每个点的转角度数，然后遍历，找出转角度数相同的点，如果转角度数相同的点不止一个，先将这些点加入temPoints集合，然后遍历该集合，找出距离当前点最远的那个点即为下一个要找的点，将其更新为当前点，并加入结果集。</p>
+<h6 id="Problem-8-Personal-art"><a href="#Problem-8-Personal-art" class="headerlink" title="Problem 8: Personal art"></a>Problem 8: Personal art</h6><p>​       首先进行三次循环，每次划线距离60，转角120度，画出一个三角形；然后循环六次，每次划线120，转角60度，画出一个边长2倍的六边形；然后为了效果更佳美观，循环上述操作59次，每一遍循环转角62.11度，防止线的重合。</p>
+<h6 id="Submitting"><a href="#Submitting" class="headerlink" title="Submitting"></a>Submitting</h6><p>如何通过Git提交当前版本到GitHub上你的Lab1仓库。</p>
+<p>首先，将eclipse文件中的P2包复制更新到本地仓库，然后右键运行Git Bash here，依次输入下列三行命令：</p>
+<p>git add .</p>
+<p>git commit -m “lab1_P3”</p>
+<p>git push origin master</p>
+<h5 id="Social-Network"><a href="#Social-Network" class="headerlink" title="Social Network"></a>Social Network</h5><p>在这里简要概述你对该任务的理解。</p>
+<p>将每个人看做一个点，有关系的人用线（有向或无向）连接，模拟社交网络。其中比较有难度的是两个人之间最短距离getDistance（）函数的编写，这里用到的广度优先算法，并在循环中记录每一层关系中人的个数以判断广搜的层数即距离。</p>
+<h6 id="设计-实现FriendshipGraph类"><a href="#设计-实现FriendshipGraph类" class="headerlink" title="设计/实现FriendshipGraph类"></a>设计/实现FriendshipGraph类</h6><p>给出你的设计和实现思路/过程/结果。</p>
+<p>首先定义ArrayList&lt;ArrayList<integer>&gt;类型的可变长度的数组，用0和1来存储每个人之间的关系，也方便社交网络从无向图扩展到有向图，定义ArrayList<person>类型的可变长度的数组来存储每个人。然后是各个函数的构造。</person></integer></p>
+<h6 id="设计-实现Person类"><a href="#设计-实现Person类" class="headerlink" title="设计/实现Person类"></a>设计/实现Person类</h6><p>给出你的设计和实现思路/过程/结果。</p>
+<p>这里设计较为简单，只用名字来唯一标识每个人，然后设计了参数为name的默认构造方法，以及getName()和setName()方法。</p>
+<h6 id="设计-实现客户端代码main"><a href="#设计-实现客户端代码main" class="headerlink" title="设计/实现客户端代码main()"></a>设计/实现客户端代码main()</h6><p>给出你的设计和实现思路/过程/结果。</p>
+<p>首先，new 一个FriendshipGraph对象，接着new四个不同名字的Person并以此添加到FriendshipGraph网络社交图中，然后根据设计的社交网络图，调用addEdge（）方法添加有向边，最后调用getDistance函数计算并输出人与人之间的距离。</p>
+<h6 id="设计-实现测试用例"><a href="#设计-实现测试用例" class="headerlink" title="设计/实现测试用例"></a>设计/实现测试用例</h6><p>给出你的设计和实现思路/过程/结果。</p>
+<p>测试用例为实验指导文档给出的测试用例，创建了四个姓名不同的Person对象，然后分别调用了addVertex(); addEdge() 和graph.getDistance()方法，结果测试完美通过。</p>
+<h5 id="Tweet-Tweet"><a href="#Tweet-Tweet" class="headerlink" title="Tweet Tweet"></a>Tweet Tweet</h5><p>请自行组织子目录结构。</p>
+<p>Eclipse中为方便测试，将Test.java文件一并放入了同一个包下，目录结构如下：</p>
+<p>然后，各个函数完成后，在本地仓库下建立test文件夹，在该文件夹下建立P3文件夹，将所有的Test.java文件复制到该文件夹下，目录结构如下：</p>
+<p>src </p>
+<p>​       P3</p>
+<p>​              FriendshipGraph.java</p>
+<p>​              Person.java</p>
+<p>test</p>
+<p>​       P3</p>
+<p>​              FriendshipGraphTest.java</p>
+<h6 id="Problem-1-Extracting-data-from-tweets"><a href="#Problem-1-Extracting-data-from-tweets" class="headerlink" title="Problem 1: Extracting data from tweets"></a>Problem 1: Extracting data from tweets</h6><p>（1）      getTimespan()：如果tweets为空，则返回null，结束，否则：</p>
+<p>​                     定义minTweet和maxTweet，初值均设置为第一个Tweet，然后遍历Tweet集合，得到每一个Tweet的Timestamp()，分别和minTweet、maxTweet比较，找出最早和最晚的Tweet；循环结束后，最晚的Tweet时间和最早Tweet时间跨度即为结果。</p>
+<p>（2）      getMentionedUsers():如果tweets为空，则返回null，结束，否则：</p>
+<p>​       建立Set\<string>集合，遍历Tweet：得到每一条Tweet的text内容，然后根据正则表达式抽取其中符合要求的MentionedUsers，如果找到了这样的MentionedUsers，就放入set结果集；最终返回set结果集。</string></p>
+<h6 id="Problem-2-Filtering-lists-of-tweets"><a href="#Problem-2-Filtering-lists-of-tweets" class="headerlink" title="Problem 2: Filtering lists of tweets"></a>Problem 2: Filtering lists of tweets</h6><p>（1）   writtenBy()：建立ArrayList\<tweet>结果集，然后遍历tweets：得到每一个Tweet的作者，将作者名和参数username进行比较，如果一致，则将该Tweet加入结果集；最终返回结果集。</tweet></p>
+<p>（2）   inTimespan()：建立List\<tweet>结果集，得到timespan的初始和结束时间，然后遍历tweets：得到每一个Tweet的instant，如果在timespan的初始和结束时间之间，则将该Tweet存入结果集；最终返回结果集。</tweet></p>
+<p>（3）   containing()：建立List\<tweet>结果集，如果tweets为空，则返回null，结束，否则：遍历tweets：得到每个Tweet的text，并将每个字符转化为小写字母，遍历List\<string> words集合，如果text包含了words集合其中一个String，则将该Tweet加入结果集，并进行下一次外层循环；最终返回结果集。</string></tweet></p>
+<h6 id="Problem-3-Inferring-a-social-network"><a href="#Problem-3-Inferring-a-social-network" class="headerlink" title="Problem 3: Inferring a social network"></a>Problem 3: Inferring a social network</h6><p>（1）     guessFollowsGraph()：建立Map&lt;String, Set\<string>&gt; 结果集和Set\<string> followers集合，构造提取Follows的正则表达式，然后遍历tweets：建立new HashSet&lt;&gt;()存储followers，获取每个Tweet的text，然后用正则表达式进行匹配，如果有follower，就将其加入followers集合，匹配完成后，如果followers集合不为空，就将该Tweet的作者名和对应的followers集合加入map结果集；最终返回map结果集。</string></string></p>
+<p>（2）     influencers():建立Map&lt;String, Integer&gt; influenceMap，遍历followsGraph：将username先加入influenceMap，然后得到 该Tweet的followers集合并统计人数，最后将结果更新到influenceMap中；遍历完成后创建Comparator对象，遍历influenceMap根据每个tweet的followers人数比较影响力大小并排序，最后将排序结果加入结果集并返回即可。</p>
+<h6 id="Problem-4-Get-smarter"><a href="#Problem-4-Get-smarter" class="headerlink" title="Problem 4: Get smarter"></a>Problem 4: Get smarter</h6><p>这里判断每一个tweet用户的followers时除了直接添加@到的人之外，还根据Triadic closure原则和是否有Common hashtags添加followers。前者的判断是每次在循环内部增加一次循环搜索，后者主要是用正则表达式提取text里的hashtags，然后判断是否和当前tweet用户有相同的，如果有，则该tweet用户是当前tweet用户的follower。</p>
+<h4 id="实验进度记录"><a href="#实验进度记录" class="headerlink" title="实验进度记录"></a>实验进度记录</h4><p>请使用表格方式记录你的进度情况，以超过半小时的连续编程时间为一行。</p>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>时间段</th>
+<th>任务</th>
+<th>实际完成情况</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019-02-26</td>
+<td>14:00-18:32</td>
+<td>完成整个P1和P2的Problem1-4</td>
+<td>延期一个小时半完成</td>
+</tr>
+<tr>
+<td>2019-02-26</td>
+<td>18:35-19：03</td>
+<td>编写P2的Problem5</td>
+<td>按计划完成</td>
+</tr>
+<tr>
+<td>2019-02-26</td>
+<td>19:15-19:46</td>
+<td>编写P2的Problem6</td>
+<td>按计划完成</td>
+</tr>
+<tr>
+<td>2019-02-28</td>
+<td>前天19:30-10:12</td>
+<td>编写P3</td>
+<td>延期半天完成</td>
+</tr>
+<tr>
+<td>2019-02-28</td>
+<td>19:20-20:48</td>
+<td>编写P4的Problem1</td>
+<td>按计划完成</td>
+</tr>
+<tr>
+<td>2019-03-02</td>
+<td>10:00-14:40</td>
+<td>编写P4、完善P2</td>
+<td>推迟一天完成</td>
+</tr>
+<tr>
+<td>2019-03-04</td>
+<td>16:30-17:04</td>
+<td>Lab1代码的完善及个别方法的优化</td>
+<td>按计划完成</td>
+</tr>
+</tbody>
+</table>
+<h4 id="实验过程中遇到的困难与解决途径"><a href="#实验过程中遇到的困难与解决途径" class="headerlink" title="实验过程中遇到的困难与解决途径"></a>实验过程中遇到的困难与解决途径</h4><table>
+<thead>
+<tr>
+<th>遇到的难点</th>
+<th>解决途径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1实验中测试文件的读取以及生成矩阵写入文件</td>
+<td>采用相对项目根目录读取的方式，用new File(“”).getCanonicalPath()获取项目的根目录，然后拼接src下具体文件路径 “/src/P1/txt/1.txt”</td>
+</tr>
+<tr>
+<td>P2 Convex Hulls中对凸包上同一条直线出现多个点情况的处理</td>
+<td>如果出现最少角度的直线上出现多个点，则先将这些点加入一个暂存的集合，循环完毕，遍历该集合，找出该集合中这些点到当前点的距离最大的那个点，即为下一个要找的点。</td>
+</tr>
+<tr>
+<td>P4中对每一个Tweet用户的求followers方法及其改进</td>
+<td>首先提取text中符合要求的followers用户名需要使用正则表达式，由于之前没学习过正则表达式，所以在这里花了一晚上的时间先补充了这部分的知识；其次是求解followers方法的改进中，在根据Triadic closure原则添加用户时，需要在当前循环内再次遍历tweets集合，构建正则表达式，根据text的内容再次匹配。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="实验过程中收获的经验、教训、感想"><a href="#实验过程中收获的经验、教训、感想" class="headerlink" title="实验过程中收获的经验、教训、感想"></a>实验过程中收获的经验、教训、感想</h4><h5 id="实验过程中收获的经验和教训"><a href="#实验过程中收获的经验和教训" class="headerlink" title="实验过程中收获的经验和教训"></a>实验过程中收获的经验和教训</h5><p>利用一些工具如：Git、eclipse、Junit单元测试等能够显著的提高编程效率，熟悉工程的管理、了解Git的运作方式也至关重要。</p>
+<h5 id="针对以下方面的感受"><a href="#针对以下方面的感受" class="headerlink" title="针对以下方面的感受"></a>针对以下方面的感受</h5><p>(1)  Java编程语言是否对你的口味？yes</p>
+<p>(2)  关于Eclipse IDE:</p>
+<p>自认为Eclipse 是一个比较上手的免费IDE，平时写java代码时基本都是使用的eclipse，所以相对来说，对eclipse的使用已经相对熟练。</p>
+<p>(3)  关于Git和GitHub</p>
+<p>​              之前没有使用过Git，对其还是相对陌生的，但是实验要求不高，只需要        掌握git的几个比较常用的命令即可；github平时接触过，但运用也不是             特别熟练，还需要课下勤于使用。</p>
+<p>(4)  关于CMU和MIT的作业</p>
+<p>​              由于已经有了java语言基础，所以这次实验感觉不是很难，方法的解决        思路也都基本清晰明了，只是个别问题的细节处理还需要注意。</p>
+<p>(5)  关于本实验的工作量、难度、deadline</p>
+<p>​              第一次实验的安排很合理，难度适合，时间充足。</p>
+<p>(6)  关于初接触“软件构造”课程</p>
+<p>​              对最近课程讲解的都是一些理论知识内容比较感兴趣，希望进一步学习        更多具体的相关知识。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Zhang Yue</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://yoursite.com/2019/04/18/软件构造实验一/" title="软件构造实验一">http://yoursite.com/2019/04/18/软件构造实验一/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件构造/" rel="tag"># 软件构造</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/18/软件构造实验二/" rel="next" title="软件构造实验二">
+                <i class="fa fa-chevron-left"></i> 软件构造实验二
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/18/hibernate/" rel="prev" title="javaEE-framework开篇——hibernate">
+                javaEE-framework开篇——hibernate <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Zhang Yue">
+            
+              <p class="site-author-name" itemprop="name">Zhang Yue</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/CN-ZhangYue" title="GitHub &rarr; https://github.com/CN-ZhangYue" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/zhangyue3040@gmail.com" title="E-Mail &rarr; zhangyue3040@gmail.com"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://guoziyang.top" title="https://guoziyang.top" rel="noopener" target="_blank">郭子阳</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#实验目标概述"><span class="nav-number">1.</span> <span class="nav-text">实验目标概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实验环境配置"><span class="nav-number">2.</span> <span class="nav-text">实验环境配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实验过程"><span class="nav-number">3.</span> <span class="nav-text">实验过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Magic-Squares"><span class="nav-number">3.1.</span> <span class="nav-text">Magic Squares</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#isLegalMagicSquare"><span class="nav-number">3.1.1.</span> <span class="nav-text">isLegalMagicSquare()</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#generateMagicSquare"><span class="nav-number">3.1.2.</span> <span class="nav-text">generateMagicSquare()</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Turtle-Graphics"><span class="nav-number">3.2.</span> <span class="nav-text">Turtle Graphics</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Problem-1-Clone-and-import"><span class="nav-number">3.2.1.</span> <span class="nav-text">Problem 1: Clone and import</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Problem-3-Turtle-graphics-and-drawSquare"><span class="nav-number">3.2.2.</span> <span class="nav-text">Problem 3: Turtle graphics and drawSquare</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Problem-5-Drawing-polygons"><span class="nav-number">3.2.3.</span> <span class="nav-text">Problem 5: Drawing polygons</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Problem-6-Calculating-Bearings"><span class="nav-number">3.2.4.</span> <span class="nav-text">Problem 6: Calculating Bearings</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Problem-7-Convex-Hulls"><span class="nav-number">3.2.5.</span> <span class="nav-text">Problem 7: Convex Hulls</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Problem-8-Personal-art"><span class="nav-number">3.2.6.</span> <span class="nav-text">Problem 8: Personal art</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Submitting"><span class="nav-number">3.2.7.</span> <span class="nav-text">Submitting</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Social-Network"><span class="nav-number">3.3.</span> <span class="nav-text">Social Network</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#设计-实现FriendshipGraph类"><span class="nav-number">3.3.1.</span> <span class="nav-text">设计/实现FriendshipGraph类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#设计-实现Person类"><span class="nav-number">3.3.2.</span> <span class="nav-text">设计/实现Person类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#设计-实现客户端代码main"><span class="nav-number">3.3.3.</span> <span class="nav-text">设计/实现客户端代码main()</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#设计-实现测试用例"><span class="nav-number">3.3.4.</span> <span class="nav-text">设计/实现测试用例</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Tweet-Tweet"><span class="nav-number">3.4.</span> <span class="nav-text">Tweet Tweet</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Problem-1-Extracting-data-from-tweets"><span class="nav-number">3.4.1.</span> <span class="nav-text">Problem 1: Extracting data from tweets</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Problem-2-Filtering-lists-of-tweets"><span class="nav-number">3.4.2.</span> <span class="nav-text">Problem 2: Filtering lists of tweets</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Problem-3-Inferring-a-social-network"><span class="nav-number">3.4.3.</span> <span class="nav-text">Problem 3: Inferring a social network</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Problem-4-Get-smarter"><span class="nav-number">3.4.4.</span> <span class="nav-text">Problem 4: Get smarter</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实验进度记录"><span class="nav-number">4.</span> <span class="nav-text">实验进度记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实验过程中遇到的困难与解决途径"><span class="nav-number">5.</span> <span class="nav-text">实验过程中遇到的困难与解决途径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实验过程中收获的经验、教训、感想"><span class="nav-number">6.</span> <span class="nav-text">实验过程中收获的经验、教训、感想</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#实验过程中收获的经验和教训"><span class="nav-number">6.1.</span> <span class="nav-text">实验过程中收获的经验和教训</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#针对以下方面的感受"><span class="nav-number">6.2.</span> <span class="nav-text">针对以下方面的感受</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-jiaoyue"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Yue</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
