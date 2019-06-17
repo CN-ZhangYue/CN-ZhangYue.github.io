@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+  <meta name="description" content="之前整理了一堆软件构造课程的知识，懒癌患者今天终于决定动手推到博客啦">
+<meta name="keywords" content="软件构造">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件构造一">
+<meta property="og:url" content="http://yoursite.com/2019/06/17/软件构造一/index.html">
+<meta property="og:site_name" content="Jiaoyue&#39;s Blog">
+<meta property="og:description" content="之前整理了一堆软件构造课程的知识，懒癌患者今天终于决定动手推到博客啦">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/mix/软件构造/multi-dimensional%20software%20views.JPG">
+<meta property="og:image" content="http://yoursite.com/mix/软件构造/Understandability.JPG">
+<meta property="og:image" content="http://yoursite.com/mix/软件构造/Reusability.JPG">
+<meta property="og:image" content="http://yoursite.com/mix/软件构造/MaintainabilityAdaptability.JPG">
+<meta property="og:image" content="http://yoursite.com/mix/软件构造/Robustness.JPG">
+<meta property="og:image" content="http://yoursite.com/mix/软件构造/Performance.JPG">
+<meta property="og:updated_time" content="2019-06-17T15:50:46.294Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件构造一">
+<meta name="twitter:description" content="之前整理了一堆软件构造课程的知识，懒癌患者今天终于决定动手推到博客啦">
+<meta name="twitter:image" content="http://yoursite.com/mix/软件构造/multi-dimensional%20software%20views.JPG">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/17/软件构造一/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>软件构造一 | Jiaoyue's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jiaoyue's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Angel, come on!</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/CN-ZhangYue" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/17/软件构造一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiaoyue's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件构造一
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-17 18:05:48 / 修改时间：23:50:46" itemprop="dateCreated datePublished" datetime="2019-06-17T18:05:48+08:00">2019-06-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/软件构造/" itemprop="url" rel="index"><span itemprop="name">软件构造</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">之前整理了一堆软件构造课程的知识，懒癌患者今天终于决定动手推到博客啦</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h3><h4 id="课程目标"><a href="#课程目标" class="headerlink" title="课程目标"></a>课程目标</h4><ul>
+<li><p>深入学习ADT和OOP</p>
+</li>
+<li><p>掌握面向关键质量目标：</p>
+</li>
+</ul>
+<p>​    可理解性、可维护性、可复用性、健壮性、时空性能</p>
+<ul>
+<li>了解代码重构和面向更复杂软件系统的高级构造技术</li>
+</ul>
+<h3 id="软件构造基础"><a href="#软件构造基础" class="headerlink" title="软件构造基础"></a>软件构造基础</h3><h4 id="软件构造的多维度视角"><a href="#软件构造的多维度视角" class="headerlink" title="软件构造的多维度视角"></a>软件构造的多维度视角</h4><h5 id="大纲："><a href="#大纲：" class="headerlink" title="大纲："></a>大纲：</h5><ul>
+<li>软件系统多维度视角<ul>
+<li>分阶段：构建视图和运行时视图</li>
+<li>动态：时刻和周期视图</li>
+<li>按级别：代码和组件视图</li>
+<li>每个视图的元素、关系、模型</li>
+</ul>
+</li>
+<li>软件构造：不同视图间的转换<ul>
+<li>$\empty \Rightarrow $ 代码</li>
+<li>代码  $\Rightarrow$ 组件</li>
+<li>构建时 $\Rightarrow$ 运行时</li>
+<li>时刻 $\Rightarrow$ 周期</li>
+</ul>
+</li>
+</ul>
+<p>本节重点</p>
+<ul>
+<li>掌握软件系统三个维度中的各要素</li>
+<li>掌握各类描述软件系统的模型</li>
+<li>理解软件的构造就是在不同视图之间的变换</li>
+</ul>
+<h5 id="多维软件视图"><a href="#多维软件视图" class="headerlink" title="多维软件视图"></a>多维软件视图</h5><p><img src="\mix\软件构造\multi-dimensional software views.JPG" height="400px"></p>
+<ul>
+<li>Moment view: what do source code and component look like in a specific time  </li>
+<li>Period view: how do they evolve/change along with time- </li>
+</ul>
+<h6 id="1）Built-time-Views"><a href="#1）Built-time-Views" class="headerlink" title="1）Built-time Views"></a>1）Built-time Views</h6><p>Built-time(软件构造的核心过程和环节)：</p>
+<p>​    idea $\Rightarrow$ requirement $\Rightarrow $ design   $\Rightarrow $code  $\Rightarrow $ installable / executable package </p>
+<p>Code-level view: source code （源代码）</p>
+<p>Component-level view: architecture (体系结构)</p>
+<ul>
+<li><p>Build-time, moment, and code-level view</p>
+<ul>
+<li><p>在逻辑上代码是如何通过基本程序块组织的</p>
+</li>
+<li><p>三种相互关联的形式：面向词法、面向语法、面向语义</p>
+</li>
+</ul>
+</li>
+<li><p>Build-time, period, and code-level view</p>
+</li>
+<li><p>Build-time, moment, and component-level view</p>
+<ul>
+<li>源代码被物理的组织成文件，这些文件进一步由目录组织</li>
+<li>文件被封装成包、组件和子系统</li>
+<li>可复用模块形成类库</li>
+</ul>
+<p>a、库的来源：OS自装、语言自带、第三方、自行开发</p>
+<p>b、库集成的方法：</p>
+<p>​    静态链接：将类库文件复制到可执行文件中，成为可执行文件的一部分</p>
+<p>​    动态链接：类库变化时，不需要重新生成可执行程序；多个运行中程序可共享同一类库，优化内存使用</p>
+</li>
+<li><p>Build-time, period, and component-level view</p>
+</li>
+</ul>
+<h6 id="2）Runtime-Views"><a href="#2）Runtime-Views" class="headerlink" title="2）Runtime Views"></a>2）Runtime Views</h6><p>a、可执行程序</p>
+<p>​    完全转化为CPU能识别的机器码</p>
+<p>​    源代码被加载入内存进行解释执行</p>
+<p>​    程序被编译成字节码形式，运行时需要由解析器转化成机器码或者解释执行/JVM</p>
+<p>​    在执行时编译为字节码解释执行（Perl/Python）</p>
+<p>b、配置和数据文件</p>
+<p>​    任何较大的程序都使用外部数据源，程序调用操作系统来请求将数据读入内存</p>
+<p>c、分布式程序</p>
+<ul>
+<li><p>Run-time, moment, and code-level view：内存转储</p>
+</li>
+<li><p>Run-time, period and code-level view：UML中的序列图$\Rightarrow $执行追踪</p>
+</li>
+<li><p>Run-time, moment, and component-level view：UML分布(配置)图</p>
+</li>
+<li>Run-time, period, and component-level view：事件日志</li>
+</ul>
+<h5 id="视图变换"><a href="#视图变换" class="headerlink" title="视图变换"></a>视图变换</h5><p>转换类型：</p>
+<p>$\empty \Rightarrow$代码、代码$\Rightarrow$组件、构建时$\Rightarrow$运行时、时刻$\Rightarrow$时期</p>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><ul>
+<li><p>描述软件系统的三个维度：</p>
+<ul>
+<li>按阶段划分：构建时和运行时</li>
+<li>按动态划分：时刻和时期</li>
+<li>按级别划分：代码和组件</li>
+</ul>
+</li>
+<li><p>元素、关系以及每个视图的模型</p>
+</li>
+<li><p>软件构造：视图转换：</p>
+<p>$\empty \Rightarrow$代码、代码$\Rightarrow$组件、构建时$\Rightarrow$运行时、时刻$\Rightarrow$时期</p>
+</li>
+</ul>
+<h4 id="质量目标"><a href="#质量目标" class="headerlink" title="质量目标"></a>质量目标</h4><h5 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h5><ul>
+<li>软件系统的质量目标<ul>
+<li>外部和内部因素</li>
+<li>重要的外部质量因素</li>
+<li>质量因素之间的权衡</li>
+</ul>
+</li>
+<li>五大质量目标<ul>
+<li>易于理解</li>
+<li>随时准备变更：可维护性和适应性</li>
+<li>开发成本低</li>
+<li>安全性：健壮性</li>
+<li>高效运行：性能</li>
+</ul>
+</li>
+</ul>
+<h5 id="质量特征"><a href="#质量特征" class="headerlink" title="质量特征"></a>质量特征</h5><p>外部和内部质量因素</p>
+<h6 id="1）外部质量因素"><a href="#1）外部质量因素" class="headerlink" title="1）外部质量因素"></a>1）外部质量因素</h6><ul>
+<li><p>正确性：正确是首要品质</p>
+</li>
+<li><p>健壮性：软件系统对异常情况作出适当反应的能力（判断异常取决于程序的规格说明）</p>
+</li>
+<li>可扩展性：易于调整以适应变化（同规模相关，越大越难以扩展）<ul>
+<li>简单的体系结构总是比复杂的体系更容易适 应变化。 </li>
+<li>模块自治性越强，变化时对其余模块影响越小</li>
+</ul>
+</li>
+<li>复用性</li>
+<li>兼容性：标准化是解决兼容性问题的关键</li>
+<li>效率：可移植性：指便于将软件产品转移到各种硬件和软件环境</li>
+<li>易用性：包括安装、运行和监控的容易度</li>
+<li>功能</li>
+<li>时态性</li>
+<li>可验证性、完整性（软件系统保护其各组件(程序和数据)免受未经授权的访问和修改的能力）、可修行、经济性（同及时向相伴）</li>
+</ul>
+<h6 id="2）内部质量因素"><a href="#2）内部质量因素" class="headerlink" title="2）内部质量因素"></a>2）内部质量因素</h6><ul>
+<li>源代码相关的因素如行代码，圈复杂度（用来衡量一个模块判定结构的复杂程度），，</li>
+<li>设计中追求高内聚和低耦合</li>
+<li>可读性、可理解性和清晰度、复杂性、大小</li>
+<li>内部质量因素常作为外部质量因素的部分度量</li>
+</ul>
+<h6 id="3）质量属性之间的权衡"><a href="#3）质量属性之间的权衡" class="headerlink" title="3）质量属性之间的权衡"></a>3）质量属性之间的权衡</h6><ul>
+<li><p>重要的四个属性：</p>
+<ul>
+<li>正确性和健壮性：可靠性</li>
+</ul>
+<p>​    系统的软件构造方法、形式化的软件规格说明、在开发过程中自动检查、更好的语言机制、一致性检查工具</p>
+<ul>
+<li>可扩展性和复用性：模块化</li>
+</ul>
+</li>
+</ul>
+<h5 id="五大质量目标"><a href="#五大质量目标" class="headerlink" title="五大质量目标"></a>五大质量目标</h5><ul>
+<li>优雅漂亮的代码：易于理解</li>
+</ul>
+<p><img src="\mix\软件构造\Understandability.JPG" height="350px"></p>
+<ul>
+<li>设计与重用：开发成本低</li>
+</ul>
+<p><img src="\mix\软件构造\Reusability.JPG" height="350px"></p>
+<ul>
+<li>复杂性低：易于改变和扩展</li>
+</ul>
+<p><img src="\mix\软件构造\MaintainabilityAdaptability.JPG" height="350px"></p>
+<ul>
+<li>健壮性和正确性</li>
+</ul>
+<p><img src="\mix\软件构造\Robustness.JPG" height="350px"></p>
+<ul>
+<li>性能和效率</li>
+</ul>
+<p><img src="\mix\软件构造\Performance.JPG" height="350px"></p>
+<p>如有错误，还请多多指教~</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Zhang Yue</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://yoursite.com/2019/06/17/软件构造一/" title="软件构造一">http://yoursite.com/2019/06/17/软件构造一/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件构造/" rel="tag"># 软件构造</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/17/软件构造三/" rel="next" title="软件构造三">
+                <i class="fa fa-chevron-left"></i> 软件构造三
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Zhang Yue">
+            
+              <p class="site-author-name" itemprop="name">Zhang Yue</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/CN-ZhangYue" title="GitHub &rarr; https://github.com/CN-ZhangYue" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/zhangyue3040@gmail.com" title="E-Mail &rarr; zhangyue3040@gmail.com"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://guoziyang.top" title="https://guoziyang.top" rel="noopener" target="_blank">郭子阳</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#绪论"><span class="nav-number">1.</span> <span class="nav-text">绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#课程目标"><span class="nav-number">1.1.</span> <span class="nav-text">课程目标</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件构造基础"><span class="nav-number">2.</span> <span class="nav-text">软件构造基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#软件构造的多维度视角"><span class="nav-number">2.1.</span> <span class="nav-text">软件构造的多维度视角</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#大纲："><span class="nav-number">2.1.1.</span> <span class="nav-text">大纲：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多维软件视图"><span class="nav-number">2.1.2.</span> <span class="nav-text">多维软件视图</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1）Built-time-Views"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">1）Built-time Views</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2）Runtime-Views"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">2）Runtime Views</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#视图变换"><span class="nav-number">2.1.3.</span> <span class="nav-text">视图变换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#小结"><span class="nav-number">2.1.4.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#质量目标"><span class="nav-number">2.2.</span> <span class="nav-text">质量目标</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#大纲"><span class="nav-number">2.2.1.</span> <span class="nav-text">大纲</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#质量特征"><span class="nav-number">2.2.2.</span> <span class="nav-text">质量特征</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1）外部质量因素"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">1）外部质量因素</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2）内部质量因素"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">2）内部质量因素</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3）质量属性之间的权衡"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">3）质量属性之间的权衡</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#五大质量目标"><span class="nav-number">2.2.3.</span> <span class="nav-text">五大质量目标</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-jiaoyue"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Yue</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

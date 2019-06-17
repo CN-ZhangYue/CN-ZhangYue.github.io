@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+  <meta name="description" content="软件构造课程第二章内容整理~">
+<meta name="keywords" content="软件构造">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件构造二">
+<meta property="og:url" content="http://yoursite.com/2019/06/17/软件构造二/index.html">
+<meta property="og:site_name" content="Jiaoyue&#39;s Blog">
+<meta property="og:description" content="软件构造课程第二章内容整理~">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/img/软件构造/git命令.JPG">
+<meta property="og:updated_time" content="2019-06-17T15:50:46.294Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件构造二">
+<meta name="twitter:description" content="软件构造课程第二章内容整理~">
+<meta name="twitter:image" content="http://yoursite.com/img/软件构造/git命令.JPG">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/17/软件构造二/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>软件构造二 | Jiaoyue's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jiaoyue's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Angel, come on!</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/CN-ZhangYue" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/17/软件构造二/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiaoyue's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件构造二
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-17 18:05:48 / 修改时间：23:50:46" itemprop="dateCreated datePublished" datetime="2019-06-17T18:05:48+08:00">2019-06-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/软件构造/" itemprop="url" rel="index"><span itemprop="name">软件构造</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">软件构造课程第二章内容整理~</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="软件构造过程和工具"><a href="#软件构造过程和工具" class="headerlink" title="软件构造过程和工具"></a>软件构造过程和工具</h3><h4 id="软件生命周期和配置管理"><a href="#软件生命周期和配置管理" class="headerlink" title="软件生命周期和配置管理"></a>软件生命周期和配置管理</h4><h5 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h5><ul>
+<li>软件开发生命周期（SDLC）</li>
+<li>传统的软件过程模型（瀑布、增量、v模型、原型、螺旋）</li>
+<li>敏捷开发和极限编程（XP）</li>
+<li>协作软件开发</li>
+<li>软件配置管理（SCM）</li>
+<li>GIT作为SCM的工具</li>
+</ul>
+<h5 id="软件开发生命周期（SDLC）"><a href="#软件开发生命周期（SDLC）" class="headerlink" title="软件开发生命周期（SDLC）"></a>软件开发生命周期（SDLC）</h5><p>软件开发生命周期：</p>
+<p>需求收集$\rightarrow$可行性研究$\rightarrow$系统分析$\rightarrow$软件设计$\rightarrow$编码$\rightarrow$测试$\rightarrow$集成$\rightarrow$实现$\rightarrow$操作与维护$\rightarrow$配置</p>
+<h5 id="传统的软件过程模型"><a href="#传统的软件过程模型" class="headerlink" title="传统的软件过程模型"></a>传统的软件过程模型</h5><ul>
+<li>两种基本模型：线性、迭代</li>
+<li>现有的模型：<ul>
+<li>瀑布模型：利于使用，应对变化代价高</li>
+<li>增量模型：以增量的方式实施瀑布模型，通常首先实现优先级最高的需求，一旦开始开发某增量，则该增量的对应需求被冻结</li>
+<li>V模型（用于验证和确认）：瀑布模型的扩展，强化测试</li>
+<li>原型法：实现系统的原型</li>
+<li>螺旋模型：一种风险驱动的过程模型</li>
+</ul>
+</li>
+<li>关键质量因素：<ul>
+<li>用户参与(适应变化)</li>
+<li>开发效率、项目管理的复杂性</li>
+<li>软件质量</li>
+</ul>
+</li>
+</ul>
+<h5 id="敏捷开发"><a href="#敏捷开发" class="headerlink" title="敏捷开发"></a>敏捷开发</h5><ul>
+<li>提倡适应性规划、演化开发、尽早交付和持续改进，并鼓励对变化做出快速和灵活的响应<ul>
+<li>人以及人与人的互动胜于过程和工具</li>
+<li>可运行的软件胜于面面俱到的文档</li>
+</ul>
+</li>
+<li>提倡适应性规划、渐进开发、早期交付和持续改进，并鼓励对变化做出快速灵活的响应<ul>
+<li>客户合作胜于合同谈判</li>
+<li>响应变化胜于遵循计划</li>
+</ul>
+</li>
+</ul>
+<h5 id="协作软件开发"><a href="#协作软件开发" class="headerlink" title="协作软件开发"></a>协作软件开发</h5><h5 id="软件配置-SCM-和版本控制-VCS"><a href="#软件配置-SCM-和版本控制-VCS" class="headerlink" title="软件配置(SCM)和版本控制(VCS)"></a>软件配置(SCM)和版本控制(VCS)</h5><ul>
+<li>SCM:任务时追踪与控制软件中的变化，实际任务是版本控制和建立基线</li>
+<li>软件配置是软件配置管理的基本单位，任何需要管理的要素都是软件配置项(源代码、数据、文档、硬件、环境等)</li>
+</ul>
+<p>版本控制系统VCM：本地VCM、集中式VCM、分布式VCM</p>
+<h5 id="Git作为SCM工具的例子"><a href="#Git作为SCM工具的例子" class="headerlink" title="Git作为SCM工具的例子"></a>Git作为SCM工具的例子</h5><ul>
+<li>GIt的所有操作都是在一个数据图库上进行</li>
+<li>从另一台机器/服务器复制git项目意味着复制整个对象图</li>
+<li>提交：<ul>
+<li>不重复保存各版本中没有发生变化的文件</li>
+<li>每个文件的每个版本只保存一次，多个提交可共享副本</li>
+</ul>
+</li>
+<li>分支和合并：分支是在版本控制下对对象的复制，以便修改可沿两个分支平行进行</li>
+</ul>
+<p><img src="\img\软件构造\git命令.JPG" height="450px"></p>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><ul>
+<li>通用的软件开发生命周期（SDLO）</li>
+<li>传统的软件过程模型</li>
+<li>敏捷开发</li>
+<li>协作软件开发</li>
+<li>软件配置管理（SCM）</li>
+<li>Git作为SCM的工具实例</li>
+</ul>
+<h4 id="过程、系统和工具"><a href="#过程、系统和工具" class="headerlink" title="过程、系统和工具"></a>过程、系统和工具</h4><h5 id="大纲-1"><a href="#大纲-1" class="headerlink" title="大纲"></a>大纲</h5><ul>
+<li>软件构造的一般过程：设计$\Rightarrow $编程/重构$\Rightarrow $调试$\Rightarrow $测试$\Rightarrow $构建$\Rightarrow $发布<ul>
+<li>编程/重构</li>
+<li>检查和静态代码分析</li>
+<li>调试(转储和日志)和测试</li>
+<li>动态代码分析/概要</li>
+</ul>
+</li>
+<li>狭义的软件构造过程：验证$\Rightarrow $编译$\Rightarrow $链接$\Rightarrow $测试$\Rightarrow $打包$\Rightarrow $安装$\Rightarrow $部署<ul>
+<li>构建系统：组件和流程</li>
+<li>构建变量和语言</li>
+<li>构建工具： Make, Ant, Maven, Gradle, Eclipse </li>
+</ul>
+</li>
+</ul>
+<h5 id="软件构造的一般过程"><a href="#软件构造的一般过程" class="headerlink" title="软件构造的一般过程"></a>软件构造的一般过程</h5><p>编程 $\Rightarrow $调试$\Rightarrow $静态代码检查$\Rightarrow $动态代码分析/概要分析$\Rightarrow $测试$\Rightarrow $重构$\Rightarrow $构建$\Rightarrow $编程</p>
+<p>​    构建$\Rightarrow $编译$\Rightarrow $链接$\Rightarrow $测试$\Rightarrow $打包$\Rightarrow $安装 $\Rightarrow $部署</p>
+<h6 id="1）编程"><a href="#1）编程" class="headerlink" title="1）编程"></a>1）编程</h6><p>a、编程语言</p>
+<ul>
+<li><p>Eclipse作为IDE的示例：</p>
+<ul>
+<li><p>Eclipse包含一个基本工作区，其中包含用于编码、构建、运行和调试的工具，以及用于定制环境的可扩展插件系统</p>
+</li>
+<li><p>核心组件：</p>
+<p>—运行时内核：可启动基础功能、动态发现和运行插件 </p>
+<p>OSGi是java动态化模块化系统的一系列规范，Eclipse的插件采用OSGi规范描述自身，Eclipse platform维护插件及其功能的注册</p>
+<p>—资源管理插件：定义了用于管理工具插件的通用资源模型。</p>
+<p>—Workbench UI核：实现了工作台UI并定义了许多扩展点，允许其他插件提供UI功能</p>
+<p>—java开发工具（JDT）</p>
+<p>—插件开发环境</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>b、建模语言和工具</p>
+<p>  建模语言是一种人工语言，用于表达信息、知识或系统，以一套一致的规则定义来可视化、推理、验证和交流系统的设计</p>
+<p>c 、配置语言</p>
+<p>  配置参数和初始化设置：分离稳定和不稳定的部分</p>
+<h6 id="2）评审和静态代码分析"><a href="#2）评审和静态代码分析" class="headerlink" title="2）评审和静态代码分析"></a>2）评审和静态代码分析</h6><p>代码评审是对源代码的系统检查(同行评审)：</p>
+<p>正式代码检查、轻量级代码评审、静态代码分析(没有实际执行程序，对执行程序的分析称为动态分析)</p>
+<h6 id="3）动态代码分析-概要分析"><a href="#3）动态代码分析-概要分析" class="headerlink" title="3）动态代码分析/概要分析"></a>3）动态代码分析/概要分析</h6><ul>
+<li>运行程序以分析代码</li>
+<li>程序需要经过充分的测试</li>
+<li>利用测试度量技术(如覆盖率)确保代码的可能功能均被充分测试到</li>
+<li>概要分析是动态代码分析的一种形式，用于测量程序的时空复杂度，特定指令或函数的调用频率或持续时间</li>
+</ul>
+<h6 id="4）调试和测试"><a href="#4）调试和测试" class="headerlink" title="4）调试和测试"></a>4）调试和测试</h6><ul>
+<li>测试：<ul>
+<li>为软件的利益相关者提供有关被测产品或服务质量的信息</li>
+<li>软件测试涉及要评估的组件或系统组件的执行</li>
+<li>测试技术包括执行程序或应用程序的过程，目的是找到能验证软件产品是否合适的验证系统</li>
+</ul>
+</li>
+<li>调试<ul>
+<li>调试是识别错误的根本原因并对其进行纠正的过程</li>
+<li>调试往往是成功测试的后序环节，成功测试不意味着没有错误</li>
+</ul>
+</li>
+</ul>
+<p>测试和调试不会提升软件质量，而是发现缺陷的主要手段；</p>
+<p>软件质量应通过认真的分析需求、良好的设计、高质量的编码来确保</p>
+<p>调试是最后的手段</p>
+<h6 id="5）重构"><a href="#5）重构" class="headerlink" title="5）重构"></a>5）重构</h6><p>重构是在不改变代码外部行为的前提下，改善其内部结构，改进其外部行为</p>
+<h5 id="狭义的软件构造过程"><a href="#狭义的软件构造过程" class="headerlink" title="狭义的软件构造过程"></a>狭义的软件构造过程</h5><h6 id="1）建设体制"><a href="#1）建设体制" class="headerlink" title="1）建设体制"></a>1）建设体制</h6><ul>
+<li>典型的构建场景：<ul>
+<li>1、编译代码</li>
+<li>2、打包和测试解释型语言</li>
+<li>3、编译和打包web应用程序</li>
+<li>4、执行单元测试</li>
+<li>5、进行静态分析，得到bug报告</li>
+<li>6、输入不同格式的文件，得到人可读的文档（PDF/HTML)</li>
+</ul>
+</li>
+<li>编译语言<ul>
+<li>C,C++,java，C#。源文件被编译后得到目标文件，后被链接入类库或可执行程序中，最终得到可部署到目标机器的发布包</li>
+<li>工具：版本控制工具、源树和对象树、编译器、构建机器、发布打包和目标机</li>
+</ul>
+</li>
+<li>解释型语言<ul>
+<li>j解释的源码不会编译成目标代码，所以不需要对象树。源文件本身被收集到一个发布包中，准备安装到目标机器上</li>
+<li>编译工具专注于形成源文件并将它们存储到发布包中</li>
+<li>编译成机器码不会在构建时执行，但可以在运行时执行</li>
+</ul>
+</li>
+<li>基于web的应用程序<ul>
+<li>基于web的应用程序的构建系统是编译、解释代码和配置或数据文件的组合</li>
+<li>静态HTML文件只包含在web浏览器中显式的数据。文件被直接复制到发布包</li>
+<li>JavaScript文件包含最终被用户浏览器解释的代码，文件也被直接复制到发布包</li>
+<li>JSP，JAP或PHP页面包含HTML和程序代码。文件由web应用程序服务器编译执行，而不是由构建系统。这些文件被复制到发布包，安装到web服务器上</li>
+<li>java源文件被编译成目标文件并打包成web应用程序、构建系统在打包前执行该转换。java文件可在web应用程序服务器或web浏览器中执行</li>
+</ul>
+</li>
+<li>单元测试、静态分析等</li>
+</ul>
+<h6 id="2）构建系统的组件"><a href="#2）构建系统的组件" class="headerlink" title="2）构建系统的组件"></a>2）构建系统的组件</h6><p>​    版本控制工具、源树、对象树、编译器、构建工具、构建机器（本地(目标机器和构建机器相同)/交叉编译环境）、发布打包和目标机：生成可安装在用户机器上的软件</p>
+<h6 id="3）构建过程和描述"><a href="#3）构建过程和描述" class="headerlink" title="3）构建过程和描述"></a>3）构建过程和描述</h6><ul>
+<li>构建过程：构建工具调用每个编译工具来完成任务，这是一个端到端的事件序列</li>
+<li>构建描述：构建工具需要构建描述信息，基于文本的格式编写</li>
+<li>构建系统的使用<ul>
+<li>开发人员(或私有)构建：从VCS检出源码私有开发。最终的发布包用于开发人员的私有开发</li>
+<li>发布构建：提供一个完整的软件包供测试组测验。用于发布构建的源树只编译一次，并且永远不会修改源树</li>
+<li>健全性构建：除了不会讲软件包给客户外与发布构建相同。构建过程决定了源码是否有错误。这种构建每天可执行多次并且往往是完全自动化的</li>
+</ul>
+</li>
+</ul>
+<h6 id="4）java的编译工具"><a href="#4）java的编译工具" class="headerlink" title="4）java的编译工具"></a>4）java的编译工具</h6><p>write once ,run anywhere</p>
+<ul>
+<li><p>java的目标文件</p>
+<ul>
+<li>java类的目标文件格式称为类文件，后缀为 .class</li>
+<li>与机器无关的字节码来描述程序流,而不是直接编译到本地代码</li>
+<li>需要JVM加载和解释这些字节码，JVM可能在实际执行程序前将它们转换为本机代码</li>
+<li>使用javac命令将java源文件转换为类文件</li>
+</ul>
+</li>
+<li><p>java可执行程序</p>
+<ul>
+<li><p>java语言是动态类加载，在运行时根据需要，类会被加载入内存</p>
+</li>
+<li><p>java程序时一个动态库的集合，单个类一次加载一个</p>
+</li>
+<li><p>java程序需要执行两件事：</p>
+<p>JVM必须提供包含主方法的类的名称作为执行的起点</p>
+<p>JVM必须提供一个类的路径用于识别其他类的地址</p>
+</li>
+</ul>
+</li>
+<li><p>java库</p>
+<ul>
+<li>JAR文件通常作为分发程序的一种方法</li>
+<li>由于动态加载的特性，可以随时替换和升级jar文件</li>
+</ul>
+</li>
+</ul>
+<h6 id="5）子目标和构建的变体"><a href="#5）子目标和构建的变体" class="headerlink" title="5）子目标和构建的变体"></a>5）子目标和构建的变体</h6><p>可存在任意数量的构建方式，每个方式都使用稍微修改的构建过程并创建一个稍微不同的发布包</p>
+<ul>
+<li>三种构建方式：<ul>
+<li>局部构建</li>
+<li>构建不同版本(家庭版、专业版、企业版等)</li>
+<li>面向不同目标架构的构建(不同的CPU指令集、不同的操作系统)</li>
+</ul>
+</li>
+<li>构建的字目标：软件模块化；避免耗时的完全构建，限制构建涉及的模块数量</li>
+</ul>
+<h6 id="6）构建工具"><a href="#6）构建工具" class="headerlink" title="6）构建工具"></a>6）构建工具</h6><p>java：Make、 Ant 、Maven 、Gradle 、Eclipse</p>
+<ul>
+<li>Apache Ant：遵循的是将构建系统中的每个活动都封装成一个高级任务</li>
+<li>Apache Maven:让开发人员在最短的时间内理解开发工作的完整状态：简化构建模型、提供统一的构建系统、提供优质项目资讯、为最佳实践提供指导方针、运行透明的迁移到新特性</li>
+<li>Gradle：构建everything、完全自动化、转发更快</li>
+<li>Eclipse：代码编辑、编译、版本控制、测试、跟踪任务</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Zhang Yue</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://yoursite.com/2019/06/17/软件构造二/" title="软件构造二">http://yoursite.com/2019/06/17/软件构造二/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件构造/" rel="tag"># 软件构造</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/06/struct2/" rel="next" title="javaEE-framework——Struts2">
+                <i class="fa fa-chevron-left"></i> javaEE-framework——Struts2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/17/软件构造三/" rel="prev" title="软件构造三">
+                软件构造三 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Zhang Yue">
+            
+              <p class="site-author-name" itemprop="name">Zhang Yue</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/CN-ZhangYue" title="GitHub &rarr; https://github.com/CN-ZhangYue" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/zhangyue3040@gmail.com" title="E-Mail &rarr; zhangyue3040@gmail.com"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://guoziyang.top" title="https://guoziyang.top" rel="noopener" target="_blank">郭子阳</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件构造过程和工具"><span class="nav-number">1.</span> <span class="nav-text">软件构造过程和工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#软件生命周期和配置管理"><span class="nav-number">1.1.</span> <span class="nav-text">软件生命周期和配置管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#大纲"><span class="nav-number">1.1.1.</span> <span class="nav-text">大纲</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件开发生命周期（SDLC）"><span class="nav-number">1.1.2.</span> <span class="nav-text">软件开发生命周期（SDLC）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#传统的软件过程模型"><span class="nav-number">1.1.3.</span> <span class="nav-text">传统的软件过程模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#敏捷开发"><span class="nav-number">1.1.4.</span> <span class="nav-text">敏捷开发</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#协作软件开发"><span class="nav-number">1.1.5.</span> <span class="nav-text">协作软件开发</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件配置-SCM-和版本控制-VCS"><span class="nav-number">1.1.6.</span> <span class="nav-text">软件配置(SCM)和版本控制(VCS)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Git作为SCM工具的例子"><span class="nav-number">1.1.7.</span> <span class="nav-text">Git作为SCM工具的例子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#小结"><span class="nav-number">1.1.8.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过程、系统和工具"><span class="nav-number">1.2.</span> <span class="nav-text">过程、系统和工具</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#大纲-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">大纲</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件构造的一般过程"><span class="nav-number">1.2.2.</span> <span class="nav-text">软件构造的一般过程</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1）编程"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">1）编程</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2）评审和静态代码分析"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2）评审和静态代码分析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3）动态代码分析-概要分析"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">3）动态代码分析/概要分析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4）调试和测试"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">4）调试和测试</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5）重构"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">5）重构</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#狭义的软件构造过程"><span class="nav-number">1.2.3.</span> <span class="nav-text">狭义的软件构造过程</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1）建设体制"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">1）建设体制</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2）构建系统的组件"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">2）构建系统的组件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3）构建过程和描述"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">3）构建过程和描述</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4）java的编译工具"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">4）java的编译工具</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5）子目标和构建的变体"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">5）子目标和构建的变体</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6）构建工具"><span class="nav-number">1.2.3.6.</span> <span class="nav-text">6）构建工具</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-jiaoyue"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Yue</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

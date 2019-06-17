@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+  <meta name="description" content="满满的都是干货~">
+<meta name="keywords" content="软件构造">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件构造三">
+<meta property="og:url" content="http://yoursite.com/2019/06/17/软件构造三/index.html">
+<meta property="og:site_name" content="Jiaoyue&#39;s Blog">
+<meta property="og:description" content="满满的都是干货~">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://xn--5nq911d4h2akua/java的Collection等级.JPG">
+<meta property="og:image" content="http://yoursite.com/img/软件构造/修饰符作用域.JPG">
+<meta property="og:updated_time" content="2019-06-17T15:50:46.294Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件构造三">
+<meta name="twitter:description" content="满满的都是干货~">
+<meta name="twitter:image" content="http://xn--5nq911d4h2akua/java的Collection等级.JPG">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/17/软件构造三/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>软件构造三 | Jiaoyue's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jiaoyue's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Angel, come on!</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/CN-ZhangYue" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/17/软件构造三/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiaoyue's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件构造三
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-17 18:05:48 / 修改时间：23:50:46" itemprop="dateCreated datePublished" datetime="2019-06-17T18:05:48+08:00">2019-06-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/软件构造/" itemprop="url" rel="index"><span itemprop="name">软件构造</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">满满的都是干货~</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="ADT-OOP"><a href="#ADT-OOP" class="headerlink" title="ADT+OOP"></a>ADT+OOP</h3><h4 id="数据类型和数据检查"><a href="#数据类型和数据检查" class="headerlink" title="数据类型和数据检查"></a>数据类型和数据检查</h4><h5 id="编程语言中的数据类型"><a href="#编程语言中的数据类型" class="headerlink" title="编程语言中的数据类型"></a>编程语言中的数据类型</h5><p>java基本数据类型（不可变）：小写开始：int  long boolean double char</p>
+<p>对象数据类型：大写开始，eg：String  </p>
+<ul>
+<li>基本数据类型的包装类：将基本数据类型封装成对象，如collections，尽可能少用，语言会自动切换，但效率低</li>
+</ul>
+<h5 id="静态和动态数据类型"><a href="#静态和动态数据类型" class="headerlink" title="静态和动态数据类型"></a>静态和动态数据类型</h5><p>java是静态类型语言：</p>
+<p>​    编译时需要知道所有变量的类型，编译器可自动推断所有表达式的类型</p>
+<p>​    IDE支持输入时语法检查</p>
+<p>动态类型语言：eg：Python，只有程序运行时才能进行语法检查</p>
+<h5 id="类型检查"><a href="#类型检查" class="headerlink" title="类型检查"></a>类型检查</h5><ul>
+<li><p>静态检查(编译时，运行前)：动态类型的语言也会进行此类检查(best)</p>
+<p>安全、易于理解和改变</p>
+</li>
+<li><p>动态检查(代码被执行)：非法的参数、越界、调用空对象的方法(better)</p>
+</li>
+<li><p>不检查</p>
+</li>
+</ul>
+<p>静态检查针对类型，与变量特定值无关；动态检查针对由特定值引起的错误</p>
+<h5 id="可变性和不可变性"><a href="#可变性和不可变性" class="headerlink" title="可变性和不可变性"></a>可变性和不可变性</h5><p> 对变量赋值是在改变变量的指向，指向不同的值 </p>
+<p> 改变可变变量的内容时 ，是在改变变量内部内容的引用</p>
+<p>采用不可变类型，可通过内存共享相同的值，降低复制带来的内存空间占用</p>
+<h5 id="快照图"><a href="#快照图" class="headerlink" title="快照图"></a>快照图</h5><p>代码级、运行时和时刻视图</p>
+<h5 id="复杂数据类型：数组和集合"><a href="#复杂数据类型：数组和集合" class="headerlink" title="复杂数据类型：数组和集合"></a>复杂数据类型：数组和集合</h5><p>通过数据构建list：Arrays.asList(new String[] { “a”, “b”, “c” })</p>
+<p><img src="\\软件构造\java的Collection等级.JPG" height="350px"></p>
+<ul>
+<li>迭代器是一个对象，遍历时默认调用迭代器</li>
+</ul>
+<h5 id="有用的不可变类型"><a href="#有用的不可变类型" class="headerlink" title="有用的不可变类型"></a>有用的不可变类型</h5><ul>
+<li><p>原始类型和原始包装器都是不可变的: BigInteger 、 BigDecimal </p>
+</li>
+<li><p>Date可变、java的集合类型(List、Set、Map)都是可变的，得到不可修改视图的方法：Collections.unmodifiableList 、Collections.unmodifiableSet、Collections.unmodifiableMap</p>
+<p>不可修改的包装器通过拦截修改集合的所有操作并抛出一个UnsupportedOperationException来取消修改集合：使集合在构建后不可修改，只运行客户读取数据</p>
+</li>
+</ul>
+<h5 id="空指针"><a href="#空指针" class="headerlink" title="空指针"></a>空指针</h5><p>非空的collection可以包含null值</p>
+<h4 id="设计规范"><a href="#设计规范" class="headerlink" title="设计规范"></a>设计规范</h4><h5 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h5><p>1、编程语言中的函数/方法</p>
+<p>2、规范：通信编程</p>
+<p>​    为什么需要规范</p>
+<p>​    行为等价</p>
+<p>​    规格结构：前置和后置条件</p>
+<p>3、设计规范</p>
+<p>​    分类规范</p>
+<p>​    图表规范</p>
+<p>​    规格质量</p>
+<h5 id="编程语言中的函数-方法"><a href="#编程语言中的函数-方法" class="headerlink" title="编程语言中的函数/方法"></a>编程语言中的函数/方法</h5><p>方法的用户不需要知道方法是如何工作的—称之为抽象</p>
+<h5 id="规范：通信编程"><a href="#规范：通信编程" class="headerlink" title="规范：通信编程"></a>规范：通信编程</h5><h6 id="1）文档"><a href="#1）文档" class="headerlink" title="1）文档"></a>1）文档</h6><ul>
+<li>文档约定：<ul>
+<li>定义变量时声明其类型是一种文档约定(编译器会进行检查以确保正确性)</li>
+<li>声明变量未final类型也是一种文档约定</li>
+</ul>
+</li>
+<li>编程目标：语法正确和类型正确、使程序利于理解</li>
+</ul>
+<h6 id="2）规格和契约"><a href="#2）规格和契约" class="headerlink" title="2）规格和契约"></a>2）规格和契约</h6><p>规格说明是团队开发的关键，是分配责任的基础</p>
+<p>规格说明是实现者和使用者间的一种契约，实现者有责任满足契约，使用者可以信赖契约</p>
+<ul>
+<li>优点<ul>
+<li>准确的规格说明利于确定错误的位置和责任</li>
+<li>客户端不需要阅读代码，通过说明了解程序</li>
+<li>规格说明给了实现者实现的自由，在保证约定下，可以自由修改实现</li>
+<li>通过在说明中增加对输入的限定，省略掉耗时的正确性检查工作，提升效率。(保证输入正确性的责任由调用者承担)</li>
+<li>契约分离了客户端和实现者</li>
+</ul>
+</li>
+</ul>
+<p>注：规格说明不应涉及实现的内部变量和私有域</p>
+<h6 id="3）行为等价"><a href="#3）行为等价" class="headerlink" title="3）行为等价"></a>3）行为等价</h6><ul>
+<li>确定行为的等价，关键是一个规格说明实现是否可以替换另一个</li>
+<li>等价的判定由调用者视角确定</li>
+<li>判定可替换与否，需要对调用端依赖内容的准确描述</li>
+</ul>
+<h6 id="4）规范结构：前置和后置条件"><a href="#4）规范结构：前置和后置条件" class="headerlink" title="4）规范结构：前置和后置条件"></a>4）规范结构：前置和后置条件</h6><ul>
+<li>方法的规范包含以下方面：<ul>
+<li>前置条件:由关键字require表示</li>
+<li>后置条件：由关键字effects表示</li>
+<li>异常行为：如果违反了前置条件，会如何</li>
+</ul>
+</li>
+<li><strong>前置条件是客户端的义务，是调用方法的状态的条件</strong></li>
+<li>后置条件是方法实现者的义务。若调用状态的先决条件成立，则方法必须遵守后置条件，方法包括返回适当的结果，抛出异常的指定、可变或不可变对象等</li>
+<li><strong>若前置条件满足，则后置条件必须满足；若前置条件不满足，则后置条件无需满足</strong></li>
+<li>前置和后置条件中对类型的声明由编译器进行检查，其余部分通过注释的形式进行描述，由人来保证正确性</li>
+<li>若无明确说明，默认输入值不可变。</li>
+<li>可变：<ul>
+<li>对可变对象的引用，需要程序维护其一致性</li>
+<li>可变使对象具有全局属性，导致难于理解和确保正切性</li>
+<li>优点是性能和便利，但是需要额外的确保无错的成本</li>
+<li>可变对象使代码难以变化</li>
+</ul>
+</li>
+</ul>
+<h6 id="5）测试和验证规范"><a href="#5）测试和验证规范" class="headerlink" title="5）测试和验证规范"></a>5）测试和验证规范</h6><ul>
+<li>正式合同规格：<ul>
+<li>优点：自动生成的运行时检查、形式验证依据、自动分析工具</li>
+<li>缺点：工作量大、不合实际、行为的某些方面不符合正式规范</li>
+</ul>
+</li>
+<li>文本规范–Javadoc<ul>
+<li>实际方法</li>
+<li>记录每个参数、返回值、每个异常、方法的功能、包括用途、副作用、任何线程安全问题、性能问题等</li>
+<li>不记录具体的实现细节</li>
+</ul>
+</li>
+<li>契约的语言正确性<ul>
+<li>编译器确保类型正确</li>
+<li>静态分析工具识别常见bug</li>
+<li>语义正确性</li>
+</ul>
+</li>
+<li>形式验证<ul>
+<li>使用数学方法证明形式规范的正确性</li>
+<li>正式的证明所有可能执行的都符合规范</li>
+<li>手动工作、部分自动化、不能自动化决定的</li>
+</ul>
+</li>
+<li>测试：揭示bug、评估质量、阐明规范和文档</li>
+</ul>
+<h5 id="设计规范-1"><a href="#设计规范-1" class="headerlink" title="设计规范"></a>设计规范</h5><h6 id="1）规格说明分类"><a href="#1）规格说明分类" class="headerlink" title="1）规格说明分类"></a>1）规格说明分类</h6><p>确定性：唯一的输出或多个合法的输出</p>
+<p>声明程度：单纯的描述输出还是给出了具体的计算</p>
+<p>健壮性：限制实现方式的多少</p>
+<p><strong>确定性与欠定</strong></p>
+<ul>
+<li>确定性规格：<ul>
+<li>满足先决条件后，结果是完全确定的。即：只有一个返回值和一个最终状态，不存在有效输入对应多个有效输出</li>
+</ul>
+</li>
+<li>低确定的：允许同一输入存在多个有效输出</li>
+<li>非确定的：输出结果不确定</li>
+</ul>
+<p>注：将不确定的规格统一定义为欠定的；规格说明的不确定性，为实现者提供了在实现时选择方案的机会（欠定的规格说明通常是通过完全确定的实现来实现的）</p>
+<p><strong>声明性</strong></p>
+<ul>
+<li>操作规范给出了方法执行的一系列步骤（伪代码）</li>
+<li>声明性规范不给出实现的细节，而是给出最终结果的属性及与初始状态的关系</li>
+</ul>
+<p>注：声明性规范更可取：简短，易于理解，不会暴露内部实现细节  </p>
+<p>​    操作规范：为维护人员提供解释；如果必须，可放到内部的注释中</p>
+<p><strong>健壮性</strong></p>
+<p>规格说明比较：</p>
+<p>规格S2&gt;=S1:    (1）S2的前提条件小于等于S1（2）对于满足S1前提的状态，S2d 后置条件大于等于S1的后置条件</p>
+<p>则S2可替换S1</p>
+<p>更强：要求的更少，承诺的更多</p>
+<h6 id="2）图表规范"><a href="#2）图表规范" class="headerlink" title="2）图表规范"></a>2）图表规范</h6><p>加强后置条件，实现自由变少，弱化前置条件，实现需要处理更多情况，<strong>规格越强，区域越小</strong></p>
+<h6 id="3）设计规格说明"><a href="#3）设计规格说明" class="headerlink" title="3）设计规格说明"></a>3）设计规格说明</h6><p>没有通用的准则，但存在一些有用的指导</p>
+<ul>
+<li><p>内聚：不能有很多不同的情况</p>
+</li>
+<li><p>结果是有用的信息</p>
+</li>
+<li><p>健壮性：对不合理参数抛出异常处理后，不允许随意修改</p>
+</li>
+<li><p>弱化性：必要的细节</p>
+</li>
+<li><p>使用抽象类型：例List或Set，为客户机和实现者提供更多自由</p>
+</li>
+<li><p>前置和后置条件：</p>
+<ul>
+<li>对程序员：检查条件的正确性代价很高时，应通过前置条件处理</li>
+<li>对用户：javaAPI倾向采用后置条件处理，参数不合适时抛出未检查异常</li>
+</ul>
+<p>选择前置或后置的关键因素是检查的代价及方法的作用范围：如果仅在类的内部调用，则可通过仔细检查调用该方法的所在位置来确保前提条件的满足；如果是public方法，则事宜采用后置条件（抛出异常）</p>
+</li>
+</ul>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><ul>
+<li>规格说明实现了实现者与客户机的分离</li>
+<li>使单独开发成为可能：客户端不需看源代码即可使用，开发人员可自由编写实现过程而无需考虑如何实现</li>
+<li>安全无bug<ul>
+<li>好的规范可以清楚的记录下用户和实现者的相互假设，bug通常在接口处产生，而规范的存在弥补了这一点</li>
+<li>规范中使用机器检查语言的特性，如静态检查和异常，而不仅仅是人可读的注释，可进一步减少bug</li>
+<li>通过静态检查、仔细的推理、测试和代码评审，结构良好、一致的规范可以最大限度的减少误解，并最大限度的提高编写准确代码的能力</li>
+</ul>
+</li>
+<li>易于理解：客户机不必阅读或理解代码</li>
+<li>易于改变：适当的弱规范给实现者以自由，适当的强规范给客户机以自由</li>
+<li>声明性规范最有用</li>
+<li>先决条件（削弱了规范）使客户端的应用更加困难，但是开发人员适当的应用，允许开发者做出必要的假设</li>
+</ul>
+<h4 id="抽象数据类型"><a href="#抽象数据类型" class="headerlink" title="抽象数据类型"></a>抽象数据类型</h4><h5 id="抽象和用户定义的类型"><a href="#抽象和用户定义的类型" class="headerlink" title="抽象和用户定义的类型"></a>抽象和用户定义的类型</h5><ul>
+<li>抽象的意义：<ul>
+<li>抽象</li>
+<li>模块化</li>
+<li>封装</li>
+<li>信息隐藏</li>
+<li>关注点分离：模块具有单独的责任，不能将一个责任分散在不同的模块中</li>
+</ul>
+</li>
+<li>数据抽象：一个类型的特征由可对其执行的操作刻画</li>
+<li>抽象类型的新颖性和以往不同之处在于对操作的关注</li>
+</ul>
+<h5 id="类型和操作的分类"><a href="#类型和操作的分类" class="headerlink" title="类型和操作的分类"></a>类型和操作的分类</h5><p>抽象数据类型的操作分类：</p>
+<ul>
+<li><p>创造者(Creators)：产生类型的新对象</p>
+<p>t* → T </p>
+</li>
+<li><p>制造者(Producers)：在已有对象的基础上产生新的对象</p>
+<p>T+, t* → T</p>
+</li>
+<li><p>观察者(Observers)：输入抽象类型的对象，返回其他类型的对象</p>
+<p>T+, t* → t </p>
+</li>
+<li><p>突变(Mutators)：改变对象</p>
+<p>T+, t* → void | t | T</p>
+</li>
+</ul>
+<p>注：</p>
+<p>创建者要么作为构造函数实现，比如new，或者只是一个静态方法（作为静态方法实现的创建者通常称为工厂方法）</p>
+<p>突变体通常不返回，但并非所有的突变体都是void(),eg: Set.add()返回boolean类型</p>
+<h5 id="抽象数据类型示例"><a href="#抽象数据类型示例" class="headerlink" title="抽象数据类型示例"></a>抽象数据类型示例</h5><h6 id="1）int"><a href="#1）int" class="headerlink" title="1）int"></a>1）int</h6><p>creators:0,1,2…..</p>
+<p>producers:+,-,*,/</p>
+<p>observers:==,!=,&lt;,&gt;</p>
+<p>mutators:不存在，因为int不可变</p>
+<h6 id="2）List"><a href="#2）List" class="headerlink" title="2）List"></a>2）List</h6><p>creators:ArrayList和LinkedList的构造函数或集合、Collections.singletonList()</p>
+<p>producers:Collections.unmodifiableList</p>
+<p>observers:size,get</p>
+<p>mutators:add,remove,addAll,Collections.sort</p>
+<h6 id="3）String"><a href="#3）String" class="headerlink" title="3）String"></a>3）String</h6><p>creators:string的构造器</p>
+<p>producers:concat,substring,toUppercase</p>
+<p>observers:length,charAt</p>
+<p>mutators:不存在，string不可变</p>
+<p><strong>java实现ADT</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ADT概念</th>
+<th>java的实现方式</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">创造者</td>
+<td>Constructor、Static(factory) method、Constant</td>
+<td>ArrayList()、Collections.singletonList()、Arrays.asList()、BigInterger.Zero()</td>
+</tr>
+<tr>
+<td style="text-align:left">观察者</td>
+<td>Instance method、Static method</td>
+<td>List.get()、Collections.max()</td>
+</tr>
+<tr>
+<td style="text-align:left">制造者</td>
+<td>Instance method、Static method</td>
+<td>String.trim()、Collections.unmodifiableList()</td>
+</tr>
+<tr>
+<td style="text-align:left">突变体</td>
+<td>Instance method、Static method</td>
+<td>List.add()、Collections.copy()</td>
+</tr>
+<tr>
+<td style="text-align:left">表示(representation)</td>
+<td>私有字段</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>抽象数据类型是由其操作定义的，类型是由其操作集及规格说明所表征的</li>
+<li>抽象数据类型的值是不透明的，隐藏了数据和实现，除非操作允许，否则无法检查内部数据</li>
+</ul>
+<h5 id="设计抽象类型"><a href="#设计抽象类型" class="headerlink" title="设计抽象类型"></a>设计抽象类型</h5><p>ADT的设计需要选择良好的操作以及确定操作的行为</p>
+<ul>
+<li>规则一：<ul>
+<li>设计一组简单操作，通过简单操作的组合实现复杂的操作</li>
+<li>操作的行为内聚(单一职责)</li>
+<li>List中不能添加sum方法，缺乏通用性</li>
+</ul>
+</li>
+<li>规则二：操作集要完备，覆盖该类型所有支持的行为</li>
+<li>规则三：类型不应该混合领域无关(通用的)和领域特定的特征</li>
+</ul>
+<h5 id="表示独立"><a href="#表示独立" class="headerlink" title="表示独立"></a>表示独立</h5><p>抽象类型的使用独立于表示</p>
+<p>只有通过前置条件和后置条件充分明确了ADT的操作，使用者知道可以依赖哪些内容，实现者知道可以安全更改哪些内容，此时才可以修改内部表示</p>
+<h5 id="测试抽象数据类型"><a href="#测试抽象数据类型" class="headerlink" title="测试抽象数据类型"></a>测试抽象数据类型</h5><p>测试创造者、生产者和突变体的唯一方式是对结果对象调用观察者，测试观察者的唯一方式是创建供其观察的对象</p>
+<h5 id="不变量"><a href="#不变量" class="headerlink" title="不变量"></a>不变量</h5><p>ADT自身有责任确保其不变性，而不是依赖于调用者或者其他模块</p>
+<h5 id="Rep不变量和抽象函数"><a href="#Rep不变量和抽象函数" class="headerlink" title="Rep不变量和抽象函数"></a>Rep不变量和抽象函数</h5><p>两个值空间：</p>
+<p>R:实现时用的的值空间</p>
+<p>A:需要支持的值空间</p>
+<p>AF: <strong>R$\rightarrow$ A,一定是满射</strong></p>
+<p>RI : <strong>R → boolean </strong></p>
+<ul>
+<li>RI说明空间R中的r是否被映射到了空间A,RI形成了空间R的一个子集（子集中的所有元素均被AF映射到了空间A中)</li>
+<li>AF 和 RI 既不由选定的表示值空间决定，也不由抽象值空间单独决定；表示值空间确定后，AF和RI也不是确定的</li>
+<li>即使相同的表示值空间和相同的 表示不变性RI，我们仍然可以用不同的抽象函数AF来映射。 </li>
+<li>ADT设计的关键：不仅是选择两个空间(面向规格说明的抽 象值空间和面向实现的表示值空间), 而且要决定表示值(RI)和如何映 射(AF)。 </li>
+</ul>
+<h5 id="有益的突变"><a href="#有益的突变" class="headerlink" title="有益的突变"></a>有益的突变</h5><p><strong>抽象值永远不可改变 </strong></p>
+<p><strong>在确保其映射的抽象值不变前提下，表示值可以变化</strong></p>
+<h5 id="记录Rep的AF-RI和安全性"><a href="#记录Rep的AF-RI和安全性" class="headerlink" title="记录Rep的AF,RI和安全性"></a>记录Rep的AF,RI和安全性</h5><p>在类中定义Rep的 位置 说明AF、RI、不变性</p>
+<ul>
+<li>保存不变性：<ul>
+<li>在初始化时使之为真 ；</li>
+<li>所有修改都使不 变性得到保持 </li>
+</ul>
+</li>
+<li>在ADT操作中：<ul>
+<li>Creators and producers必须为新创建的对象建立不变性</li>
+<li>Mutators and observers必须保持不变性。</li>
+</ul>
+</li>
+<li>总结，抽象数据的不变量：<ul>
+<li>只通过creators and producers创建</li>
+<li>通过mutators and observers保持 </li>
+<li>没有表示泄露发生 </li>
+</ul>
+</li>
+</ul>
+<h5 id="ADT不变量代替前置条件"><a href="#ADT不变量代替前置条件" class="headerlink" title="ADT不变量代替前置条件"></a>ADT不变量代替前置条件</h5><p>良好设计的ADT，可以替代spec 中的部分preconditions</p>
+<h5 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h5><ul>
+<li><strong>抽象数据类型有操作集决定</strong></li>
+<li><strong>操作可分为：创建者，生产者，观察者和突变</strong></li>
+<li><strong>ADT的规格是由其操作和规格说明构成</strong></li>
+<li>好的ADT:<strong>简单，一致，丰富，具有表示独立性</strong></li>
+<li>测试中，需要将创建者，生产者，观察者和突变放在一起使用</li>
+<li>安全不易出bug：好的ADT为数据类型定义了良好的契约，客户了解该数据结构，实现者有限制性的改变自由</li>
+<li>易于理解：<strong>好的ADT隐藏实现的细节</strong>，使用ADT的程序员只需有理解操作，有实现的自由</li>
+<li>易于改变：表示独立性允许抽象数据类型的实现可不通过客户端进行更改</li>
+<li>不变量是一种属性，在对象的生命周期内都为真</li>
+<li>好的ADT保留自己的不变量。不变量必须由创造者和生产者创建，由观察者和突变体保持</li>
+<li>rep不变量指定表示的合法值，应该在运行时checkRep</li>
+<li>抽象函数将具体的表示映射到所表示的抽象值</li>
+<li>表示暴露威胁到表示独立性和不变性的保持</li>
+<li>安全无bug：一个好的保留自己的不变量，这样不易受到客户端的影响，并且ADT本身的实现可以更容易的隔离对不变量的改变威胁。显式的生命rep不变量并且在运行时checkRep检查，可以更早的捕获误解和bug</li>
+<li>易于理解：rep不变量和抽象函数解释了数据类型的表示以及与抽象的关系</li>
+<li>易于改变：抽象数据类型将抽象与具体分离，使得不需要改变客户端代码就可以更改表示。</li>
+</ul>
+<h4 id="ADT和OOP"><a href="#ADT和OOP" class="headerlink" title="ADT和OOP"></a>ADT和OOP</h4><h5 id="大纲-1"><a href="#大纲-1" class="headerlink" title="大纲"></a>大纲</h5><ul>
+<li>面向对象准则</li>
+<li>基本概念：对象、类、属性、方法和接口</li>
+<li>OOP的不同特性<ul>
+<li>封装和信息隐藏</li>
+<li>继承和重写</li>
+<li>多态、子类型和重载</li>
+<li>静态和动态分派</li>
+<li>成分和代表</li>
+</ul>
+</li>
+<li>java编程中重要的对象方法</li>
+<li>不可变类</li>
+<li>OOP的历史</li>
+</ul>
+<p>将抽象数据类型的接口与其现实分离，并使用java接口来实现这种分离</p>
+<p>用接口定义ADT，并用类实现该接口</p>
+<h5 id="面向对象准则"><a href="#面向对象准则" class="headerlink" title="面向对象准则"></a>面向对象准则</h5><ul>
+<li>OOP以类为核心概念</li>
+<li>应该通过断言（前置、后置条件和不变量）和异常处理来增强类及其特性，使用工具将这些断言生成文档，且在运行时可实时监控</li>
+<li>静态类型：定义良好的类型系统应该通过强制执行许多类型生命和兼容性规则来确保系统运行时类型安全</li>
+<li>易于改变和可重用的通用性：使用泛型编写类</li>
+<li>继承</li>
+<li>多态</li>
+<li>动态分派/绑定：调用实体的特性时应触发与当前运行对象的类型相对应的特性，执行不同调用时不一定相同</li>
+</ul>
+<h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><ul>
+<li>对象包括状态和行为</li>
+<li>每个对象都对应一个类，类中定义成员变量和成员方法，类的方法就是其应用程序接口<ul>
+<li>类变量和类方法与一个类关联，并且每个类只关联一次。</li>
+<li>使用类需创建实例对象</li>
+<li>静态方法无法调用非静态成员（方法和变量）</li>
+</ul>
+</li>
+</ul>
+<h5 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h5><p>一个接口可以扩展其他接口</p>
+<p>一个类可以实现多个接口</p>
+<p>API由接口或类实现，接口只一个一个API，接口定义但不实现API，类提供API和实现</p>
+<p>接口不能有构造方法，java8之后，接口允许包含静态方法</p>
+<p>好处：1）除非只有一个实现，否则对变量和参数使用接口；接口支持实现的改变；接口可防止依赖细节； 2）调用者理解ADT时只需理解接口即可；调用者不能在ADT的表示上创建无意的依赖；不同实现可在不同类中； 3）抽象数据类型的多个不同表示可以共存于同一个程序中，作为接口的不同类</p>
+<p>总结：</p>
+<ul>
+<li>ADT的规格说明中，对方法的实现未明确指定，为实现提供了自由，可有多种实现方式</li>
+<li>一个类可以实现多个接口，展现多个视图，是对java不支持多继承的一种补偿</li>
+<li>通过多多个实现在性能和bug free方面的比较，进行实现的选择</li>
+</ul>
+<h5 id="封装和信息隐藏"><a href="#封装和信息隐藏" class="headerlink" title="封装和信息隐藏"></a>封装和信息隐藏</h5><p>API同实现分离，模块间只通过API通讯</p>
+<p>信息隐藏的好处：1）解耦组成系统的类，运行独立地开发、测试、优化、使用、理解和修改 ；2）加快系统开发：类可并行开发；3）减轻维修负担：更快理解类，模块分离；4）有效的性能调优：“热”类可在隔离的情况下调优；5）提供软件复用：松耦合类在其他上下文中都有用</p>
+<p><img src="\img\软件构造\修饰符作用域.JPG" height="60%"> </p>
+<p>注：可在不妨碍调用者的情况下在后期将私有变成公有，但不能进行相反操作</p>
+<h5 id="继承和重写"><a href="#继承和重写" class="headerlink" title="继承和重写"></a>继承和重写</h5><h6 id="1）重写"><a href="#1）重写" class="headerlink" title="1）重写"></a>1）重写</h6><p>子类可重新实现父类中的方法：方法名、参数名、返回值（签名）均相同</p>
+<p>默认父类中的方法是可被重写的，但是严格的继承不能重写（final）</p>
+<p>子类可通过super关键字调用父类中被重写的方法，调用父类的构造方法时，super（）必须是子类构造方法的第一行</p>
+<h6 id="2）抽象类"><a href="#2）抽象类" class="headerlink" title="2）抽象类"></a>2）抽象类</h6><p>抽象方法：只有定义没有实现</p>
+<p>抽象类：不能实例化，继承某个抽象类的子类在实例化时，所有父类中的抽象方法必须已经实现</p>
+<h5 id="多态、子类型和重载"><a href="#多态、子类型和重载" class="headerlink" title="多态、子类型和重载"></a>多态、子类型和重载</h5><h6 id="1）三种多态"><a href="#1）三种多态" class="headerlink" title="1）三种多态"></a>1）三种多态</h6><p>多态性是指为不同类型的实体提供一个接口，或者使 用一个符号来表示多个不同的类型：方法重载、参数多态(泛型)、子类型：一个类的名字可代表多个类的实例</p>
+<h6 id="2）Ad-hoc-多态和重载"><a href="#2）Ad-hoc-多态和重载" class="headerlink" title="2）Ad hoc 多态和重载"></a>2）Ad hoc 多态和重载</h6><p>特别的多态性：参数不同，返回值不同</p>
+<p>重载： 重载是指在一个类中存在多个同名函数，必须具有不同的参数 列表，返回值类型可同可不同 </p>
+<ul>
+<li>重载是静态的多态：通过参数列表决定依赖哪个实现，方法调用时静态类型检查，在编译时决定调用哪个方法</li>
+<li>重载规则：<ul>
+<li>必须更改参数列表</li>
+<li>可更改返回类型</li>
+<li>可更改访问修饰符</li>
+<li>可声明新的或更广泛的已检查类型</li>
+<li>对某个方法 的重载可以在一个类中进行，也可以在子类中进行。此时需要注意同重写 的区别：如果父类和子类中两个方法的签名相同，则为重写；名称一样， 参数列表不一样时，则为重载</li>
+</ul>
+</li>
+</ul>
+<p>子类重载了父类的 方法后，子类仍然继承了被重载的方法</p>
+<h6 id="3）参数多态性和泛型编程"><a href="#3）参数多态性和泛型编程" class="headerlink" title="3）参数多态性和泛型编程"></a>3）参数多态性和泛型编程</h6><p>未完待续~</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Zhang Yue</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://yoursite.com/2019/06/17/软件构造三/" title="软件构造三">http://yoursite.com/2019/06/17/软件构造三/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件构造/" rel="tag"># 软件构造</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/17/软件构造二/" rel="next" title="软件构造二">
+                <i class="fa fa-chevron-left"></i> 软件构造二
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/17/软件构造一/" rel="prev" title="软件构造一">
+                软件构造一 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Zhang Yue">
+            
+              <p class="site-author-name" itemprop="name">Zhang Yue</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/CN-ZhangYue" title="GitHub &rarr; https://github.com/CN-ZhangYue" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/zhangyue3040@gmail.com" title="E-Mail &rarr; zhangyue3040@gmail.com"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://guoziyang.top" title="https://guoziyang.top" rel="noopener" target="_blank">郭子阳</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ADT-OOP"><span class="nav-number">1.</span> <span class="nav-text">ADT+OOP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据类型和数据检查"><span class="nav-number">1.1.</span> <span class="nav-text">数据类型和数据检查</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#编程语言中的数据类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">编程语言中的数据类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#静态和动态数据类型"><span class="nav-number">1.1.2.</span> <span class="nav-text">静态和动态数据类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#类型检查"><span class="nav-number">1.1.3.</span> <span class="nav-text">类型检查</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可变性和不可变性"><span class="nav-number">1.1.4.</span> <span class="nav-text">可变性和不可变性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#快照图"><span class="nav-number">1.1.5.</span> <span class="nav-text">快照图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复杂数据类型：数组和集合"><span class="nav-number">1.1.6.</span> <span class="nav-text">复杂数据类型：数组和集合</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#有用的不可变类型"><span class="nav-number">1.1.7.</span> <span class="nav-text">有用的不可变类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#空指针"><span class="nav-number">1.1.8.</span> <span class="nav-text">空指针</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计规范"><span class="nav-number">1.2.</span> <span class="nav-text">设计规范</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#大纲"><span class="nav-number">1.2.1.</span> <span class="nav-text">大纲</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#编程语言中的函数-方法"><span class="nav-number">1.2.2.</span> <span class="nav-text">编程语言中的函数/方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#规范：通信编程"><span class="nav-number">1.2.3.</span> <span class="nav-text">规范：通信编程</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1）文档"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">1）文档</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2）规格和契约"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">2）规格和契约</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3）行为等价"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">3）行为等价</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4）规范结构：前置和后置条件"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">4）规范结构：前置和后置条件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5）测试和验证规范"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">5）测试和验证规范</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设计规范-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">设计规范</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1）规格说明分类"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">1）规格说明分类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2）图表规范"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">2）图表规范</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3）设计规格说明"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">3）设计规格说明</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#小结"><span class="nav-number">1.2.5.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象数据类型"><span class="nav-number">1.3.</span> <span class="nav-text">抽象数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#抽象和用户定义的类型"><span class="nav-number">1.3.1.</span> <span class="nav-text">抽象和用户定义的类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#类型和操作的分类"><span class="nav-number">1.3.2.</span> <span class="nav-text">类型和操作的分类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#抽象数据类型示例"><span class="nav-number">1.3.3.</span> <span class="nav-text">抽象数据类型示例</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1）int"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">1）int</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2）List"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">2）List</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3）String"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">3）String</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设计抽象类型"><span class="nav-number">1.3.4.</span> <span class="nav-text">设计抽象类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#表示独立"><span class="nav-number">1.3.5.</span> <span class="nav-text">表示独立</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#测试抽象数据类型"><span class="nav-number">1.3.6.</span> <span class="nav-text">测试抽象数据类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不变量"><span class="nav-number">1.3.7.</span> <span class="nav-text">不变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Rep不变量和抽象函数"><span class="nav-number">1.3.8.</span> <span class="nav-text">Rep不变量和抽象函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#有益的突变"><span class="nav-number">1.3.9.</span> <span class="nav-text">有益的突变</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#记录Rep的AF-RI和安全性"><span class="nav-number">1.3.10.</span> <span class="nav-text">记录Rep的AF,RI和安全性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ADT不变量代替前置条件"><span class="nav-number">1.3.11.</span> <span class="nav-text">ADT不变量代替前置条件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#小结："><span class="nav-number">1.3.12.</span> <span class="nav-text">小结：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ADT和OOP"><span class="nav-number">1.4.</span> <span class="nav-text">ADT和OOP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#大纲-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">大纲</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#面向对象准则"><span class="nav-number">1.4.2.</span> <span class="nav-text">面向对象准则</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#概念"><span class="nav-number">1.4.3.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#接口"><span class="nav-number">1.4.4.</span> <span class="nav-text">接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#封装和信息隐藏"><span class="nav-number">1.4.5.</span> <span class="nav-text">封装和信息隐藏</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#继承和重写"><span class="nav-number">1.4.6.</span> <span class="nav-text">继承和重写</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1）重写"><span class="nav-number">1.4.6.1.</span> <span class="nav-text">1）重写</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2）抽象类"><span class="nav-number">1.4.6.2.</span> <span class="nav-text">2）抽象类</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多态、子类型和重载"><span class="nav-number">1.4.7.</span> <span class="nav-text">多态、子类型和重载</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1）三种多态"><span class="nav-number">1.4.7.1.</span> <span class="nav-text">1）三种多态</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2）Ad-hoc-多态和重载"><span class="nav-number">1.4.7.2.</span> <span class="nav-text">2）Ad hoc 多态和重载</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3）参数多态性和泛型编程"><span class="nav-number">1.4.7.3.</span> <span class="nav-text">3）参数多态性和泛型编程</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-jiaoyue"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Yue</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
